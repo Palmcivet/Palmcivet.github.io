@@ -8,3 +8,4 @@ public/
 .deploy*/
 _drafts
 yarn.lock
+themes/*/_config.yml

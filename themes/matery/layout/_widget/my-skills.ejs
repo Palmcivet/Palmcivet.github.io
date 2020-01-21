@@ -24,6 +24,18 @@ var topSkillArr = [];
         <% } %>
     </div>
 
+    <% var wheel = theme.mySkills.wheel; %>
+    <% if (wheel) { %>
+    <div class="other-skills chip-container" data-aos="zoom-in-up">
+        <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;<%- __('wheel') %></div>
+        <div class="tag-chips center-align">
+            <% Object.keys(wheel).forEach(function(item) { %>
+                <span class="chip center-align waves-effect waves-light chip-default"><%- wheel[item] %></span>
+            <% }) %>
+        </div>
+    </div>
+    <% } %>
+
     <%
     /**
      * Determine if an element is included in the array.
