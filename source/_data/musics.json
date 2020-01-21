@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Red",
+        "artist": "Rob Simonsen",
+        "url": "/meta/music/Red.mp3",
+        "cover": "/meta/music/meta/Red.jpg"
+    },
+    {
+        "name": "市集",
+        "artist": "胡伟立",
+        "url": "/meta/music/市集.mp3",
+        "cover": "/meta/music/meta/市集.jpg"
+    },
+    {
+        "name": "Oogway Ascends",
+        "artist": "Hans Zimmer,John Powell",
+        "url": "/meta/music/Oogway Ascends.mp3",
+        "cover": "/meta/music/meta/Oogway Ascends.jpg"
+    },
+    {
+        "name": "大悲咒",
+        "artist": "佛教歌曲",
+        "url": "/meta/music/大悲咒.mp3",
+        "cover": "/meta/music/meta/大悲咒.png"
+    },
+    {
+        "name": "寒箫对月",
+        "artist": "薛振华",
+        "url": "/meta/music/寒箫对月.mp3",
+        "cover": "/meta/music/meta/寒箫对月.jpg"
+    }
+]
