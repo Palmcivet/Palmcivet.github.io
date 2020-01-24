@@ -43,13 +43,13 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
-  auto_detect: true
+  line_number: false
+  auto_detect: false
   tab_replace:
 
 prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'hopscotch'
+  mode: preprocess    # realtime/preprocess
+  theme: hopscotch
   # 'tomorrow'
   line_number: true    # default false
   custom_css:
