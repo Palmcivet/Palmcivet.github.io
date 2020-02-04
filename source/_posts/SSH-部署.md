@@ -6,8 +6,9 @@ cover: false
 password: false
 comment: true
 date: 2018-11-12 10:44:00
-categories: 运维
 img: https://s2.ax1x.com/2020/01/20/1Fp6un.jpg
+categories:
+  - 运维
 tags:
   - Linux
   - SSH

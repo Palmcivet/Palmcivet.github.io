@@ -12,6 +12,5 @@ password:
 categories:
 tags:
   -
-keywords:
 summary:
 ---

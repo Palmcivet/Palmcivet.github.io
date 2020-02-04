@@ -11,7 +11,7 @@ categories: 系统开发
 tags:
   - DPDK
   - 部署
-summary: DPDK 可以为 Intel Architecture（IA）处理器架构下用户空间高效的数据包处理提供库函数和驱动的支持。本文记录 DPDK 部署的过程，以方便参考。
+summary: DPDK 可以为 Intel 处理器架构的用户空间下高效的数据包处理提供库函数和驱动的支持。本文记录 DPDK 部署的过程，以方便参考。
 ---
 
 ## 前言

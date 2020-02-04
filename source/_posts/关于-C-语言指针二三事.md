@@ -1,7 +1,7 @@
 ---
 title: 关于 C 语言指针二三事
 toc: true
-top: false
+top: true
 cover: false
 password: false
 comment: true
