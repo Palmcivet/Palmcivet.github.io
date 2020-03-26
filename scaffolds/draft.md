@@ -3,7 +3,6 @@ title: {{ title }}
 toc: true
 top: false
 cover: false
-layout: false
 mathjax: false
 date: {{ date }}
 reprintPolicy: cc_by
@@ -14,3 +13,10 @@ tags:
   -
 summary:
 ---
+
+## 前言
+
+## 结语
+
+## 参考文章
+1. []()
