@@ -1,0 +1,1557 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="开发小记——Web Audio API, Palm Civet,Blog">
+    <meta name="description" content="总结了 Web Audio API 的使用流程，整理了 AlloyTeam 等团队的方案，记录了使用 Audio API 过程中会遇到的一些问题。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>开发小记——Web Audio API | Palm Civet</title>
+    <link rel="icon" type="image/png" href="/meta/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Palm Civet" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/meta/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Palm Civet</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>时间轴</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/meta/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Palm Civet</div>
+        <div class="logo-desc">
+            
+            一个全沾开发者
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			时间轴
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s1.ax1x.com/2020/04/28/J42pPs.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">开发小记——Web Audio API</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                <span class="chip bg-color">踩坑</span>
+                            </a>
+                        
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                前端开发
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
+                    2020-04-28
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
+                    2020-04-28
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+				
+                
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>最近在做一个在线语音聊天室的项目，在此之前零经验，所以疯狂爬帖。对于 Web Audio API 来说，除了 MDN 之外，资料不是特别多，<a href="https://juejin.im/" target="_blank" rel="noopener" title="主页">掘金</a> 和 <a href="https://segmentfault.com/" target="_blank" rel="noopener" title="主页">思否</a> 文章相对集中，但也不全是新的，这就导致了一个刚入手就会遇到的坑。</p>
+<blockquote>
+<p>本文重点不是介绍 Web Audio API，而是分享开发时的历程。若想获得更多知识以及技术细节，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank" rel="noopener" title="Web Audio API - MDN">MDN</a> 和文末 <a href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB">推荐阅读</a> 中的文章。</p>
+</blockquote>
+<p>测试环境：</p>
+<ul>
+<li>Mozilla Firefox：v75.0</li>
+<li>Microsoft Edge：v81.0.416.64</li>
+</ul>
+<h2 id="getusermedia"><a class="markdownIt-Anchor" href="#getusermedia"></a> getUserMedia</h2>
+<p>使用 Web Audio API 进行录音，第一步就是要拿到浏览器的录音 API 以及获得相应的录音权限，部分文章会使用 <code>navigator.getUserMedia()</code> 这个 API。为解决不同浏览器兼容性问题，有形如以下的代码：</p>
+<pre class="highlight"><code class="js">navigator.getUserMedia =
+	navigator.getUserMedia ||
+	navigator.webkitGetUserMedia ||
+	navigator.mozGetUserMedia ||
+	navigator.msGetUserMedia;
+
+navigator.getUserMedia(constraints, sucCallBack, errCallBack);
+</code></pre>
+<p>上述代码是在三四年前（当前 2020 年）的历史条件下形成的，在 Firefox 下运行可能会有以下警告⚠️：</p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J42AqU.png" alt="#b# getUserMedia() 的警告" /></p>
+<p>访问 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/getUserMedia" target="_blank" rel="noopener" title="Navigator.getUserMedia - MDN">MDN 对应页面</a>，可以看到该 API 被 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia" target="_blank" rel="noopener" title="MediaDevices.getUserMedia - MDN"><code>MediaDevices.getUserMedia()</code></a> 取代，并且结合了 Promise。作为 Navigator 的一个子对象，调用形式如下：</p>
+<pre class="highlight"><code class="js">navigator.mediaDevices.getUserMedia({ <span class="hljs-attr">audio</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">video</span>: <span class="hljs-literal">false</span> });
+	.then(<span class="hljs-function">(<span class="hljs-params">stream</span>) =&gt;</span> {
+		<span class="hljs-comment">/* 使用 stream */</span>
+	})
+	.catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+		<span class="hljs-comment">/* 处理 error */</span>
+	});
+</code></pre>
+<p>使用 Promise 的 <code>then()</code> resolve <code>sucCallBack()</code> 处理成功的回调，<code>catch()</code> reject <code>errCallBack()</code> 处理失败的回调，<code>constraints</code> 照旧。</p>
+<blockquote>
+<p>返回一个 Promise 对象，成功后会 resolve 回调一个 MediaStream 对象。若用户拒绝了使用权限，或者需要的媒体源不可用，promise 会 reject 回调一个 <code>PermissionDeniedError</code> 或者 <code>NotFoundError</code>。</p>
+</blockquote>
+<blockquote>
+<p>返回的 promise 对象可能既不会 resolve 也不会 reject，因为用户不是必须选择允许或拒绝。</p>
+</blockquote>
+<p>版本问题不能算是坑，毕竟要考虑项目的用户对象等各种原因，但对于一个刚入坑的新人来讲，很容易摸不着头脑，不知孰对孰错。</p>
+<p>好，通过 <code>navigator.mediaDevices.getUserMedia()</code> 指定的 resolve 函数，现在可以得到 <code>stream</code> 了，这是一个 MediaStream 媒体流，可以直接作为音频或视频的播放源。那么，如何播放呢？创建 <code>&lt;audio&gt;</code> 或者 <code>&lt;video&gt;</code> 标签，填写 <code>src</code> 属性然后触发响应事件就行，OK 文章结束。是吗？强大的 HTML5 可不这么认为，了解了 <a href="#%E9%9F%B3%E9%A2%91%E5%9B%BE">音频图</a>，你就会知道原来代码不仅可以作画，还可以 <a href="https://www.zhangxinxu.com/wordpress/2017/06/html5-web-audio-api-js-ux-voice/" target="_blank" rel="noopener" title="张鑫旭的博客">写音乐</a>。</p>
+<p>在了解播放音频之前，不妨先来看看这些音乐数据的格式。</p>
+<h2 id="获取数据"><a class="markdownIt-Anchor" href="#获取数据"></a> 获取数据</h2>
+<p>JS 获取二进制数据的方式不少，比较常见的就是读取为 ArrayBuffer 和 Blob。</p>
+<h3 id="file-对象"><a class="markdownIt-Anchor" href="#file-对象"></a> File 对象</h3>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"loadFile(e)"</span>&gt;</span>
+</code></pre>
+<p>使用 <code>&lt;input&gt;</code> 标签上传文件，然后使用 FileReader 对象读取文件。</p>
+<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadFile</span>(<span class="hljs-params">e</span>) </span>{
+	<span class="hljs-keyword">let</span> reader = <span class="hljs-keyword">new</span> FileReader();
+	reader.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+		<span class="hljs-keyword">let</span> arrayBuffer = reader.result;
+		<span class="hljs-comment">// 处理 arrayBuffer</span>
+	};
+	reader.readAsArrayBuffer(e.target.files[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<p>此时 <code>arrayBuffer</code> 是 ArrayBuffer 实例，可以通过 <code>Blob()</code> 构造 Blob 对象，进而创建 Blob URL。</p>
+<h3 id="blob-url"><a class="markdownIt-Anchor" href="#blob-url"></a> Blob URL</h3>
+<blockquote>
+<p><code>URL.createObjectURL()</code> 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的 URL。这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的 URL 对象表示指定的 File 对象或 Blob 对象。</p>
+</blockquote>
+<pre class="highlight"><code class="js">reader.load = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+	<span class="hljs-keyword">let</span> blob = <span class="hljs-keyword">new</span> Blob([arrBuf], {<span class="hljs-attr">type</span>: <span class="hljs-string">"audio/wav"</span>});
+	<span class="hljs-keyword">let</span> blobURL = <span class="hljs-built_in">window</span>.URL.createObjectURL(blob);
+	doucment.getElementById(<span class="hljs-string">"audio"</span>).src = blobURL;
+	<span class="hljs-built_in">window</span>.URL.revokeObjectURL(blobURL);	<span class="hljs-comment">// 使用完需要释放资源</span>
+}
+</code></pre>
+<p>Blob URL 可以像一般的 HTTP URL 引用，但只能在浏览器的单个实例中和同一个会话中。而正是绑定了 document 对象，所以每次使用完尽量释放，尽管页面在关闭时浏览器会自动清理 document。</p>
+<p>实际上 File 继承了 Blob，拥有其所有接口，所以 <code>file</code> 实例其实无需经过 Blob 可直接创建 Blob URL：</p>
+<pre class="highlight"><code class="js">reader.load = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+	blobUrl = URL.createObjectURL(e.target.files[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<h3 id="arraybuffer"><a class="markdownIt-Anchor" href="#arraybuffer"></a> ArrayBuffer</h3>
+<p>调用 FileReader 对象的 <code>readAsArrayBuffer()</code> 方法后，读取 <code>result</code> 实例属性，可以获得转换后的 ArrayBuffer 对象，借助 <code>TypedeArray</code> 或 <code>DataView</code> 对象可实现自定义操作。</p>
+<h3 id="xhr"><a class="markdownIt-Anchor" href="#xhr"></a> XHR</h3>
+<p>使用 HTTP 协议的 AJAX，可以发送或者接受二进制文件。</p>
+<ul>
+<li>接受：<pre class="highlight"><code class="js"><span class="hljs-keyword">var</span> XHR = <span class="hljs-keyword">new</span> XMLHttpRequest();
+XHR.open(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/myfile.png"</span>, <span class="hljs-literal">true</span>);
+XHR.responseType = <span class="hljs-string">"arraybuffer"</span>;
+XHR.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+	<span class="hljs-keyword">let</span> buf = XHR.response;	<span class="hljs-comment">// 获得 ArrayBuffer</span>
+}
+</code></pre>
+<ul>
+<li>也可直接构造 Blob<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> blob = <span class="hljs-keyword">new</span> Blob([XHR.response], { <span class="hljs-attr">type</span>: <span class="hljs-string">"image/png"</span> });
+</code></pre>
+</li>
+<li>或者设置 <code>responseType</code> 为 <code>blob</code><pre class="highlight"><code class="js">XHR.responseType = <span class="hljs-string">"blob"</span>;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>发送：<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> myArray = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(<span class="hljs-number">512</span>);
+<span class="hljs-keyword">let</span> longInt8View = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(myArray);
+<span class="hljs-keyword">let</span> XHR = <span class="hljs-keyword">new</span> XMLHttpRequest();
+XHR.open(<span class="hljs-string">"POST"</span>, url, <span class="hljs-literal">true</span>);
+XHR.send(longInt8View);
+</code></pre>
+XHR 增强的 <code>send()</code> 方法可直接发送二进制文件。</li>
+</ul>
+<h3 id="websocket"><a class="markdownIt-Anchor" href="#websocket"></a> WebSocket</h3>
+<p>同样 WebSocket 的 <code>send()</code> 方法也可直接发送二进制格式，具体有以下类型：</p>
+<ul>
+<li>USVString</li>
+<li>Blob</li>
+<li>ArrayBuffer</li>
+</ul>
+<p>而接收时，浏览器可能会进行解析，因此必要时需在连接前指定 <code>binarytype</code> 属性。如果发送是以 Blob，那么接收也应该按相同的格式接收。除却 USVString，两种类型大致相同，Blob 适合直接保存为文件，ArrayBuffer 适合在内存中编辑（毕竟有 <code>TypedeArray</code> 和 <code>DataView</code>）。</p>
+<h2 id="音频图"><a class="markdownIt-Anchor" href="#音频图"></a> 音频图？</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Audio_API" target="_blank" rel="noopener" title="Web Audio API - MDN">MDN</a> 对 Web Audio API 是这样介绍的：</p>
+<blockquote>
+<p>Web Audio API 使用户可以在<em>音频上下文</em>(AudioContext)中进行音频操作，具有<em>模块化路由</em>的特点。在<em>音频节点</em>上操作进行基础的音频， 它们连接在一起构成<em>音频路由图</em>。</p>
+</blockquote>
+<p>下方还有这样的章节：</p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J42VZF.png" alt="#b# 音频图?" /></p>
+<p>什么是音频图呢？乍接触到时云里雾里的，直接翻文档不知所云，所以还是得先读一读其他的文章。爬帖一波，再结合文档，我整理了如下一张图：</p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J42krT.png" alt="#b# Audio API 的大体结构" /></p>
+<p>可以看到，AudioContext 和 AudioNode 衍生出了一系列对象。不得不说，Web 的对象和 API 真是多，而且相互交织，不画个示意图真不好理解。</p>
+<h3 id="创建-audiocontext"><a class="markdownIt-Anchor" href="#创建-audiocontext"></a> 创建 AudioContext</h3>
+<p>AudioContext 翻译为 <em>音频上下文</em>，对音频的一切操作都在这个环境里进行，就像一个工厂。自然而然的会想到，AudioContext 可以类比 Canvas 中 <code>getContext()</code>。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> AudioContext = <span class="hljs-built_in">window</span>.AudioContext || <span class="hljs-built_in">window</span>.webkitAudioContext;
+<span class="hljs-keyword">const</span> audioContext = <span class="hljs-keyword">new</span> AudioContext();
+</code></pre>
+<p>有了 AudioContext 后，就可以创建音频/视频源了，来源有下面几个。</p>
+<h3 id="audiobuffersourcenode"><a class="markdownIt-Anchor" href="#audiobuffersourcenode"></a> AudioBufferSourceNode</h3>
+<p>AudioBufferSourceNode 对象由 AudioContext 实例的 <code>createBufferSource()</code> 方法创建。</p>
+<p>顾名思义，就是音视频的起点，是一个 AudioNode。有以下常用属性：</p>
+<ul>
+<li><code>buffer</code>：是一个 AudioBuffer 对象，表示要播放的音频</li>
+<li><code>loop</code>：布尔值。是否重播，默认 <code>false</code></li>
+<li><code>connect</code>：继承自 <a href="#audionode" title="跳转到该节">AudioNode</a></li>
+</ul>
+<p>使用以下方法开始和暂停：</p>
+<ul>
+<li><code>start(when[, offset][, duration])</code>：从 <code>when</code> 开始播放<br />
+只能被播放一次，也就是每次 <code>start()</code> 后，如果想再播放一遍，就需要重新创建，不过创建该节点代价不大</li>
+<li><code>stop([when])</code>：到 <code>when</code> 停止播放<br />
+不同于 <code>start()</code>，可以多次调用</li>
+</ul>
+<p>该节点的 <code>buffer</code> 属性指向一个 AudioBuffer 对象，这个对象是由 AudioContext 的方法创建的。前面提到，通过 XHR 或者 File 获得二进制文件。我们都知道音视频都有压缩（所以产生了各种压缩格式），播放前得先解码，所以下面两个函数就是用来将之解码为可播放的 buffer。</p>
+<h4 id="decodeaudiodata"><a class="markdownIt-Anchor" href="#decodeaudiodata"></a> <code>decodeAudioData()</code></h4>
+<p>该函数可实现从 <strong>音频文件</strong> 的 ArrayBuffer 异步解码。新版 API 使用 Promise 的形式。</p>
+<pre class="highlight"><code class="js">XHR.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+	context.decodeAudioData(XHR.response)
+		.then(<span class="hljs-function">(<span class="hljs-params">buffer</span>) =&gt;</span> {
+			<span class="hljs-comment">// 处理 buffer</span>
+		})
+		.catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+			<span class="hljs-comment">// 处理错误</span>
+		});
+};
+</code></pre>
+<h4 id="createbuffer"><a class="markdownIt-Anchor" href="#createbuffer"></a> <code>createBuffer()</code></h4>
+<p>新建一个空白的 AudioBuffer 对象，以便用于填充数据，通过 AudioBufferSourceNode 播放。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> ctx = <span class="hljs-keyword">new</span> AudioContext();
+<span class="hljs-keyword">let</span> emptyBuffer = ctx.createBuffer(numOfChan, len, rate);
+</code></pre>
+<ul>
+<li><code>numOfChan</code>：声道数</li>
+<li><code>len</code>：长度</li>
+<li><code>rate</code>：采样频率</li>
+</ul>
+<h3 id="audiodestinationnode"><a class="markdownIt-Anchor" href="#audiodestinationnode"></a> AudioDestinationNode</h3>
+<p>为了遵循行文逻辑，而保持层次结构上清晰，这部分见 <a href="#destination"><code>destination</code></a>。</p>
+<h3 id="mediaelementaudiosourcenode"><a class="markdownIt-Anchor" href="#mediaelementaudiosourcenode"></a> MediaElementAudioSourceNode</h3>
+<ul>
+<li>表示由 HTML5 <code>&lt;audio&gt;</code> 或 <code>&lt;video&gt;</code> 元素生成的音频源</li>
+<li>这是一个作为音频源的 AudioNode</li>
+</ul>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> audioCtx = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.AudioContext();
+<span class="hljs-keyword">let</span> audio = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'audio'</span>);
+<span class="hljs-keyword">let</span> source = audioCtx.createMediaElementSource(audio);
+</code></pre>
+<h3 id="mediastreamaudiosourcenode"><a class="markdownIt-Anchor" href="#mediastreamaudiosourcenode"></a> MediaStreamAudioSourceNode</h3>
+<ul>
+<li>表示由 WebRTC MediaStream（如网络摄像头或麦克风）生成的音频源</li>
+<li>这是一个作为音频源的 AudioNode</li>
+</ul>
+<pre class="highlight"><code class="js">navigator.mediaDevices.getUserMedia(constraints)
+	.then(<span class="hljs-function">(<span class="hljs-params">stream</span>) =&gt;</span> {
+			<span class="hljs-keyword">let</span> audioCtx = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.AudioContext();
+			<span class="hljs-keyword">let</span> source = audioCtx.createMediaStreamSource(stream);
+	});
+</code></pre>
+<h2 id="连接-connect"><a class="markdownIt-Anchor" href="#连接-connect"></a> 连接 <code>connect()</code></h2>
+<p>有了起点和音源/视频源，现在可以播放了。怎么操作呢？很简单，连接到扬声器/屏幕就行了。把大象塞到冰箱里的第三步——关上冰箱门。在这里是连接到终点。</p>
+<h3 id="destination"><a class="markdownIt-Anchor" href="#destination"></a> <code>destination</code></h3>
+<p>所谓终点，由 AudioContext 的 <code>destination</code> 定义，是一个 AudioDestinationNode 对象，该对象也是个 AudioNode，一般表示最终的渲染设备。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> audioCtx = <span class="hljs-keyword">new</span> AudioContext();
+<span class="hljs-keyword">let</span> source = audioCtx.createMediaElementSource(<span class="hljs-string">"element"</span>);
+source.connect(audioCtx.destination);
+</code></pre>
+<p>使用 <code>disconnect()</code> 方法断开连接，可以实现停止播放，再次 <code>connect()</code> 即可继续。</p>
+<p>对于 WebRTC MediaStream，媒体流可以存储在本地文件或者被发送到另外一台计算机，使用 <code>createMediaStreamDestination()</code> 方法创建一个对象，关联一个音频流。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> audioCtx = <span class="hljs-keyword">new</span> AudioContext();
+<span class="hljs-keyword">let</span> destination = audioCtx.createMediaStreamDestination();
+</code></pre>
+<p>现在 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 标签的功能好像都实现了，但 Web Audio API 的功能远不止这些。翻看 MDN 文档，会发现有一堆 <code>*Node</code>，这些对象都是继承自 AudioNode，正如示意图所呈现的。</p>
+<h3 id="audionode"><a class="markdownIt-Anchor" href="#audionode"></a> AudioNode</h3>
+<p>该接口是处理音视频的通用模块，可以衍生出各种不同功能的模块，正如上文多次提到的“作为 <code>AudioNode</code>”</p>
+<ul>
+<li>AudioBufferSourceNode，它的数据来源于一个解码好的完整的 buffer</li>
+<li>GainNode：用于设置音量</li>
+<li>OscillatorNode：用于产生周期性波形</li>
+<li>BiquadFilterNode：用于滤波</li>
+<li>ScriptProcessorNode：用 JS 处理音频，见 <a href="#scriptprocessornode">下文</a></li>
+<li>MediaStreamAudioSourceNode：用于连接麦克风设备</li>
+</ul>
+<p>这些模块既有输入也有输出，可以用装饰者模式一层层 connect，不同的节点可以 <strong>连接</strong> 在一起构建一个处理图。</p>
+<p><img src="https://mdn.mozillademos.org/files/7949/voice-change-o-matic-graph.png" alt="#b# 音频节点图 - MDN" /></p>
+<h3 id="gainnode"><a class="markdownIt-Anchor" href="#gainnode"></a> GainNode</h3>
+<p>是用于修改音量的节点，现在可以写一个音乐播放器了（逃</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> gainNode = context.createGain();
+source.connect(gainNode);
+gainNode.connect(context.destination);
+</code></pre>
+<p>连接好后可以通过修改 <code>value</code> 值更改音量：</p>
+<pre class="highlight"><code class="js">gainNode.gain.value = <span class="hljs-number">0.5</span>;
+</code></pre>
+<h3 id="代码与艺术"><a class="markdownIt-Anchor" href="#代码与艺术"></a> 代码与艺术</h3>
+<p>借助各式各样的音频模块，处理一段音频或者生成一段音频不在话下，甚至还能用声音作画（AnalyserNode），我不通乐理、不懂声学，暂且不深入学习。分享几个与 Web Audio API 相关的网页：</p>
+<ul>
+<li><a href="http://mdn.github.io/violent-theremin/" target="_blank" rel="noopener">Violent Theremin</a></li>
+<li><a href="https://mdn.github.io/voice-change-o-matic/" target="_blank" rel="noopener">Voice change o matic</a></li>
+<li><a href="https://airtightinteractive.com/demos/js/reactive" target="_blank" rel="noopener">Loop Waveform Visualizer</a></li>
+</ul>
+<p>若有兴趣可移步 <a href="https://github.com/yrq110/odds-and-ends/blob/master/%E6%8A%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%98%E6%88%90%E9%92%A2%E7%90%B4%EF%BC%81Web%20Audio%20API%E5%85%A5%E9%97%A8.md" target="_blank" rel="noopener" title="博客文章">把浏览器变成钢琴！Web Audio API入门</a>。</p>
+<h2 id="录音"><a class="markdownIt-Anchor" href="#录音"></a> 录音</h2>
+<p>大致了解了 Audio API，但还没解决录音的问题，录音这部分资料不是太多，但模式大致相同。</p>
+<ol>
+<li>使用 WebRTC 的 <code>getUserMedia()</code> 获取 MediaStream</li>
+<li>使用这个流初始化（<code>createMediaStreamSource()</code>）一个 <a href="#mediastreamaudiosourcenode">MediaStreamAudioSourceNode</a> 音频模块</li>
+<li>将节点连接到 ScriptProcessorNode（<code>createScriptProcessor()</code>）——使用 JS 处理音频的节点</li>
+<li>设置 ScriptProcessorNode 的 <code>onaudioprocess</code> 事件的回调函数</li>
+</ol>
+<h3 id="scriptprocessornode"><a class="markdownIt-Anchor" href="#scriptprocessornode"></a> ScriptProcessorNode</h3>
+<p>通过这个节点，可以使用 JS 操作音频，进一步让用代码写音乐成为可能。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> audioCtx = <span class="hljs-keyword">new</span> AudioContext();
+scriptNode = audioCtx.createScriptProcessor(bufferSize, numrOfIn, numOfOut);
+</code></pre>
+<ul>
+<li><code>bufferSize</code>：缓冲区大小，应为 2 的幂，通常为 <code>4096</code></li>
+<li><code>numOfIn</code>：输入声道数，默认 <code>2</code>，最高 <code>32</code></li>
+<li><code>numOfOut</code>：输出声道数，默认 <code>2</code>，最高 <code>32</code></li>
+</ul>
+<h3 id="onaudioprocess-事件"><a class="markdownIt-Anchor" href="#onaudioprocess-事件"></a> <code>onaudioprocess</code> 事件</h3>
+<p>该事件对象有以下两个缓冲区（AudioBuffer 对象）：</p>
+<ul>
+<li><code>inputBuffer</code></li>
+<li><code>outputBuffer</code></li>
+</ul>
+<p>使用 <code>getChannelData(num)</code> 方法可获得该 <code>num</code> 声道的数据，数据以 Float32Array 对象存储。</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> onAudioProcess = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> audioBuffer = event.inputBuffer;
+    <span class="hljs-keyword">let</span> leftChannelData = audioBuffer.getChannelData(<span class="hljs-number">0</span>),
+		rightChannelData = audioBuffer.getChannelData(<span class="hljs-number">1</span>);
+	<span class="hljs-comment">// 处理两个声道的数据</span>
+}
+</code></pre>
+<h3 id="合并声道"><a class="markdownIt-Anchor" href="#合并声道"></a> 合并声道</h3>
+<p>各个声道是分离的，如果要存储然后播放，按时间先后排布显然是不行的，所以要合并，左右声道交叉存储和播放。</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// 交叉合并左右声道的数据</span>
+<span class="hljs-keyword">const</span> combine = <span class="hljs-function">(<span class="hljs-params">left, right</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> totalLength = left.length + right.length;
+    <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(totalLength);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; left.length; i += <span class="hljs-number">2</span>) {
+        data[k] = left[i];
+        data[k + <span class="hljs-number">1</span>] = right[i];
+    }
+    <span class="hljs-keyword">return</span> data;
+}
+</code></pre>
+<h3 id="编码并传输"><a class="markdownIt-Anchor" href="#编码并传输"></a> 编码并传输</h3>
+<p>编码为 WAV 格式的函数经过不断改进，可以直接使用。编码以及压缩后的数据（Blob）可以直接保存/发送。但是在实时通信的场景下，数据应该是源源不断地产生和消耗，所以要用到流。开辟一块缓冲区，隔一段时间取出发送，并清空缓冲区，当这个间隔时间大小合适，就能产生实时的效果。</p>
+<p>感谢腾讯 AlloyTeam 全端团队来自 2015 年的 <a href="http://www.alloyteam.com/2015/12/websockets-ability-to-explore-it-with-voice-pictures" target="_blank" rel="noopener">文章</a>，给出了 Audio API 结合 WebSocket 进行录制与传输的方案。我在此基础上稍作修改，分理出两个类，项目的烂代码还没开源，为不影响阅读暂把前人的智慧贴在文章末尾。（可自定义的参数太多了，全部提取出来有点繁琐，所以部分参数硬编码了。）</p>
+<h2 id="推荐阅读"><a class="markdownIt-Anchor" href="#推荐阅读"></a> 推荐阅读</h2>
+<blockquote>
+<p>注意本节内容列出阅读的文章，虽然也是写作本文的参考文章，读到这里时也建议移步吸取灵感。</p>
+</blockquote>
+<ol>
+<li><a href="https://juejin.im/post/599e35f5f265da246c4a1910" target="_blank" rel="noopener">深入浅出 Web Audio Api - 掘金</a></li>
+<li><a href="https://juejin.im/entry/588ca34e8fd9c5d09bbcaad4" target="_blank" rel="noopener">大话Web-Audio-Api - 掘金</a></li>
+<li><a href="https://juejin.im/post/5cbfdd4ee51d456e6f45c721" target="_blank" rel="noopener">初识HTML5 Web Audio API - 掘金</a></li>
+<li><a href="https://juejin.im/post/5b8bf7e3e51d4538c210c6b0" target="_blank" rel="noopener">如何实现前端录音功能 - 掘金</a></li>
+<li><a href="https://segmentfault.com/a/1190000010561222" target="_blank" rel="noopener">HTML5音频API Web Audio - 思否</a></li>
+<li><a href="https://www.jianshu.com/p/62790429acef" target="_blank" rel="noopener">基于WebSocket的在线聊天室（一） - 简书</a></li>
+<li><a href="https://www.jianshu.com/p/03a74d489f34" target="_blank" rel="noopener">基于WebSocket的在线聊天室（二） - 简书</a></li>
+<li><a href="http://www.alloyteam.com/2015/12/websockets-ability-to-explore-it-with-voice-pictures" target="_blank" rel="noopener">websocket 探索其与语音、图片的能力</a></li>
+<li><a href="https://github.com/yrq110/odds-and-ends/blob/master/%E6%8A%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%98%E6%88%90%E9%92%A2%E7%90%B4%EF%BC%81Web%20Audio%20API%E5%85%A5%E9%97%A8.md" target="_blank" rel="noopener">把浏览器变成钢琴！Web Audio API入门</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank" rel="noopener">Web Audio API - MDN</a></li>
+</ol>
+<h2 id="附录代码"><a class="markdownIt-Anchor" href="#附录代码"></a> 附录：代码</h2>
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SAudioData</span> </span>{
+	<span class="hljs-keyword">constructor</span>(rate) {
+		<span class="hljs-keyword">this</span>.size = <span class="hljs-number">0</span>; <span class="hljs-comment">// 录音文件长度</span>
+		<span class="hljs-keyword">this</span>.buffer = []; <span class="hljs-comment">// 录音缓存</span>
+		<span class="hljs-keyword">this</span>.inputSampleRate = rate; <span class="hljs-comment">// 输入采样率</span>
+		<span class="hljs-keyword">this</span>.outputSampleRate = <span class="hljs-number">44100</span> / <span class="hljs-number">6</span>; <span class="hljs-comment">// 输出的采样率,取决于平台</span>
+		<span class="hljs-keyword">this</span>.inputSampleBits = <span class="hljs-number">16</span>; <span class="hljs-comment">// 输入采样位数 8, 16</span>
+		<span class="hljs-keyword">this</span>.outputSampleBits = <span class="hljs-number">8</span>; <span class="hljs-comment">// 输出采样位数 8, 16</span>
+	}
+
+	<span class="hljs-comment">// 填入缓冲区</span>
+	inputData = <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+		<span class="hljs-keyword">this</span>.buffer.push(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(data));
+		<span class="hljs-keyword">this</span>.size += data.length;
+	};
+
+	<span class="hljs-comment">// 清理缓冲区</span>
+	clearData = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">this</span>.size = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">this</span>.buffer = [];
+	};
+
+	<span class="hljs-comment">// 合并压缩</span>
+	compress = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">var</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-keyword">this</span>.size);
+		<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.buffer.length; i++) {
+			data.set(<span class="hljs-keyword">this</span>.buffer[i], offset);
+			offset += <span class="hljs-keyword">this</span>.buffer[i].length;
+		}
+		<span class="hljs-comment">// 压缩</span>
+		<span class="hljs-keyword">var</span> compression = <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>.inputSampleRate / <span class="hljs-keyword">this</span>.outputSampleRate);
+		<span class="hljs-keyword">var</span> length = data.length / compression;
+		<span class="hljs-keyword">var</span> result = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(length);
+		<span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span>,
+			j = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">while</span> (index &lt; length) {
+			result[index] = data[j];
+			j += compression;
+			index++;
+		}
+		<span class="hljs-keyword">return</span> result;
+	};
+
+	<span class="hljs-comment">// 编码为 WAV，Blob</span>
+	encodeWAV = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">var</span> sampleRate = <span class="hljs-built_in">Math</span>.min(<span class="hljs-keyword">this</span>.inputSampleRate, <span class="hljs-keyword">this</span>.outputSampleRate);
+		<span class="hljs-keyword">var</span> sampleBits = <span class="hljs-built_in">Math</span>.min(<span class="hljs-keyword">this</span>.inputSampleBits, <span class="hljs-keyword">this</span>.outputSampleBits);
+		<span class="hljs-keyword">var</span> bytes = <span class="hljs-keyword">this</span>.compress();
+		<span class="hljs-keyword">var</span> dataLength = bytes.length * (sampleBits / <span class="hljs-number">8</span>);
+		<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(<span class="hljs-number">44</span> + dataLength);
+		<span class="hljs-keyword">var</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>(buffer);
+
+		<span class="hljs-keyword">var</span> channelCount = <span class="hljs-number">1</span>; <span class="hljs-comment">// 单声道</span>
+		<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+		<span class="hljs-keyword">var</span> writeString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) </span>{
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) {
+				data.setUint8(offset + i, str.charCodeAt(i));
+			}
+		};
+
+		writeString(<span class="hljs-string">"RIFF"</span>); <span class="hljs-comment">// 资源交换文件标识符</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint32(offset, <span class="hljs-number">36</span> + dataLength, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 下个地址开始到文件尾总字节数，即文件大小 -8</span>
+		offset += <span class="hljs-number">4</span>;
+		writeString(<span class="hljs-string">"WAVE"</span>); <span class="hljs-comment">// WAV 文件标志</span>
+		offset += <span class="hljs-number">4</span>;
+		writeString(<span class="hljs-string">"fmt "</span>); <span class="hljs-comment">// 波形格式标志</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint32(offset, <span class="hljs-number">16</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 过滤字节,一般为 0x10 = 16</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint16(offset, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 格式类别 (PCM 形式采样数据)</span>
+		offset += <span class="hljs-number">2</span>;
+		data.setUint16(offset, channelCount, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 通道数</span>
+		offset += <span class="hljs-number">2</span>;
+		data.setUint32(offset, sampleRate, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 采样率，每秒样本数,表示每个通道的播放速度</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint32(offset, channelCount * sampleRate * (sampleBits / <span class="hljs-number">8</span>), <span class="hljs-literal">true</span>); <span class="hljs-comment">// 波形数据传输率 (每秒平均字节数) 单声道×每秒数据位数×每样本数据位/8</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint16(offset, channelCount * (sampleBits / <span class="hljs-number">8</span>), <span class="hljs-literal">true</span>); <span class="hljs-comment">// 快数据调整数 采样一次占用字节数 单声道×每样本的数据位数/8</span>
+		offset += <span class="hljs-number">2</span>;
+		data.setUint16(offset, sampleBits, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 每样本数据位数</span>
+		offset += <span class="hljs-number">2</span>;
+		writeString(<span class="hljs-string">"data"</span>); <span class="hljs-comment">// 数据标识符</span>
+		offset += <span class="hljs-number">4</span>;
+		data.setUint32(offset, dataLength, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 采样数据总数，即数据总大小-44</span>
+		offset += <span class="hljs-number">4</span>;
+
+		<span class="hljs-comment">// 写入数据</span>
+		<span class="hljs-keyword">if</span> (sampleBits === <span class="hljs-number">8</span>) {
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; bytes.length; i++, offset++) {
+				<span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">-1</span>, <span class="hljs-built_in">Math</span>.min(<span class="hljs-number">1</span>, bytes[i]));
+				<span class="hljs-keyword">var</span> val = s &lt; <span class="hljs-number">0</span> ? s * <span class="hljs-number">0x8000</span> : s * <span class="hljs-number">0x7fff</span>;
+				val = <span class="hljs-built_in">parseInt</span>(<span class="hljs-number">255</span> / (<span class="hljs-number">65535</span> / (val + <span class="hljs-number">32768</span>)));
+				data.setInt8(offset, val, <span class="hljs-literal">true</span>);
+			}
+		} <span class="hljs-keyword">else</span> {
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; bytes.length; i++, offset += <span class="hljs-number">2</span>) {
+				<span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">-1</span>, <span class="hljs-built_in">Math</span>.min(<span class="hljs-number">1</span>, bytes[i]));
+				data.setInt16(offset, s &lt; <span class="hljs-number">0</span> ? s * <span class="hljs-number">0x8000</span> : s * <span class="hljs-number">0x7fff</span>, <span class="hljs-literal">true</span>);
+			}
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Blob([data], { <span class="hljs-attr">type</span>: <span class="hljs-string">"audio/wav"</span> });
+	};
+}
+</code></pre>
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SRecorder</span> </span>{
+	<span class="hljs-keyword">constructor</span>(stream) {
+		<span class="hljs-keyword">this</span>.clock = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 循环定时器</span>
+		<span class="hljs-comment">// 音频处理接口</span>
+		<span class="hljs-keyword">this</span>.audioContext = <span class="hljs-keyword">new</span> AudioContext();
+		<span class="hljs-comment">// 通过音频流创建输入音频对象</span>
+		<span class="hljs-keyword">this</span>.audioInput = <span class="hljs-keyword">this</span>.audioContext.createMediaStreamSource(stream);
+		<span class="hljs-comment">// 创建音频数据对象</span>
+		<span class="hljs-keyword">this</span>.audioData = <span class="hljs-keyword">new</span> SAudioData(<span class="hljs-keyword">this</span>.audioContext.sampleRate);
+		<span class="hljs-comment">// 创建音量对象</span>
+		<span class="hljs-keyword">this</span>.audioVolume = <span class="hljs-keyword">this</span>.audioContext.createGain();
+		<span class="hljs-comment">// 创建录音机对象</span>
+		<span class="hljs-keyword">this</span>.recorder = <span class="hljs-keyword">this</span>.audioContext.createScriptProcessor(<span class="hljs-number">4096</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+		<span class="hljs-keyword">this</span>.recorder.onaudioprocess = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+			<span class="hljs-keyword">this</span>.audioData.inputData(e.inputBuffer.getChannelData(<span class="hljs-number">0</span>));
+		};
+	}
+
+	<span class="hljs-comment">// 开始录音</span>
+	start = <span class="hljs-function">(<span class="hljs-params">callback = <span class="hljs-literal">null</span></span>) =&gt;</span> {
+		<span class="hljs-keyword">this</span>.audioInput.connect(<span class="hljs-keyword">this</span>.audioVolume);
+		<span class="hljs-keyword">this</span>.audioVolume.connect(<span class="hljs-keyword">this</span>.recorder);
+		<span class="hljs-keyword">this</span>.recorder.connect(<span class="hljs-keyword">this</span>.audioContext.destination);
+		callback &amp;&amp; <span class="hljs-keyword">this</span>.cycle(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> callback(data));
+	};
+
+	<span class="hljs-comment">// 停止录音</span>
+	stop = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">this</span>.recorder.disconnect();
+		clearTimeout(<span class="hljs-keyword">this</span>.clock);
+	};
+
+	<span class="hljs-comment">// 暂停录音</span>
+	pause = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">this</span>.audioVolume.disconnect();
+		clearTimeout(<span class="hljs-keyword">this</span>.clock);
+	};
+
+	<span class="hljs-comment">// 继续录音</span>
+	<span class="hljs-keyword">continue</span> = <span class="hljs-function">(<span class="hljs-params">callback = <span class="hljs-literal">null</span></span>) =&gt;</span> {
+		<span class="hljs-keyword">this</span>.recorder.connect(<span class="hljs-keyword">this</span>.audioContext.destination);
+		callback &amp;&amp; <span class="hljs-keyword">this</span>.cycle(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> callback(data));
+	};
+
+	<span class="hljs-comment">// 获取 WAV 数据</span>
+	getWav = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.audioData.encodeWAV();
+	};
+
+	<span class="hljs-comment">// 清除缓冲区</span>
+	clear = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+		<span class="hljs-keyword">this</span>.audioData.clearData();
+	};
+
+	<span class="hljs-comment">// 循环拉取缓冲数据，使用 `callback()` 发送出去，该方法适用于流</span>
+	cycle = <span class="hljs-function">(<span class="hljs-params">callback, time = <span class="hljs-number">500</span></span>) =&gt;</span> {
+		<span class="hljs-keyword">let</span> bTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+		callback(<span class="hljs-keyword">this</span>.getWav());
+		<span class="hljs-keyword">this</span>.clear();
+		<span class="hljs-keyword">this</span>.clock = setTimeout(
+			<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.cycle(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> callback(data), time),
+			time - (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() - bTime)
+		);
+	};
+}
+</code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io" rel="external nofollow noreferrer">Palm Civet</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/">https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                    <span class="chip bg-color">踩坑</span>
+                                </a>
+                            
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/meta/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/meta/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
+<link rel="stylesheet" href="/css/gitment.css">
+
+<div class="gitment-card card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitment-content" class="card-content"></div>
+</div>
+
+<script src="/libs/gitment/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+    id: 'Tue Apr 28 2020 00:27:19 GMT+0800',
+    owner: 'Palmcivet',
+    repo: 'palmcivet.github.io',
+    oauth: {
+        client_id: '73d562ee233e17189f71',
+        client_secret: 'a5ddbd681230e5c906da5ddea77646ceea7bd858'
+    }
+});
+
+gitment.render('gitment-content');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/">
+                    <div class="card-image">
+                        
+                        <img src="https://s1.ax1x.com/2020/04/28/J42pPs.png" class="responsive-img" alt="开发小记——Web Audio API">
+                        
+                        <span class="card-title">开发小记——Web Audio API</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结了 Web Audio API 的使用流程，整理了 AlloyTeam 等团队的方案，记录了使用 Audio API 过程中会遇到的一些问题。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                    前端开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                        <span class="chip bg-color">踩坑</span>
+                    </a>
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/%E8%8E%B7%E5%8F%96-GitBook-%E7%AB%99%E7%82%B9%E7%9A%84%E6%96%87%E6%A1%A3/">
+                    <div class="card-image">
+                        
+                        <img src="https://s1.ax1x.com/2020/03/13/8KIQ6U.png" class="responsive-img" alt="获取 GitBook 站点的文档">
+                        
+                        <span class="card-title">获取 GitBook 站点的文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            wget 加 -m 选项下载站点资源，然后使用 Python 提供的 SimpleHTTPServer 搭建简易服务器，可以实现在本地访问文档。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Wget/">
+                        <span class="chip bg-color">Wget</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Palm Civet<br />'
+            + '文章作者: Palm Civet<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('6'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/palmcivet" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:palmcivet_email@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2143899558" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2143899558" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/P3lm_C1vet" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/P3lm_C1vet" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon.min.js" async="async"></script>
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

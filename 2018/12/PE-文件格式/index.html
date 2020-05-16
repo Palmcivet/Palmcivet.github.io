@@ -1,0 +1,1844 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="PE 文件格式, Palm Civet,Blog">
+    <meta name="description" content="Portable Excutable，可移植性可执行文件，是微软公司设计的在 Windows 系统下可执行文件的格式，因在开发时被定义为各种结构体，故通常称 PE结构。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>PE 文件格式 | Palm Civet</title>
+    <link rel="icon" type="image/png" href="/meta/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Palm Civet" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/meta/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Palm Civet</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>时间轴</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/meta/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Palm Civet</div>
+        <div class="logo-desc">
+            
+            一个全沾开发者
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			时间轴
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s2.ax1x.com/2020/01/20/1Fpf4U.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">PE 文件格式</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/PE/">
+                                <span class="chip bg-color">PE</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">
+                                <span class="chip bg-color">文件格式</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8F%82%E8%80%83/">
+                                <span class="chip bg-color">参考</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BA%8C%E8%BF%9B%E5%88%B6/" class="post-category">
+                                二进制
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
+                    2018-12-22
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
+                    2020-01-25
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    18 分
+                </div>
+                
+				
+                
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="简述"><a class="markdownIt-Anchor" href="#简述"></a> 简述</h2>
+<p>PE 格式是由 <em>Unix</em> 中的 COFF 格式修改而来的，在 Windows 环境中，PE 格式也称为 <em>PE/COFF 格式</em></p>
+<p>在 Win64 系统上运行的原生 64 位应用程序，其 PE 格式称为 <em>PE32+</em>，与 PE 不同之处基本只是在 PE 头 <em>IMAGE_NT_HEADERS</em></p>
+<h3 id="常见格式"><a class="markdownIt-Anchor" href="#常见格式"></a> 常见格式</h3>
+<ul>
+<li>EXE</li>
+<li>DLL（动态链接库）</li>
+<li>SYS（驱动程序）</li>
+<li>COM</li>
+<li>OCX</li>
+<li>EFI</li>
+</ul>
+<h3 id="文件结构概览"><a class="markdownIt-Anchor" href="#文件结构概览"></a> 文件结构概览</h3>
+<pre class="highlight"><code class="">|——IMAGE_DOS_HEADER                     | +40h
+ |——e_magic                 4D 5A
+ |——xxx
+ |——e_lfanew   xx xx xx xx
+|——DOS Stub
+|——IMAGE_NT_HEADERS                     |
+ |——Signature               50 45 00 00 | +04h
+ |——IMAGE_FILE_HEADER                   | +14h
+ |——IMAGE_OPTIONAL_HEADER               | +224h/+240h
+  |——IMAGE_DATA_DIRECTORY               |  01h x 16
+|——IMAGE_SECTION_HEADER                 | +28h x (n + 1)
+|——SECTIONs
+</code></pre>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>
+<p>EP</p>
+<blockquote>
+<p>Entry Pointer，入口点</p>
+</blockquote>
+<p>EP是一个RVA，EP + Imagebase = 入口点的VA<br />
+通常情况下，EP指向的不是main函数</p>
+</li>
+<li>
+<p>OEP</p>
+<blockquote>
+<p>Original Entery Pointer，原始入口点</p>
+</blockquote>
+</li>
+<li>
+<p>INT</p>
+<blockquote>
+<p>Import Name Table，导入名称表，一个结构体数组，详见 <strong>导入表</strong></p>
+</blockquote>
+</li>
+<li>
+<p>对齐<br />
+文件对齐的最小单位是磁盘扇区的单位，0x0200 字节<br />
+内存对齐的最小单位是 CPU 内存分页大小，Win32 0x1000 字节，即 4 KiB</p>
+</li>
+<li>
+<p>节偏移<br />
+内存中数据节相对于装载基址的偏移量(<em>RVA</em>)和文件中数据节的偏移量(<em>FOA</em>)的差异称为节偏移</p>
+</li>
+</ol>
+<h3 id="地址"><a class="markdownIt-Anchor" href="#地址"></a> 地址</h3>
+<ol>
+<li>
+<p><em>ImageBase</em><br />
+基地址，磁盘中的文件加载到内存中时可以加载到任意位置，即程序的基址<br />
+建议装载地址，详见 <strong>重定位表</strong></p>
+<ul>
+<li>EXE 默认加载基址是 <code>0x00400000h</code></li>
+<li>DLL 默认加载基址是 <code>0x10000000h</code></li>
+</ul>
+<blockquote>
+<p>需要注意的是基地址不是程序的入口点</p>
+</blockquote>
+</li>
+<li>
+<p>VA</p>
+<blockquote>
+<p>虚拟地址，Virtual Address</p>
+</blockquote>
+<p>程序运行时被加载到 <strong>内存</strong> 中的地址</p>
+</li>
+<li>
+<p>RVA</p>
+<blockquote>
+<p>相对虚拟地址，Relative Virtual Address</p>
+</blockquote>
+<p>是在内存中相对于 <strong>映射基地址</strong> (EXE 文件为<em>ImageBase</em>)的偏移量</p>
+</li>
+<li>
+<p>FOA</p>
+<blockquote>
+<p>文件偏移地址，File Offset Address</p>
+</blockquote>
+<p>当PE文件储存在某个磁盘当中的时候，某个数据的位置相对于 <strong>文件头</strong> 的偏移量</p>
+</li>
+<li>
+<p>地址转换</p>
+<ol>
+<li>VA = ImageBase + RVA</li>
+<li>FOA = VA - ImageBase - 节偏移</li>
+<li>FOA = RVA - 节偏移</li>
+</ol>
+</li>
+</ol>
+<h2 id="ms-dos-header"><a class="markdownIt-Anchor" href="#ms-dos-header"></a> MS-DOS Header</h2>
+<p>PE 文件第一个字节起始于 MS-DOS 头部，该头部被定义为 <em>IMAGE_DOS_HEADER</em><br />
+DOS 头部为了兼容 DOS 系统而遗留的，最后一个字节给出了 PE 头的地址</p>
+<h3 id="结构体-image_dos_header"><a class="markdownIt-Anchor" href="#结构体-image_dos_header"></a> 结构体 IMAGE_DOS_HEADER</h3>
+<pre class="highlight"><code class="C">typrdef <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_DOS_HEADER</span> {</span>
+    WORD   e_magic;          <span class="hljs-comment">// +0000h - EXE标志，"MZ"</span>
+    WORD   e_cblp;           <span class="hljs-comment">// +0002h - 最后（部分）页中的字节数</span>
+    WORD   e_cp;             <span class="hljs-comment">// +0004h - 文件中的全部和部分页数</span>
+    WORD   e_crlc;           <span class="hljs-comment">// +0006h - 重定位表中的指针数</span>
+    WORD   e_cparhdr;        <span class="hljs-comment">// +0008h - 头部尺寸，以段落为单位</span>
+    WORD   e_minalloc;       <span class="hljs-comment">// +000ah - 所需的最小附加段</span>
+    WORD   e_maxalloc;       <span class="hljs-comment">// +000ch - 所需的最大附加段</span>
+    WORD   e_ss;             <span class="hljs-comment">// +000eh - 初始的SS值（相对偏移量）</span>
+    WORD   e_sp;             <span class="hljs-comment">// +0010h - 初始的SP值</span>
+    WORD   e_csum;           <span class="hljs-comment">// +0012h - 补码校验值</span>
+    WORD   e_ip;             <span class="hljs-comment">// +0014h - 初始的IP值</span>
+    WORD   e_cs;             <span class="hljs-comment">// +0016h - 初始的CS值</span>
+    WORD   e_lfarlc;         <span class="hljs-comment">// +0018h - 重定位表的字节偏移量</span>
+    WORD   e_ovno;           <span class="hljs-comment">// +001ah - 覆盖号</span>
+    WORD   e_res[<span class="hljs-number">4</span>];         <span class="hljs-comment">// +001ch - 保留字00</span>
+    WORD   e_oemid;          <span class="hljs-comment">// +0024h - OEM标识符</span>
+    WORD   e_oeminfo;        <span class="hljs-comment">// +0026h - OEM信息</span>
+    WORD   e_res2[<span class="hljs-number">10</span>];       <span class="hljs-comment">// +0028h - 保留字</span>
+    LONG   e_lfanew;         <span class="hljs-comment">// +003ch - PE头相对于文件的偏移地址</span>
+  } IMAGE_DOS_HEADER, *IMAGE_DOS_HEADER;
+</code></pre>
+<h3 id="字段解析"><a class="markdownIt-Anchor" href="#字段解析"></a> 字段解析</h3>
+<ol>
+<li><code>e_magic</code>
+<ul>
+<li>占用 <strong>2</strong> 字节</li>
+<li>值：<strong><code>4D 5A</code></strong></li>
+<li>ASCII：<strong><code>MZ</code></strong></li>
+<li>DOS 头的标记位</li>
+<li>即&quot;MZ&quot; Header，<em>Mark Zbikowski</em> 的姓名缩写，他是最初的 MS-DOS 设计者之一</li>
+<li><em>Winnt.h</em> 宏定义如下<pre class="highlight"><code class="C"><span class="hljs-meta"># <span class="hljs-meta-keyword">define</span> IMAGE_DOS_SIGNATURE 0x5A4D  <span class="hljs-comment">// MZ</span></span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><code>e_lfanew</code>
+<ul>
+<li>占用 <strong>4</strong> 字节</li>
+<li>这是一个 RVA，代表 PE 文件头到基址的偏移量，可用来找到 PE 文件头的位置</li>
+</ul>
+</li>
+</ol>
+<h3 id="dos-stub"><a class="markdownIt-Anchor" href="#dos-stub"></a> DOS Stub</h3>
+<ul>
+<li>当 Win32 程序在 DOS 下执行时会输出 <code>This program cannot be run in DOS mode</code></li>
+<li>该部分可有可无，可填充其他内容，一般由编译器生成</li>
+<li><code>e_lfanew</code> 到 <code>e_lfanew</code> 所指出的地址之间的内容</li>
+</ul>
+<h2 id="pe-header"><a class="markdownIt-Anchor" href="#pe-header"></a> PE Header</h2>
+<ul>
+<li>PE 头由 <em>IMAGE_NT_HEADERS</em> 结构体定义
+<ul>
+<li><em>IMAGE_NT_HEADERS</em> 是一个宏定义，有 <strong>32位</strong> 和 <strong>64位</strong> 之别<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> _WIN64</span>
+<span class="hljs-keyword">typedef</span> IMAGE_NT_HEADER64   IMAGE_NT_HEADER;
+<span class="hljs-keyword">typedef</span> PIMAGE_NT_HEADER64  PIMAGE_NT_HEADER;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+<span class="hljs-keyword">typedef</span> IMAGE_NT_HEADER32   IMAGE_NT_HEADER;
+<span class="hljs-keyword">typedef</span> PIMAGE_NT_HEADER32  PIMAGE_NT_HEADER;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li>起始地址由 <code>IMAGE_DOS_HEADER.lfanew</code> 给出</li>
+<li>真正用来装载 Windows 程序</li>
+</ul>
+<h3 id="结构体-image_nt_headers"><a class="markdownIt-Anchor" href="#结构体-image_nt_headers"></a> 结构体 IMAGE_NT_HEADERS</h3>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_NT_HEADERS</span> {</span>
+    DWORD Signature;                        <span class="hljs-comment">// +0000h - PE00</span>
+    IMAGE_FILE_HEADER FileHeader;           <span class="hljs-comment">// +0004h - PE 标准头</span>
+    IMAGE_OPTIONAL_HEADER32 OptionalHeader; <span class="hljs-comment">// +0018h - PE 选项头</span>
+ <span class="hljs-comment">// IMAGE_OPTIONAL_HEADER64 OptionalHeader;</span>
+}
+</code></pre>
+<h3 id="signature"><a class="markdownIt-Anchor" href="#signature"></a> Signature</h3>
+<ul>
+<li>判断是否是 PE 文件</li>
+<li>占用 <strong>4</strong> 字节</li>
+<li>ASCII：<strong><code>PE00</code></strong></li>
+<li>值：<strong><code>00 00 45 50</code></strong></li>
+<li>宏定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NT_SIGNATURE 0x00004550   <span class="hljs-comment">// PE00</span></span>
+</code></pre>
+</li>
+</ul>
+<h3 id="fileheader"><a class="markdownIt-Anchor" href="#fileheader"></a> FileHeader</h3>
+<ul>
+<li>描述文件相关信息</li>
+<li><strong>文件头</strong> 由 <code>IMAGE_DOS_HEADER.e_lfanew</code> 指定地址后的 20 个字节</li>
+<li>结构体大小定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_FILE_HEADER    20</span>
+</code></pre>
+</li>
+</ul>
+<h4 id="结构体-image_file_header"><a class="markdownIt-Anchor" href="#结构体-image_file_header"></a> 结构体 IMAGE_FILE_HEADER</h4>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_FILE_HEADER</span> {</span>
+    WORD    Machine;              <span class="hljs-comment">// +0004h - 运行平台</span>
+    WORD    NumberOfSections;     <span class="hljs-comment">// +0006h - PE中节的数量</span>
+    DWORD   TimeDateStamp;        <span class="hljs-comment">// +0008h - 文件创建日期和时间</span>
+    DWORD   PointerToSymbolTable; <span class="hljs-comment">// +000ch - 指向符号表</span>
+    DWORD   NumberOfSymbols;      <span class="hljs-comment">// +0010h - 符号表中的符号数量</span>
+    WORD    SizeOfOptionalHeader; <span class="hljs-comment">// +0014h - 选项头结构的长度</span>
+    WORD    Characteristics;      <span class="hljs-comment">// +0016h - 文件属性</span>
+}
+</code></pre>
+<h4 id="字段解析-2"><a class="markdownIt-Anchor" href="#字段解析-2"></a> 字段解析</h4>
+<ol>
+<li><code>Machine</code>
+<ul>
+<li><code>0x0000</code>：适用于任何类型处理器</li>
+<li><code>0x01D3</code>：Matsushita AM33 处理器</li>
+<li><code>0x8664</code>：x64 处理器</li>
+<li><code>0x01C0</code>：ARM 小端处理器</li>
+<li><code>0x0EBC</code>：EFI 字节码处理器</li>
+<li><strong><code>0x014C</code>：Intel 32</strong></li>
+<li><strong><code>0x0200</code>：Intel 64</strong></li>
+<li><code>0x9041</code>：Mitsubishi M32R 小端处理器</li>
+<li><code>0x0266</code>：MIPS16 处理器</li>
+<li><code>0x366</code>：带 FPU 的 MIPS 处理器</li>
+<li><code>0x466</code>：带 FPU 的 MIPS16 处理器</li>
+<li><code>0x1F0</code>：PowerPC 小端处理器</li>
+<li><code>0x1F1</code>：带符点运算支持的 PowerPC 处理器</li>
+<li><code>0x166</code>：MIPS 小端处理器</li>
+<li><code>0x1A2</code>：Hitachi SH3 处理器</li>
+<li><code>0x1A3</code>：Hitachi SH3 DSP 处理器</li>
+<li><code>0x1A6</code>：Hitachi SH4 处理器</li>
+<li><code>0x1A6</code>：Hitachi SH5 处理器</li>
+<li><code>0x1C2</code>：Thumb 处理器</li>
+<li><code>0x169</code>：MIPS 小端 WCE v2 处理器</li>
+</ul>
+</li>
+<li><code>TimeDateStamp</code>：自格林尼治 <em>1970.1.1</em> 以来时间</li>
+<li><code>SizeOfOptionalHeader</code>：指定 <strong>IMAGE_OPTIONAL_HEADER</strong> 结构体大小，也是 <strong>32位</strong> 和 <strong>64位</strong> 的区别</li>
+<li><code>Characteristics</code>：指定该文件类型
+<ul>
+<li>0	表明此文件不包含基址重定位信息，因此必须被加载到其首选基地址上。基地址不可用则报错</li>
+<li>1	表明此镜像文件是合法的</li>
+<li>2	保留，必须为 0</li>
+<li>3 保留，必须为 0</li>
+<li>4 保留，必须为 0</li>
+<li>5	应用程序可以处理大于 2GB 的地址</li>
+<li>6	保留，必须为 0</li>
+<li>7	保留，必须为 0</li>
+<li>8	机器类型基于 32 位体系结构</li>
+<li>9	调试信息已经从此镜像文件中移除</li>
+<li>10 如果此镜像文件在可移动介质上，完全加载它并把它复制到交换文件中。几乎不用</li>
+<li>11 如果此镜像文件在网络介质上，完全加载它并把它复制到交换文件中。几乎不用</li>
+<li>12 此镜像文件是系统文件，而不是用户程序</li>
+<li>13 此镜像文件是 DLL</li>
+<li>14 此文件只能运行于单处理器机器上</li>
+<li>15 保留，必须为 0</li>
+</ul>
+</li>
+</ol>
+<h3 id="optionalheader"><a class="markdownIt-Anchor" href="#optionalheader"></a> OptionalHeader</h3>
+<ul>
+<li>选项头，通常称为 “可选头”</li>
+<li>管理 PE 文件装载时所需的文件</li>
+<li>宏定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> _WIN64</span>
+<span class="hljs-keyword">typedef</span> IMAGE_OPTIONAL_HEADER64             IMAGE_OPTIONAL_HEADER;
+<span class="hljs-keyword">typedef</span> PIMAGE_OPTIONAL_HEADER64            PIMAGE_OPTIONAL_HEADER;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_NT_OPTIONAL_HEADER     IMAGE_SIZEOF_NT_OPTIONAL64_HEADER</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NT_OPTIONAL_HDR_MAGIC         MAGE_NT_OPTIONAL_HDR64_MAGIC</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+<span class="hljs-keyword">typedef</span> IMAGE_OPTIONAL_HEADER32             IMAGE_OPTIONAL_HEADER;
+<span class="hljs-keyword">typedef</span> PIMAGE_OPTIONAL_HEADER32            PIMAGE_OPTIONAL_HEADER;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_NT_OPTIONAL_HEADER     IMAGE_SIZEOF_NT_OPTIONAL32_HEADER</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NT_OPTIONAL_HDR_MAGIC         IMAGE_NT_OPTIONAL_HDR32_MAGIC</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</code></pre>
+</li>
+<li>大小由 <code>IMAGE_FILE_HEADER.SizeOfOptionalHeader</code> 给出
+<ul>
+<li>宏定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_NT_OPTIONAL32_HEADER 224</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_NT_OPTIONAL64_HEADER 240</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NT_OPTIONAL_HDR32_MAGIC   0x10b</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NT_OPTIONAL_HDR64_MAGIC   0x20b</span>
+</code></pre>
+</li>
+<li>32位：<code>0x00E0</code> 字节，即 224 字节</li>
+<li>64位：<code>0x00F0</code> 字节，即 240 字节</li>
+<li>区别：整体增加 16 字节
+<ol>
+<li><code>BaseOfData</code> 64 位版本不存在</li>
+<li><code>ImageBase</code>、<code>SizeOfStackReserve</code>、<code>SizeOfStackCommit</code>、<code>SizeOfHeapReserve</code>、<code>SizeOfHeapCommit</code> 字段由 4 字节变为 8 字节</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>通常结束于 <code>.text</code> 节之前</li>
+</ul>
+<h4 id="结构体-image_optional_header"><a class="markdownIt-Anchor" href="#结构体-image_optional_header"></a> 结构体 IMAGE_OPTIONAL_HEADER</h4>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_OPTIONAL_HEADER</span> {</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// Standard fields.</span>
+    <span class="hljs-comment">//</span>
+
+    WORD    Magic;                 <span class="hljs-comment">// +0018h - 指定文件标识</span>
+    BYTE    MajorLinkerVersion;    <span class="hljs-comment">// +001ah - 链接器主版本号</span>
+    BYTE    MinorLinkerVersion;    <span class="hljs-comment">// +001bh - 连接器次版本号</span>
+    DWORD   SizeOfCode;            <span class="hljs-comment">// +001ch - 所有含代码的节的总大小</span>
+    DWORD   SizeOfInitializedData;   <span class="hljs-comment">// +0020h - 所有含已初始化数据的节的总大小</span>
+    DWORD   SizeOfUninitializedData; <span class="hljs-comment">// +0024h - 所有含未初始化数据的节的大小</span>
+    DWORD   AddressOfEntryPoint;     <span class="hljs-comment">// +0028h - 程序执行入口RVA</span>
+    DWORD   BaseOfCode;            <span class="hljs-comment">// +002ch - 代码节的起始RVA</span>
+    DWORD   BaseOfData;            <span class="hljs-comment">// +0030h - 数据节的起始RVA</span>
+<span class="hljs-comment">// 该字段 64 位版本将不存在</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// NT additional fields.</span>
+    <span class="hljs-comment">//</span>
+
+    DWORD   ImageBase;             <span class="hljs-comment">// +0034h - 程序的建议装载地址</span>
+<span class="hljs-comment">//ULONGLONG ImageBase;</span>
+    DWORD   SectionAlignment;      <span class="hljs-comment">// +0038h - 内存中节的对齐粒度</span>
+    DWORD   FileAlignment;         <span class="hljs-comment">// +003ch - 文件中节的对齐粒度</span>
+    WORD    MajorOperatingSystemVersion; <span class="hljs-comment">// +0040h - 操作系统主版本号</span>
+    WORD    MinorOperatingSystemVersion; <span class="hljs-comment">// +0042h - 操作系统次版本号</span>
+    WORD    MajorImageVersion;     <span class="hljs-comment">// +0044h - 该PE主版本号</span>
+    WORD    MinorImageVersion;     <span class="hljs-comment">// +0046h - 该PE次版本号</span>
+    WORD    MajorSubsystemVersion; <span class="hljs-comment">// +0048h - 子系统的主版本号</span>
+    WORD    MinorSubsystemVersion; <span class="hljs-comment">// +004ah - 子系统的次版本号</span>
+    DWORD   Win32VersionValue;     <span class="hljs-comment">// +004ch - 保留</span>
+    DWORD   SizeOfImage;           <span class="hljs-comment">// +0050h - 内存中的整个PE映像大小</span>
+    DWORD   SizeOfHeaders;         <span class="hljs-comment">// +0054h - 所有头+节表的大小</span>
+    DWORD   CheckSum;              <span class="hljs-comment">// +0058h - 校验和</span>
+    WORD    Subsystem;             <span class="hljs-comment">// +005ch - 文件的子系统</span>
+    WORD    DllCharacteristics;    <span class="hljs-comment">// +005eh - DLL文件特性</span>
+    DWORD   SizeOfStackReserve;    <span class="hljs-comment">// +0060h - 初始化时的栈大小</span>
+    DWORD   SizeOfStackCommit;     <span class="hljs-comment">// +0064h - 初始化时实际提交的栈大小</span>
+    DWORD   SizeOfHeapReserve;     <span class="hljs-comment">// +0068h - 初始化时保留的堆大小</span>
+    DWORD   SizeOfHeapCommit;      <span class="hljs-comment">// +006ch - 初始化时实际提交的堆大小</span>
+<span class="hljs-comment">//ULONGLONG SizeOfStackReserve;</span>
+<span class="hljs-comment">//ULONGLONG SizeOfStackCommit;</span>
+<span class="hljs-comment">//ULONGLONG SizeOfHeapReserve;</span>
+<span class="hljs-comment">//ULONGLONG SizeOfHeapCommit;</span>
+    DWORD   LoaderFlags;           <span class="hljs-comment">// +0070h - 与调试有关</span>
+    DWORD   NumberOfRvaAndSizes;   <span class="hljs-comment">// +0074h - 下面的数据目录结构数量</span>
+    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
+    <span class="hljs-comment">// +0078h - 数据目录</span>
+} IMAGE_OPTIONAL_HEADER, *PIMAGE_OPTIONAL_HEADER;
+</code></pre>
+<h5 id="结构体-image_data_directory"><a class="markdownIt-Anchor" href="#结构体-image_data_directory"></a> 结构体 IMAGE_DATA_DIRECTORY</h5>
+<p><em>IMAGE_DATA_DIRECTORY</em> 定义如下</p>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_DATA_DIRECTORY</span> {</span>
+DWORD   VirtualAddress; <span class="hljs-comment">// +0000h - 数据的起始RVA</span>
+DWORD   Size;           <span class="hljs-comment">// +0004h - 数据块的长度，非准确值</span>
+} IMAGE_DATA_DIRECTORY, *PIMAGE_DATA_DIRECTORY;
+</code></pre>
+<h4 id="字段解析-3"><a class="markdownIt-Anchor" href="#字段解析-3"></a> 字段解析</h4>
+<ol>
+<li><code>Magic</code>：决定 <em>IMAGE_OPTIONAL_HEADER</em> 版本
+<table>
+<thead>
+<tr>
+<th>Magic</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x010B</td>
+<td>PE32</td>
+</tr>
+<tr>
+<td>0x020B</td>
+<td>PE32+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><code>AddressOfEntryPoint</code>：程序执行的入口，该地址是一个 RVA，指向执行的第一条代码</li>
+<li><code>ImageBase</code>：默认加载基址</li>
+<li><code>BaseOfCode</code>：代码节的起始位置</li>
+<li><code>BaseOfData</code>：只存在于 <strong>32位</strong> 版本，很多情况下可以为 0</li>
+<li><code>SectionAlignment</code>：内存中的块对齐值，一般为 <code>0x1000</code><em>(4096)</em> 字节，即 <code>4KiB</code></li>
+<li><code>FileAlignment</code>：文件中的块对齐值，一般为 <code>0x200</code><em>(512)</em> 字节或 <code>0x1000</code><em>(4096)</em> 字节</li>
+<li><code>SizeOfHeaders</code>：整个头部即DOS头、PE头以及节表总大小，该值按照 <code>FileAlignment</code> 对齐</li>
+<li><code>Subsystem</code>
+<ul>
+<li>0	    未知子系统</li>
+<li><strong>1	设备驱动程序和Native Windows进程</strong></li>
+<li><strong>2	图形用户界面子系统，即一般程序</strong></li>
+<li><strong>3	控制台子系统</strong></li>
+<li>7     Posix 字符模式子系统</li>
+<li>9	    Windows CE</li>
+<li>10    可扩展固件接口（EFI）应用程序</li>
+<li>11    带引导服务的 EFI 驱动程序</li>
+<li>12    带运行时服务的 EFI 驱动程序</li>
+<li>13    EFI ROM 镜像</li>
+<li>14    XBOX 子系统</li>
+</ul>
+</li>
+<li><code>DllCharacteristics</code>
+<ul>
+<li>1	保留，必须为 0</li>
+<li>2	保留，必须为 0</li>
+<li>3	保留，必须为 0</li>
+<li>4	保留，必须为 0</li>
+<li>5	官方文档缺失</li>
+<li>6	官方文档缺失</li>
+<li>7	DLL 可以在加载时被重定位</li>
+<li>8	强制进行代码完整性校验</li>
+<li>9	镜像兼容于 NX</li>
+<li>10 可以隔离，但并不隔离此镜像</li>
+<li>11 不使用结构化异常（SE）处理</li>
+<li>12 不绑定镜像</li>
+<li>13 保留，必须为 0</li>
+<li>14 WDM 驱动程序</li>
+<li>15 官方文档缺失</li>
+<li>16 可以用于终端服务器</li>
+</ul>
+</li>
+<li><code>NumberOfRvaAndSizes</code>：数据目录项个数，宏定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_NUMBEROF_DIRECTORY_ENTRIES 16</span>
+</code></pre>
+</li>
+<li><code>DataDirectory</code>
+<ul>
+<li>该数组定义了 PE 文件中出现的所有不同类型的数据目录信息</li>
+<li>数据目录中定义的数据类型有 16 种，下标从 0 开始</li>
+<li>下标说明
+<ul>
+<li>0 <strong>导出表</strong> 地址下标</li>
+<li>1 <strong>导入表</strong> 地址下标</li>
+<li>2 <strong>资源表</strong> 地址下标</li>
+<li>3 异常表地址下标</li>
+<li>4 属性证书数据地址下标</li>
+<li>5 基地址 <strong>重定位</strong> 表地址下标</li>
+<li>6 调试信息地址索引</li>
+<li>7 预留为 0</li>
+<li>8 指向全局指针寄存器的值</li>
+<li>9 线程局部存储索引</li>
+<li>10 加载配置表索引</li>
+<li>11 绑定导入表索引</li>
+<li>12 <strong>导入函数</strong> 地址表索引</li>
+<li>13 延迟导入表索引</li>
+<li>14 CLR 运行时头部数据索引</li>
+<li>15 系统保留</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="directory-section"><a class="markdownIt-Anchor" href="#directory-section"></a> Directory Section</h2>
+<ul>
+<li>在 <em>IMAGE_OPTIONAL_HEADER</em> 之后，由多个节表项(<em>IMAGE_SECTION_HEADER</em>)组成</li>
+<li>每个节表项记录了 PE 中与某个特定的节有关的信息，如节的属性、节的大小、在文件和内存中的起始位置等</li>
+<li>节表中节的数量由 <em>IMAGE_FILE_HEADER.NumberOfSection</em> 字段来定义</li>
+<li>结构体大小定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_SECTION_HEADER    40</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="常见命名"><a class="markdownIt-Anchor" href="#常见命名"></a> 常见命名</h3>
+<table>
+<thead>
+<tr>
+<th>节区名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.text</code></td>
+<td>包含 CPU 指令，唯一包含代码的节</td>
+</tr>
+<tr>
+<td><code>.data</code></td>
+<td>可 <strong>读写</strong> 的数据，存放全局变量或静态变量</td>
+</tr>
+<tr>
+<td><code>.rdata</code></td>
+<td><strong>全局</strong> 可访问的 <strong>只读</strong> 数据</td>
+</tr>
+<tr>
+<td><code>.rodata</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>.idata</code></td>
+<td>显示和存储导入函数，如果不存在则存放于 <code>.rdata</code></td>
+</tr>
+<tr>
+<td><code>.edata</code></td>
+<td>显示和存储导出数据，如果不存在则存放于 <code>.rdata</code></td>
+</tr>
+<tr>
+<td><code>.pdata</code></td>
+<td>只存在于 64位 可执行文件，处理异常信息</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td>存放程序用到的所有资源，如图表，菜单等</td>
+</tr>
+<tr>
+<td><code>.reloc</code></td>
+<td>包含重定位信息</td>
+</tr>
+<tr>
+<td><code>.bss</code></td>
+<td>未初始化数据区</td>
+</tr>
+<tr>
+<td><code>.crt</code></td>
+<td>用于支持C++运行时库所添加的数据</td>
+</tr>
+<tr>
+<td><code>.tls</code></td>
+<td>存储线程局部变量</td>
+</tr>
+<tr>
+<td><code>.sdata</code></td>
+<td>包含相对于可被全局指针定位的可读写数据</td>
+</tr>
+<tr>
+<td><code>.srdata</code></td>
+<td>包含相对于可被全局指针定位的只读数据</td>
+</tr>
+<tr>
+<td><code>.debug$S</code></td>
+<td>包含OBJ文件中的Codeview格式符号</td>
+</tr>
+<tr>
+<td><code>.debug$T</code></td>
+<td>包含OBJ文件中的Codeview格式类型的符号</td>
+</tr>
+<tr>
+<td><code>.debug$P</code></td>
+<td>包含使用预编译头时的一些信息</td>
+</tr>
+<tr>
+<td><code>.drectve</code></td>
+<td>包含编译时的一些链接命令</td>
+</tr>
+<tr>
+<td><code>.comment</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>.didat</code></td>
+<td>包含延迟装入的数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="结构体-image_section_header"><a class="markdownIt-Anchor" href="#结构体-image_section_header"></a> 结构体 IMAGE_SECTION_HEADER</h3>
+<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_SIZEOF_SHORT_NAME    8</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_SECTION_HEADER</span> {</span>
+    BYTE    Name[IMAGE_SIZEOF_SHORT_NAME]; <span class="hljs-comment">// +0000h - 节名</span>
+    <span class="hljs-keyword">union</span> {
+            DWORD   PhysicalAddress;
+            DWORD   VirtualSize;
+    } Misc;                        <span class="hljs-comment">// +0008h - 节区的尺寸</span>
+    DWORD   VirtualAddress;        <span class="hljs-comment">// +000ch - 节区的RVA地址</span>
+    DWORD   SizeOfRawData;         <span class="hljs-comment">// +0010h - 在文件中对齐后的大小</span>
+    DWORD   PointerToRawData;      <span class="hljs-comment">// +0014h - 在文件中的偏移</span>
+    DWORD   PointerToRelocations;  <span class="hljs-comment">// +0018h - 在OBJ文件中使用</span>
+    DWORD   PointerToLinenumbers;  <span class="hljs-comment">// +001ch - 行号表的位置（调试用）</span>
+    WORD    NumberOfRelocations;   <span class="hljs-comment">// +0020h - 在OBJ文件中使用</span>
+    WORD    NumberOfLinenumbers;   <span class="hljs-comment">// +0022h - 行号表中行号的数量</span>
+    DWORD   Characteristics;       <span class="hljs-comment">// +0024h - 节的属性</span>
+} IMAGE_SECTION_HEADER，*PIMAGE_SECTION_HEADER;
+</code></pre>
+<h3 id="字段解析-4"><a class="markdownIt-Anchor" href="#字段解析-4"></a> 字段解析</h3>
+<ol>
+<li><code>Name</code>：节表项名称，长度为 8 的 ASCII 码字符，常用 <code>.</code> 起始命名</li>
+<li><code>Characteristics</code>
+<ul>
+<li>1、2、3、4、5 已经废除</li>
+<li><strong>6 此节包含可执行代码 <code>.text</code></strong></li>
+<li><strong>7 此节包含已初始化的数据 <code>.data</code></strong></li>
+<li><strong>8 此节包含未初始化的数据 <code>.bss</code></strong></li>
+<li>9、10、11、12、13、14、15 已经废除</li>
+<li>16 此节包含通过全局指针（GP）来引用的数据</li>
+<li>17、18、19、20、21、22、23、24 已经废除</li>
+<li>25 此节包含扩展的重定位信</li>
+<li>26 此节可以在需要时被丢弃</li>
+<li>27 此节不能被缓存</li>
+<li>28 此节不能被交换到页面文件中</li>
+<li>29 此节可以在内存中共享</li>
+<li><strong>30 此节可以作为代码执行</strong></li>
+<li><strong>31 此节可读</strong></li>
+<li><strong>32 此节可写</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="数据区"><a class="markdownIt-Anchor" href="#数据区"></a> 数据区</h2>
+<p>有一些 PE 文件格式相关的结构体不在 PE 头部，而是分散在各个数据节中，位置由 <code>IMAGE_OPTIONAL_HEADER.DataDirtory</code> 数组给出<br />
+保存了导出表、导入表、重定位表等结构</p>
+<h3 id="导出表"><a class="markdownIt-Anchor" href="#导出表"></a> 导出表</h3>
+<ul>
+<li>数据目录第 <strong>一</strong> 项</li>
+<li>导出表即导出函数表，调用的 API 函数是由 DLL 文件导出的函数</li>
+<li>通常导出表只存在于 DLL 文件</li>
+</ul>
+<h4 id="导出函数"><a class="markdownIt-Anchor" href="#导出函数"></a> 导出函数</h4>
+<h5 id="导出函数的定义"><a class="markdownIt-Anchor" href="#导出函数的定义"></a> 导出函数的定义</h5>
+<ol>
+<li>直接在函数定义时导出</li>
+<li>通过定义 <code>.def</code> 文件导出</li>
+</ol>
+<h5 id="导出函数的调用"><a class="markdownIt-Anchor" href="#导出函数的调用"></a> 导出函数的调用</h5>
+<ol>
+<li>隐式调用，程序编译时生成导入表</li>
+<li>显示调用，通过 <em>LoadLibrary</em> 函数和 <em>GetProcAddress</em> 函数调用</li>
+</ol>
+<h4 id="结构体-image_export_directory"><a class="markdownIt-Anchor" href="#结构体-image_export_directory"></a> 结构体 IMAGE_EXPORT_DIRECTORY</h4>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_EXPORT_DIRECTORY</span> {</span>
+    DWORD   Characteristics;       <span class="hljs-comment">// 保留值，必须0</span>
+    DWORD   TimeDateStamp;         <span class="hljs-comment">// 时间戳</span>
+    WORD    MajorVersion;          <span class="hljs-comment">// 主版本号，默认0</span>
+    WORD    MinorVersion;          <span class="hljs-comment">// 次版本号，默认0</span>
+    DWORD   Name;                  <span class="hljs-comment">// PE文件的名称</span>
+    DWORD   Base;                  <span class="hljs-comment">// 序号基数</span>
+    DWORD   NumberOfFunctions;     <span class="hljs-comment">// 导出函数的数量</span>
+    DWORD   NumberOfNames;         <span class="hljs-comment">// 以函数名称导出的函数的数量</span>
+    DWORD   AddressOfFunctions;    <span class="hljs-comment">// 导出函数地址表的RVA</span>
+    DWORD   AddressOfNames;        <span class="hljs-comment">// 导出名称指针表的RVA</span>
+    DWORD   AddressOfNameOrdinals; <span class="hljs-comment">// 序号表的RVA</span>
+} IMAGE_EXPORT_DIRECTORY, *PIMAGE_EXPORT_DIRECTORY;
+</code></pre>
+<h4 id="字段解析-5"><a class="markdownIt-Anchor" href="#字段解析-5"></a> 字段解析</h4>
+<ol>
+<li><code>TimeDateStamp</code>：绑定导入表的时间戳会和 DLL 的时间戳对比，不相同则不生效</li>
+<li><code>Name</code>：指向该文件名 ASCII 码字符串的 RVA</li>
+<li><code>Base</code>：映像中导出符号的起始序数值，指定导出地址表的起始序数值，通常为 1</li>
+<li><code>AddressOfNames</code>：保存导出名称指针表的 RVA，该表数量是 <code>NumberOfNames</code> 的值</li>
+<li><code>AddressOfNameOrdinals</code>：导出序数表的 RVA，该表数量是 <code>NumberOfNames</code> 的值。此处的值是索引值，加上 <code>Base</code> 才是真正的序号</li>
+</ol>
+<h3 id="导入表"><a class="markdownIt-Anchor" href="#导入表"></a> 导入表</h3>
+<ul>
+<li>数据目录第 <strong>二</strong> 项</li>
+<li>在 PE 文件运行时，需要别的 PE 文件给予的支持。因此导入表存储的是从其他文件导入过来的函数名，序号。在加载到内存之后，会存储这些函数的地址</li>
+<li>由于一个 PE 文件可能会需要多个 PE 文件的支持，所以导入表结构一般有多个，即导入表是一个 <strong>结构体数组</strong> ，以一个全零元素为结尾，每一个数组的元素，代表一个 PE 文件的导入信息</li>
+</ul>
+<h4 id="绑定导入表"><a class="markdownIt-Anchor" href="#绑定导入表"></a> 绑定导入表</h4>
+<ul>
+<li>使用绑定导入表中的地址，需要有两个前提
+<ol>
+<li>装载地址与 <code>IMAGE_OPTIONAL_HEADER.ImageBase</code> 相同</li>
+<li>DLL 提供的函数地址没有变化</li>
+</ol>
+</li>
+<li>结构体定义<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_BOUND_IMPORT_DESCRIPTOR</span> {</span>
+    WORD    TimeDateStamp;
+    WORD    OffsetMosuleName;
+    WORD    NumberOfModuleForwarderRefs;
+} IMAGE_BOUND_IMPORT_DESCRIPTOR, *PIMAGE_BOUND_IMPORT_DESCRIPTOR;
+</code></pre>
+</li>
+<li>字段解析
+<ol>
+<li><code>OffsetMosuleName</code>：绑定模块的名称，该值是一个以第一个 <em>IMAGE_BOUND_IMPORT_DESCRIPTOR</em> 为起始地址的偏移</li>
+<li><code>NumberOfModuleForwarderRefs</code>：</li>
+</ol>
+</li>
+<li>PE 文件装载时，Windows 需要根据导入表的模块名称和函数名称装载相应模块，得到导入函数的地址并填充导入地址表，绑定地址表则直接将导入函数写入 PE 文件</li>
+</ul>
+<h4 id="结构体-image_import_descriptor"><a class="markdownIt-Anchor" href="#结构体-image_import_descriptor"></a> 结构体 IMAGE_IMPORT_DESCRIPTOR</h4>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_IMPORT_DESCRIPTOR</span> {</span>
+    <span class="hljs-keyword">union</span> {
+        DWORD   Characteristics;
+        DWORD   OriginalFirstThunk; <span class="hljs-comment">// 指向一个 INT 的相对虚拟地址 RVA</span>
+    } DUMMYUNIONNAME;
+    DWORD   TimeDateStamp;          <span class="hljs-comment">// 时间标志</span>
+    DWORD   ForwarderChain;         <span class="hljs-comment">// 转发机制用到</span>
+    DWORD   Name;                   <span class="hljs-comment">// 导入的PE文件的名字的相对虚拟地址RVA</span>
+    DWORD   FirstThunk;             <span class="hljs-comment">// IAT，指向一个结构体数组 RVA</span>
+} IMAGE_IMPORT_DESCRIPTOR， *PIMAGE_IMPORT_DESCRIPTOR;
+</code></pre>
+<h4 id="字段解析-6"><a class="markdownIt-Anchor" href="#字段解析-6"></a> 字段解析</h4>
+<ol>
+<li><code>OriginalFirstThunk</code>：保存了指向导入函数名称（序号）的 RVA 表，该表是一个 <code>IMAGE_THUNK_DATA</code> 结构体，定义如下<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_THUNK_DATA32</span> {</span>
+    <span class="hljs-keyword">union</span> {
+        DWORD ForwarderString;
+        DWORD Function;       <span class="hljs-comment">//导入函数的地址</span>
+        DWORD Ordinal;
+        DWORD AddressOfData;
+    } u1;
+  } IMAGE_THUNK_DATA32;
+</code></pre>
+<ul>
+<li>该结构体分 <strong>32位</strong> 和 <strong>64位</strong> 版本</li>
+<li>union 四个字段占用相同空间
+<ol>
+<li><code>Ordinal</code>：导入函数的序号，<em>IMAGE_THUNK_DATA</em> 最高位为 1 时有效</li>
+<li><code>AddressOfData</code>：指向 <em>IMAGE_IMPORT_BY_NAME</em> 结构体的 RVA，当 <em>IMAGE_THUNK_DATA</em> 最高位不为 1 时有效
+<blockquote>
+<p>IMAGE_IMPORT_BY_NAME 结构体定义如下</p>
+</blockquote>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_IMPORT_BY_NAME</span> {</span>
+    WORD    Hint;
+    CHAR   Name[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 表示导入函数名称，ASCII 码，以 NULL 结尾，长度 1 字节</span>
+} IMAGE_IMPORT_BY_NAME, *PIMAGE_IMPORT_BY_NAME;
+</code></pre>
+<blockquote>
+<p><em>IMAGE_IMPORT_BY_NAME</em> 结构体可以了解导入函数是通过 <strong>序号</strong> 还是 <strong>名称</strong> 导入；</p>
+<ul>
+<li>序号导入，则序号可以在 <em>IMAGE_THUNK_DATA</em> 中获得</li>
+<li>名称导入，则借助 <em>IMAGE_IMPORT_BY_NAME</em> 得到导入函数名称</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><code>FirstThunk</code>：装载内存前，保存了指向导入地址表的 RVA 表，与 <code>OriginalFirstThunk</code> 相同，装载内存后则写入 <strong>导入函数的实际地址</strong></li>
+</ol>
+<h3 id="重定位表"><a class="markdownIt-Anchor" href="#重定位表"></a> 重定位表</h3>
+<p>建议装载地址：<code>IMAGE_OPTIONAL_HEADER.ImageBase</code> 字段是建议装载地址</p>
+<ul>
+<li>数据目录第 <strong>六</strong> 项</li>
+<li>通过第五项进行定位，下标从 0 开始，索引定位如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_BASERELOC 5 <span class="hljs-comment">// Base Relocation Table</span></span>
+</code></pre>
+</li>
+<li>重定位表由多个 <em>IMAGE_BASE_RELOCATION</em> 组合而成，且以一个全 0 的结构体结束</li>
+<li>重定位地址修正：<strong>实际装载地址</strong> 减去 <strong>建议装载地址</strong>，用得出的 <strong>差值</strong> 加上用建议装载地址得出的装载地址</li>
+</ul>
+<h4 id="结构体-image_base_relocation"><a class="markdownIt-Anchor" href="#结构体-image_base_relocation"></a> 结构体 IMAGE_BASE_RELOCATION</h4>
+<pre class="highlight"><code class="C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">IMAGE_BASE_RELOCATION</span> {</span>
+    DWORD   VirtualAddress; <span class="hljs-comment">// 重定位数据的 RVA</span>
+    DWORD   SizeOfBlock;    <span class="hljs-comment">// 结构体的大小</span>
+    WORD    TypeOffset[<span class="hljs-number">1</span>];  <span class="hljs-comment">// 偏移</span>
+} IMAGE_BASE_RELOCATION;
+</code></pre>
+<h4 id="字段解析-7"><a class="markdownIt-Anchor" href="#字段解析-7"></a> 字段解析</h4>
+<ol>
+<li><code>SizeOfBlock</code>：当前区段重定位结构的大小，包括重定位数据，<em>IMAGE_BASE_RELOCATION</em> 结构体大小是 8 字节，即该值 <code>8 BYTE + n * WORD</code></li>
+<li><code>TypeOffset</code>：高 4 位表示类型，低 12 位表示区段内需要重定位的 RVA 值
+<ul>
+<li><code>TypeOffset</code> 类型取值定义如下<pre class="highlight"><code class="C"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_ABSOLUTE        0</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_HIGH            1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_LOW             2</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_HIGHLOW         3</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_HIGHADJ         4</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_MIPS_JMPADDR    5</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_MIPS_JMPADDR    9</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_IA64_IMM64      9</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMAGE_REL_BASED_DIR64           10</span>
+</code></pre>
+</li>
+<li>Win32 下，所有重定位类型都是 <em>IMAGE_REL_BASED_HIGHLOW</em></li>
+<li><code>TypeOffset</code> 的数量：整个区段重定位结构的大小(<code>SizeOfBlock</code>)减去 8 字节，再除以 2 (<code>BYTE</code>)</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io" rel="external nofollow noreferrer">Palm Civet</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/PE/">
+                                    <span class="chip bg-color">PE</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">
+                                    <span class="chip bg-color">文件格式</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8F%82%E8%80%83/">
+                                    <span class="chip bg-color">参考</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/meta/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/meta/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
+<link rel="stylesheet" href="/css/gitment.css">
+
+<div class="gitment-card card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitment-content" class="card-content"></div>
+</div>
+
+<script src="/libs/gitment/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+    id: 'Sat Dec 22 2018 13:34:53 GMT+0800',
+    owner: 'Palmcivet',
+    repo: 'palmcivet.github.io',
+    oauth: {
+        client_id: '73d562ee233e17189f71',
+        client_secret: 'a5ddbd681230e5c906da5ddea77646ceea7bd858'
+    }
+});
+
+gitment.render('gitment-content');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/04/DPDK-%E9%83%A8%E7%BD%B2/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2020/01/19/1P9sIS.png" class="responsive-img" alt="DPDK 部署">
+                        
+                        <span class="card-title">DPDK 部署</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            DPDK 可以为 Intel 处理器架构的用户空间下高效的数据包处理提供库函数和驱动的支持。本文记录 DPDK 部署的过程，以方便参考。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-04-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/" class="post-category">
+                                    系统开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/DPDK/">
+                        <span class="chip bg-color">DPDK</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">部署</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/11/SSH-%E9%83%A8%E7%BD%B2/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2020/01/20/1Fp6un.jpg" class="responsive-img" alt="SSH 部署">
+                        
+                        <span class="card-title">SSH 部署</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SSH，是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-11-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">部署</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Palm Civet<br />'
+            + '文章作者: Palm Civet<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('6'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/palmcivet" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:palmcivet_email@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2143899558" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2143899558" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/P3lm_C1vet" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/P3lm_C1vet" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon.min.js" async="async"></script>
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

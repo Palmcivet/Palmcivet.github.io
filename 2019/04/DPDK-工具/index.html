@@ -1,0 +1,1460 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="DPDK 工具, Palm Civet,Blog">
+    <meta name="description" content="DPDK 项目提供了很多工具和脚本用来测试，以方便开发者，本文记录两个发包测试工具。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>DPDK 工具 | Palm Civet</title>
+    <link rel="icon" type="image/png" href="/meta/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Palm Civet" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/meta/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Palm Civet</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>时间轴</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/meta/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Palm Civet</div>
+        <div class="logo-desc">
+            
+            一个全沾开发者
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			时间轴
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s2.ax1x.com/2020/01/19/1P9sIS.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">DPDK 工具</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/DPDK/">
+                                <span class="chip bg-color">DPDK</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/" class="post-category">
+                                系统开发
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
+                    2019-04-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
+                    2020-01-25
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+				
+                
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>DPDK 中提供了一些工具用来测试，本文对此进行一些简单的介绍，以期抛砖引玉。</p>
+<ul>
+<li>操作环境同上篇。虚拟机分配 4 个核心
+<ul>
+<li>系统：CentOS 7 Kernel 3.10</li>
+<li>架构：IA，64 位，4 核</li>
+<li>内存：1 GB</li>
+<li>DPDK 版本：18.11.1 LTS</li>
+<li>网卡：使用 VirtualBox 虚拟机的 Intel 82540EM</li>
+</ul>
+</li>
+<li>DPDK 提供的工具大多为实例，因此具有 EAL，在运行时需注意传入参数</li>
+<li>大多实例需要两个以上核心，一个核用来管理命令行等信息，另外的核用来处理数据包</li>
+<li>实例的运行可能需要 root 权限，建议使用 root 账户操作</li>
+</ul>
+<h2 id="testpmd"><a class="markdownIt-Anchor" href="#testpmd"></a> TestPMD</h2>
+<ul>
+<li>功能：在网络接口的以太网端口之间转发数据包。TestPMD 随 DPDK 库和工具一同编译，无需另外安装</li>
+<li>路径：<code>&lt;RTE_SDK&gt;/&lt;RTE_TARGET&gt;</code>，此处为 <code>/dpdk/x86_64-native-linuxapp-gcc</code></li>
+</ul>
+<h3 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h3>
+<p>设置方式：</p>
+<ul>
+<li>将两个端口连接到外部流量生成器</li>
+<li>使用回送模式下的两个端口接在一起</li>
+</ul>
+<p>转发模式：</p>
+<ul>
+<li>输入/输出：默认。通常称为 IO 模式，在内核接收一个端口的数据包（Rx）并将其传输到里一个端口（Tx）</li>
+<li>仅 Rx：轮询来自 Rx 端口的数据包</li>
+<li>仅 Tx：生成 64 字节的 IP 数据包并在 Rx 端口传输</li>
+</ul>
+<h3 id="启动"><a class="markdownIt-Anchor" href="#启动"></a> 启动</h3>
+<ol>
+<li>设置 Hugepages、加载 UIO 驱动、绑定端口</li>
+<li>运行程序。TestPMD 默认在非交互模式下运行，指定<code>-i</code> 可交互<pre class="highlight"><code class="bash">$ sudo /build/app/testpmd/<span class="hljs-built_in">test</span>-pmd –l 2,3,4 –n 4 -- -i
+</code></pre>
+<ul>
+<li><code>-l</code>：指定逻辑核心，核心 2 用于管理命令行，核心 3 和 4 将用于转发分组</li>
+<li><code>-n</code>：指定系统的内存通道数</li>
+</ul>
+</li>
+</ol>
+<p>稍等片刻即可进入命令行交互界面。</p>
+<h3 id="常用参数"><a class="markdownIt-Anchor" href="#常用参数"></a> 常用参数</h3>
+<ul>
+<li><code>--nb-cores=N</code>：设置转发核心数，其中 1≤N≤核心数，默认 1</li>
+<li><code>--nb-ports=N</code>：设置转发端口的数量，其中 1≤N≤端口数</li>
+<li><code>--coremask=0xXX</code>：设置转发测试核心的十六进制掩码。主 lcore 仅保留用于命令行解析</li>
+<li><code>--portmask=0xXX</code>：设置转发测试的端口的十六进制掩码</li>
+<li><code>--eth-peer=N,XX:XX:XX:XX:XX:XX</code>：设置端口 N 的 MAC 地址</li>
+<li><code>--tx-ip=SRC,DST</code>：设置仅进行传输测试时使用的源和目的地址</li>
+</ul>
+<h3 id="常用运行时命令"><a class="markdownIt-Anchor" href="#常用运行时命令"></a> 常用运行时命令</h3>
+<ul>
+<li>检查配置<pre class="highlight"><code class="">show config fwd
+</code></pre>
+</li>
+<li>开始/停止 转发<pre class="highlight"><code class="">start / stop
+</code></pre>
+</li>
+<li>显示应用程序正在使用的所有端口的统计信息：<pre class="highlight"><code class="">show port stats all
+</code></pre>
+</li>
+<li>使用多个内核<pre class="highlight"><code class="">set nbcore 2
+</code></pre>
+</li>
+</ul>
+<h2 id="pktgen-dpdk"><a class="markdownIt-Anchor" href="#pktgen-dpdk"></a> Pktgen-dpdk</h2>
+<p>Pktgen-dpdk（Packet Generator）是一个基于 DPDK 开发的发包工具，因此也可以认为是一个实例，详询 <a href="https://pktgen-dpdk.readthedocs.io/en/latest/commands.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<h3 id="编译"><a class="markdownIt-Anchor" href="#编译"></a> 编译</h3>
+<ol>
+<li>安装 Lua <a href="https://www.lua.org/manual/5.3/readme.html" target="_blank" rel="noopener">文档</a><br />
+CentOS 7 所包含的 Lua 版本过低(5.1.x)，需要自行安装，此处使用 Lua 5.3.5<pre class="highlight"><code class="bash">$ <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/src
+$ wget http://www.lua.org/ftp/lua-5.3.5.tar.gz
+$ tar zxf lua-5.3.0.tar.gz
+$ <span class="hljs-built_in">cd</span> lua-5.3.0
+$ make &lt;platform&gt; install
+</code></pre>
+<code>&lt;platform&gt;</code> 可选如下平台：<pre class="highlight"><code class="">aix bsd c89 freebsd generic linux macosx mingw posix solaris
+</code></pre>
+此处为 <code>linux</code></li>
+<li>安装依赖<br />
+根据情况，CentOS 7 可能需要安装一些依赖才能编译，具体版本就不给出了<pre class="highlight"><code class="bash">$ yum install libpcap-dev
+$ yum install libreadline-dev
+</code></pre>
+</li>
+<li>设置环境变量<pre class="highlight"><code class="bash">$ <span class="hljs-built_in">export</span> RTE_SDK=~/dpdk
+$ <span class="hljs-built_in">export</span> RTE_TARGET=x86_64-native-linuxapp-gcc
+</code></pre>
+</li>
+<li>进入 pktgen 目录，编译<pre class="highlight"><code class="bash">$ <span class="hljs-built_in">cd</span> &lt;pktgen-dir&gt;
+$ make
+</code></pre>
+</li>
+</ol>
+<h3 id="启动-2"><a class="markdownIt-Anchor" href="#启动-2"></a> 启动</h3>
+<ol>
+<li>可使用 <code>tools/run.py</code> 设置启动环境，该 Python 脚本尝试配置系统，内部有提权操作，因而不需要 <em>sudo</em>。<pre class="highlight"><code class="bash">$ ./tools/run.py default
+</code></pre>
+该命令需在 pktgen 顶级目录下运行，使用 <code>/cfg/default.cfg</code> 配置文件</li>
+<li>启动<br />
+启动参数包含 EAL 和自身参数，用 <code>--</code> 分隔，将进入命令行<pre class="highlight"><code class="bash">$ sudo ./pktgen -l 0-1 -n 3 -- -P -T
+</code></pre>
+pktgen 需要至少两个逻辑内核才能运行</li>
+</ol>
+<h3 id="常用参数-2"><a class="markdownIt-Anchor" href="#常用参数-2"></a> 常用参数</h3>
+<ul>
+<li><code>-f</code>：指定脚本，<code>.pkt</code> 或 <code>.lua</code></li>
+<li><code>-l</code>：指定日志文件</li>
+<li><code>-p</code>：指定端口</li>
+<li><code>-P</code>：在所有端口启用混杂模式</li>
+<li><code>-T</code>：彩色终端输出</li>
+<li><code>-G</code>：启用 socket</li>
+<li><code>-N</code>：启用 NUMA 支持</li>
+<li><code>-s&lt;P&gt;:&lt;file&gt;</code>：要传输的端口和 PCAP 文件</li>
+<li><code>-m &lt;string&gt;</code>：将端口映射到核心
+<ul>
+<li><code>:</code> 表示分别</li>
+<li><code>-</code> 表示和</li>
+<li>[Core].[Port]</li>
+<li>[rx:tx]</li>
+</ul>
+<pre class="highlight"><code class="">1.0, 2.1, 3.2
+[1:2].0
+[1:2].[0-1]
+</code></pre>
+</li>
+</ul>
+<h3 id="常见运行时命令"><a class="markdownIt-Anchor" href="#常见运行时命令"></a> 常见运行时命令</h3>
+<ul>
+<li>set<pre class="highlight"><code class="">set &lt;portlist&gt; &lt;command&gt; value
+</code></pre>
+<ul>
+<li>command 参数：
+<ul>
+<li><code>count</code>：发送报文的数量</li>
+<li><code>size</code>：报文大小</li>
+<li><code>rate</code>：发送报文的速率</li>
+<li><code>sport</code>：TCP 源端口号</li>
+<li><code>dport</code>：TCP 目的端口号</li>
+</ul>
+</li>
+<li>也可设置 MAC 及 IP<pre class="highlight"><code class="">set mac &lt;portlist&gt; &lt;ethaddr&gt;
+set ip src|dst &lt;portlist&gt; &lt;ipaddr&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>seq：发送报文信息<pre class="highlight"><code class="">seq &lt;seq#&gt; &lt;portlist&gt; dst_mac src_mac dst_ip src_ip sport dport ipv4|ipv6|vlan udp|tcp|icmp vid pktsize
+</code></pre>
+</li>
+<li>save/load：保存/导入当前配置到文件</li>
+</ul>
+<h2 id="pktgen"><a class="markdownIt-Anchor" href="#pktgen"></a> Pktgen</h2>
+<p>pktgen 是一个位于 Linux 内核层的高性能网络测试工具，支持多线程，能产生随机 MAC 地址、IP 地址、UDP 端口号等信息的数据包。</p>
+<ul>
+<li>Linux 发行版默认包含</li>
+<li>pktgen 的配置与统计信息查看都使用 <code>/proc</code> 文件系统的数据写入功能</li>
+</ul>
+<h3 id="启动-3"><a class="markdownIt-Anchor" href="#启动-3"></a> 启动</h3>
+<ol>
+<li>加载内核<pre class="highlight"><code class="bash">$ modprobe pktgen
+</code></pre>
+在 <code>/proc/net/pktgen</code> 可看见如下内容，文件数由 CPU 决定：<pre class="highlight"><code class="">kpktgend_0  kpktgend_1  kpktgend_2  kpktgend_3  pgctrl
+</code></pre>
+</li>
+<li>手动运行命令<pre class="highlight"><code class="bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"rem_device_all"</span> &gt; /proc/net/pktgen/kpktgend_0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"add_device eth0"</span> &gt; /proc/net/pktgen/kpktgend_0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"pkt_size 1000"</span> &gt; /proc/net/pktgen/eth0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"count 1000"</span> &gt; /proc/net/pktgen/eth0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"delay 1"</span> &gt; /proc/net/pktgen/eth0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"src 10.180.80.179"</span> &gt; /proc/net/pktgen/eth0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"dst 10.180.80.181"</span> &gt; /proc/net/pktgen/eth0
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"start"</span> &gt; /proc/net/pktgen/pgctrl
+</code></pre>
+<ul>
+<li><code>pkt_size</code>：包长</li>
+<li><code>count</code>：发包个数</li>
+<li><code>delay</code>：时间间隔，单位是纳秒</li>
+</ul>
+</li>
+<li>也可使用命令构建脚本</li>
+</ol>
+<h3 id="常见命令"><a class="markdownIt-Anchor" href="#常见命令"></a> 常见命令</h3>
+<h4 id="控制命令"><a class="markdownIt-Anchor" href="#控制命令"></a> 控制命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>所有线程开始发送</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>停止</td>
+</tr>
+</tbody>
+</table>
+<h4 id="线程的控制命令"><a class="markdownIt-Anchor" href="#线程的控制命令"></a> 线程的控制命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add_device</td>
+<td>添加某个端口到某个线程</td>
+</tr>
+<tr>
+<td>rem_device_all</td>
+<td>删除绑定在某个线程的所有端口</td>
+</tr>
+<tr>
+<td>max_before_softirq</td>
+<td>在最多发送多少个数据包后,执行 do_softirq()</td>
+</tr>
+</tbody>
+</table>
+<h4 id="端口命令"><a class="markdownIt-Anchor" href="#端口命令"></a> 端口命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>debug</td>
+<td>调试</td>
+</tr>
+<tr>
+<td>clone_skb</td>
+<td>对每个 skb 进行多少个复制，0 表示不复制</td>
+</tr>
+<tr>
+<td>clear_counters</td>
+<td>清空计数器，默认自动清空</td>
+</tr>
+<tr>
+<td>pkt_size</td>
+<td>链路包的大小（除去CRC的值）</td>
+</tr>
+<tr>
+<td>min_pkt_size</td>
+<td>数据包最小值</td>
+</tr>
+<tr>
+<td>max_pkt_size</td>
+<td>数据包最大值</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>包的分片数量</td>
+</tr>
+<tr>
+<td>count</td>
+<td>发送数据包的个数，0 表示一直发送</td>
+</tr>
+<tr>
+<td>delay</td>
+<td>发送两个数据包之间的延时</td>
+</tr>
+<tr>
+<td>dst</td>
+<td>目的 IP</td>
+</tr>
+<tr>
+<td>dst_min</td>
+<td>目的 IP 的最小值</td>
+</tr>
+<tr>
+<td>dst_max</td>
+<td>目的 IP 的最大值</td>
+</tr>
+<tr>
+<td>src_min</td>
+<td>源 IP 最小值</td>
+</tr>
+<tr>
+<td>src_max</td>
+<td>源 IP 最大值</td>
+</tr>
+<tr>
+<td>dst6</td>
+<td>目的 IPv6 地址</td>
+</tr>
+<tr>
+<td>src6</td>
+<td>源 IPv6 地址</td>
+</tr>
+<tr>
+<td>dstmac</td>
+<td>目的 MAC</td>
+</tr>
+<tr>
+<td>srcmac</td>
+<td>源 MAC</td>
+</tr>
+<tr>
+<td>src_mac_count</td>
+<td>源 MAC 的数量，从 srcmac 的 MAC 开始轮询</td>
+</tr>
+<tr>
+<td>dst_mac_count</td>
+<td>目的 MAC 的数量，从 srcmac 的 MAC 开始轮询</td>
+</tr>
+<tr>
+<td>udp_src_min</td>
+<td>最小源 UDP 端口号</td>
+</tr>
+<tr>
+<td>udp_src_max</td>
+<td>最大源 UDP 端口号</td>
+</tr>
+<tr>
+<td>udp_dst_min</td>
+<td>最小目的 UDP 端口号</td>
+</tr>
+<tr>
+<td>udp_dst_max</td>
+<td>最大目的 UDP 端口号</td>
+</tr>
+<tr>
+<td>flows</td>
+<td>并发流的个数</td>
+</tr>
+<tr>
+<td>flowlen</td>
+<td>流的长度</td>
+</tr>
+</tbody>
+</table>
+<h4 id="flags"><a class="markdownIt-Anchor" href="#flags"></a> Flags</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPSRC_RND</td>
+<td>PSRC_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>IPDST_RND</td>
+<td>IPDST_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>TXSIZE_RND</td>
+<td>YXSIZE_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>UDPSRC_RND</td>
+<td>UDPSRC_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>UDPDST_RND</td>
+<td>UDPDST_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>MACSRC_RND</td>
+<td>MACSRC_RND 源 IP 随机发送</td>
+</tr>
+<tr>
+<td>MACDST_RND</td>
+<td>MACDST_RND 源 IP 随机发送</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io" rel="external nofollow noreferrer">Palm Civet</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/">https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/DPDK/">
+                                    <span class="chip bg-color">DPDK</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/meta/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/meta/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
+<link rel="stylesheet" href="/css/gitment.css">
+
+<div class="gitment-card card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitment-content" class="card-content"></div>
+</div>
+
+<script src="/libs/gitment/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+    id: 'Tue Apr 30 2019 10:15:20 GMT+0800',
+    owner: 'Palmcivet',
+    repo: 'palmcivet.github.io',
+    oauth: {
+        client_id: '73d562ee233e17189f71',
+        client_secret: 'a5ddbd681230e5c906da5ddea77646ceea7bd858'
+    }
+});
+
+gitment.render('gitment-content');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/05/IRC-%E6%B5%85%E5%B0%9D/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2019/08/23/mBHgsI.png" class="responsive-img" alt="IRC 浅尝">
+                        
+                        <span class="card-title">IRC 浅尝</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            IRC 是一种互联网聊天方式，采用分布式的客户端/服务器架构，每个 IRC 网络由多个服务器连接而成，几乎只要有互联网就可以聊天。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-05-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/IRC/">
+                        <span class="chip bg-color">IRC</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%80%9A%E4%BF%A1/">
+                        <span class="chip bg-color">通信</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/Markdown-%E8%AF%AD%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2020/01/18/1pqQT1.png" class="responsive-img" alt="Markdown 语法">
+                        
+                        <span class="card-title">Markdown 语法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Markdown 是一种轻量级的标记语言，是一种纯文本格式，类似于 HTML，且兼容 HTML 标签。本文记录 Markdown 的标准语法和扩展语法以备参考。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-04-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8F%82%E8%80%83/">
+                        <span class="chip bg-color">参考</span>
+                    </a>
+                    
+                    <a href="/tags/Markdown/">
+                        <span class="chip bg-color">Markdown</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Palm Civet<br />'
+            + '文章作者: Palm Civet<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('6'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://palmcivet.github.io" target="_blank">Palm Civet</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/palmcivet" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:palmcivet_email@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2143899558" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2143899558" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/P3lm_C1vet" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/P3lm_C1vet" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon.min.js" async="async"></script>
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
