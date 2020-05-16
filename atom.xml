@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Palm Civet</title>
+  
+  <subtitle>方寸天地，心怀寰宇</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://palmcivet.github.io/"/>
+  <updated>2020-04-28T04:03:50.176Z</updated>
+  <id>https://palmcivet.github.io/</id>
+  
+  <author>
+    <name>Palm Civet</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开发小记——Web Audio API</title>
+    <link href="https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/"/>
+    <id>https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/</id>
+    <published>2020-04-27T16:27:19.000Z</published>
+    <updated>2020-04-28T04:03:50.176Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;最近在做一个在线语音聊天室的项目，在此之前零经验，所以疯狂爬帖。对于 Web Audio API 来说，除了 MDN
+        
+      
+    
+    </summary>
+    
+    
+      <category term="前端开发" scheme="https://palmcivet.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="踩坑" scheme="https://palmcivet.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+      <category term="JavaScript" scheme="https://palmcivet.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>获取 GitBook 站点的文档</title>
+    <link href="https://palmcivet.github.io/2020/03/%E8%8E%B7%E5%8F%96-GitBook-%E7%AB%99%E7%82%B9%E7%9A%84%E6%96%87%E6%A1%A3/"/>
+    <id>https://palmcivet.github.io/2020/03/%E8%8E%B7%E5%8F%96-GitBook-%E7%AB%99%E7%82%B9%E7%9A%84%E6%96%87%E6%A1%A3/</id>
+    <published>2020-03-13T11:08:11.000Z</published>
+    <updated>2020-03-13T17:06:47.266Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;tldr&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#tldr&quot;&gt;&lt;/a&gt; TL;DR&lt;/h2&gt;
+&lt;p&gt;wget 加 &lt;code&gt;-m&lt;/code&gt; 选项下载站点资源，然后使用 Python 提供的 SimpleHTTPServer
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Geek" scheme="https://palmcivet.github.io/categories/Geek/"/>
+    
+    
+      <category term="Python" scheme="https://palmcivet.github.io/tags/Python/"/>
+    
+      <category term="Wget" scheme="https://palmcivet.github.io/tags/Wget/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub 与 SPA 部署</title>
+    <link href="https://palmcivet.github.io/2020/02/Github-%E4%B8%8E-SPA-%E9%83%A8%E7%BD%B2/"/>
+    <id>https://palmcivet.github.io/2020/02/Github-%E4%B8%8E-SPA-%E9%83%A8%E7%BD%B2/</id>
+    <published>2020-02-03T11:34:16.000Z</published>
+    <updated>2020-04-28T04:08:17.105Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;最近在写一个 &lt;a href=&quot;https://en.wikipedia.org/wiki/Single-page_application&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="运维" scheme="https://palmcivet.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="GitHub" scheme="https://palmcivet.github.io/tags/GitHub/"/>
+    
+      <category term="React" scheme="https://palmcivet.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于 C 语言指针二三事</title>
+    <link href="https://palmcivet.github.io/2020/01/%E5%85%B3%E4%BA%8E-C-%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E4%BA%8C%E4%B8%89%E4%BA%8B/"/>
+    <id>https://palmcivet.github.io/2020/01/%E5%85%B3%E4%BA%8E-C-%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E4%BA%8C%E4%B8%89%E4%BA%8B/</id>
+    <published>2020-01-17T12:41:12.000Z</published>
+    <updated>2020-02-03T17:25:14.736Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;学习 C 语言到现在已经一年了，自从部署好 DPDK 到现在也过去了半年，但是对 DPDK
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统开发" scheme="https://palmcivet.github.io/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="C" scheme="https://palmcivet.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gmpy2 编译安装的坑</title>
+    <link href="https://palmcivet.github.io/2019/11/gmpy2-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E7%9A%84%E5%9D%91/"/>
+    <id>https://palmcivet.github.io/2019/11/gmpy2-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E7%9A%84%E5%9D%91/</id>
+    <published>2019-11-02T07:10:01.000Z</published>
+    <updated>2020-02-04T15:04:40.292Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GMP，GNU Multiple Precision Arithmetic Library，GNU
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="https://palmcivet.github.io/categories/CTF/"/>
+    
+    
+      <category term="部署" scheme="https://palmcivet.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="密码学" scheme="https://palmcivet.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>薛定谔的 Console.log()</title>
+    <link href="https://palmcivet.github.io/2019/09/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%9A%84-Console-log/"/>
+    <id>https://palmcivet.github.io/2019/09/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%9A%84-Console-log/</id>
+    <published>2019-09-01T08:13:08.000Z</published>
+    <updated>2020-04-22T16:44:18.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;在写作本文时我已经理清了思路，但在当时走投无路、无计可施的情况下难免会忽略一些细节。复现问题时使用的是简单的例子，表现意思即可，故在此无需探讨例子的意义&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;今天写代码时，调试一个数组对象，想把内容都打印出来，
+        
+      
+    
+    </summary>
+    
+    
+      <category term="前端开发" scheme="https://palmcivet.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="踩坑" scheme="https://palmcivet.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+      <category term="JavaScript" scheme="https://palmcivet.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpack 踩坑记录</title>
+    <link href="https://palmcivet.github.io/2019/08/Webpack-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
+    <id>https://palmcivet.github.io/2019/08/Webpack-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</id>
+    <published>2019-08-19T11:28:35.000Z</published>
+    <updated>2020-04-22T16:44:32.064Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前段时间，学习了 &lt;a href=&quot;https://webpack.js.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Webpack&lt;/a&gt;、&lt;a href=&quot;https://ejs.co/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="前端开发" scheme="https://palmcivet.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Webpack" scheme="https://palmcivet.github.io/tags/Webpack/"/>
+    
+      <category term="踩坑" scheme="https://palmcivet.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IRC 浅尝</title>
+    <link href="https://palmcivet.github.io/2019/05/IRC-%E6%B5%85%E5%B0%9D/"/>
+    <id>https://palmcivet.github.io/2019/05/IRC-%E6%B5%85%E5%B0%9D/</id>
+    <published>2019-05-22T12:50:17.000Z</published>
+    <updated>2020-04-28T03:12:57.923Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;不久前接触到 IRC，感觉很有意思，遂了解了一下，记录下来。最近 &lt;a href=&quot;https://d3ctf.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;D^3CTF&lt;/a&gt; 官方提供了一个 IRC 频道，想进去水一水，结果发现 IRC
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Geek" scheme="https://palmcivet.github.io/categories/Geek/"/>
+    
+    
+      <category term="IRC" scheme="https://palmcivet.github.io/tags/IRC/"/>
+    
+      <category term="通信" scheme="https://palmcivet.github.io/tags/%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DPDK 工具</title>
+    <link href="https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/"/>
+    <id>https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/</id>
+    <published>2019-04-30T02:15:20.000Z</published>
+    <updated>2020-01-24T17:40:59.060Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;DPDK 中提供了一些工具用来测试，本文对此进行一些简单的介绍，以期抛砖引玉。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作环境同上篇。虚拟机分配 4
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统开发" scheme="https://palmcivet.github.io/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="DPDK" scheme="https://palmcivet.github.io/tags/DPDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 语法</title>
+    <link href="https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/"/>
+    <id>https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/</id>
+    <published>2019-04-28T04:48:00.000Z</published>
+    <updated>2020-01-24T17:40:59.062Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;概述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#概述&quot;&gt;&lt;/a&gt; 概述&lt;/h2&gt;
+&lt;p&gt;本文不是 Markdown 入门教程，而是收录各种 Markdown
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Geek" scheme="https://palmcivet.github.io/categories/Geek/"/>
+    
+    
+      <category term="Markdown" scheme="https://palmcivet.github.io/tags/Markdown/"/>
+    
+      <category term="参考" scheme="https://palmcivet.github.io/tags/%E5%8F%82%E8%80%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DPDK 部署</title>
+    <link href="https://palmcivet.github.io/2019/04/DPDK-%E9%83%A8%E7%BD%B2/"/>
+    <id>https://palmcivet.github.io/2019/04/DPDK-%E9%83%A8%E7%BD%B2/</id>
+    <published>2019-04-26T12:05:57.000Z</published>
+    <updated>2020-02-04T13:30:03.301Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.dpdk.org/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统开发" scheme="https://palmcivet.github.io/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="DPDK" scheme="https://palmcivet.github.io/tags/DPDK/"/>
+    
+      <category term="部署" scheme="https://palmcivet.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PE 文件格式</title>
+    <link href="https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/"/>
+    <id>https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</id>
+    <published>2018-12-22T05:34:53.000Z</published>
+    <updated>2020-01-24T17:40:59.062Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#简述&quot;&gt;&lt;/a&gt; 简述&lt;/h2&gt;
+&lt;p&gt;PE 格式是由 &lt;em&gt;Unix&lt;/em&gt; 中的 COFF 格式修改而来的，在 Windows 环境中，PE 格式也称为
+        
+      
+    
+    </summary>
+    
+    
+      <category term="二进制" scheme="https://palmcivet.github.io/categories/%E4%BA%8C%E8%BF%9B%E5%88%B6/"/>
+    
+    
+      <category term="参考" scheme="https://palmcivet.github.io/tags/%E5%8F%82%E8%80%83/"/>
+    
+      <category term="PE" scheme="https://palmcivet.github.io/tags/PE/"/>
+    
+      <category term="文件格式" scheme="https://palmcivet.github.io/tags/%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSH 部署</title>
+    <link href="https://palmcivet.github.io/2018/11/SSH-%E9%83%A8%E7%BD%B2/"/>
+    <id>https://palmcivet.github.io/2018/11/SSH-%E9%83%A8%E7%BD%B2/</id>
+    <published>2018-11-12T02:44:00.000Z</published>
+    <updated>2020-04-28T04:09:58.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ssh-概述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ssh-概述&quot;&gt;&lt;/a&gt; SSH 概述&lt;/h2&gt;
+&lt;p&gt;SSH，&lt;a href=&quot;https://en.wikipedia.org/wiki/Secure_Shell&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="运维" scheme="https://palmcivet.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="部署" scheme="https://palmcivet.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="Linux" scheme="https://palmcivet.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
