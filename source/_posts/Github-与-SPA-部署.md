@@ -1,7 +1,7 @@
 ---
 title: GitHub 与 SPA 部署
 toc: true
-top: true
+top: false
 cover: false
 mathjax: false
 reprintPolicy: cc_by

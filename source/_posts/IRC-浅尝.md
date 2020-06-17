@@ -322,7 +322,7 @@ RFC 规定了 IRC 命令规范，详询 [List of Internet Relay Chat commands](h
 
 ---
 
-## 结语
+## 后记
 
 以上就是 IRC 的大致情况和基本用法，相信仍有一些不当之处，欢迎指正。
 

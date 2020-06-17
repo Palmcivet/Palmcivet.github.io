@@ -11,7 +11,6 @@ categories:
   - 运维
 tags:
   - Linux
-  - SSH
   - 部署
 summary: SSH，是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。
 ---
