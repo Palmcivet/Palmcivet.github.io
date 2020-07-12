@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://palmcivet.github.io/"/>
-  <updated>2020-07-10T16:19:12.776Z</updated>
+  <updated>2020-07-11T14:33:10.020Z</updated>
   <id>https://palmcivet.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://palmcivet.github.io/2020/06/%E6%88%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E5%B7%A5%E5%85%B7/"/>
     <id>https://palmcivet.github.io/2020/06/%E6%88%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E5%B7%A5%E5%85%B7/</id>
     <published>2020-06-10T10:22:54.000Z</published>
-    <updated>2020-07-10T16:19:12.776Z</updated>
+    <updated>2020-07-11T14:33:10.020Z</updated>
     
     <summary type="html">
     
@@ -100,6 +100,34 @@
       <category term="Python" scheme="https://palmcivet.github.io/tags/Python/"/>
     
       <category term="Wget" scheme="https://palmcivet.github.io/tags/Wget/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈 VSCode 和开发工具</title>
+    <link href="https://palmcivet.github.io/2020/03/%E6%B5%85%E8%B0%88-VSCode-%E5%92%8C%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    <id>https://palmcivet.github.io/2020/03/%E6%B5%85%E8%B0%88-VSCode-%E5%92%8C%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</id>
+    <published>2020-03-06T12:07:46.000Z</published>
+    <updated>2020-07-12T18:38:34.034Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;早在今年二月份，我产生了一个自建云开发环境的想法，就是复刻微软的 Visual Studio Online，&lt;s&gt;（因为这一服务需要
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Geek" scheme="https://palmcivet.github.io/categories/Geek/"/>
+    
+    
+      <category term="参考" scheme="https://palmcivet.github.io/tags/%E5%8F%82%E8%80%83/"/>
     
   </entry>
   
@@ -317,7 +345,7 @@
     <link href="https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/"/>
     <id>https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/</id>
     <published>2019-04-28T04:48:00.000Z</published>
-    <updated>2020-01-24T17:40:59.062Z</updated>
+    <updated>2019-08-25T14:55:24.000Z</updated>
     
     <summary type="html">
     
