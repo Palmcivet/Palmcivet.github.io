@@ -18,8 +18,8 @@
   
   <entry>
     <title>我的生产力工具</title>
-    <link href="https://palmcivet.github.io/2020/06/%E6%88%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E5%B7%A5%E5%85%B7/"/>
-    <id>https://palmcivet.github.io/2020/06/%E6%88%91%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8A%9B%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/"/>
+    <id>https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/</id>
     <published>2020-06-10T10:22:54.000Z</published>
     <updated>2020-07-11T14:33:10.020Z</updated>
     
@@ -45,8 +45,8 @@
   
   <entry>
     <title>开发小记——Web Audio API</title>
-    <link href="https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/"/>
-    <id>https://palmcivet.github.io/2020/04/%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0%E2%80%94%E2%80%94Web-Audio-API/</id>
+    <link href="https://palmcivet.github.io/2020/04/kai-fa-xiao-ji-web-audio-api/"/>
+    <id>https://palmcivet.github.io/2020/04/kai-fa-xiao-ji-web-audio-api/</id>
     <published>2020-04-27T16:27:19.000Z</published>
     <updated>2020-04-28T04:03:50.176Z</updated>
     
@@ -75,8 +75,8 @@
   
   <entry>
     <title>获取 GitBook 站点的文档</title>
-    <link href="https://palmcivet.github.io/2020/03/%E8%8E%B7%E5%8F%96-GitBook-%E7%AB%99%E7%82%B9%E7%9A%84%E6%96%87%E6%A1%A3/"/>
-    <id>https://palmcivet.github.io/2020/03/%E8%8E%B7%E5%8F%96-GitBook-%E7%AB%99%E7%82%B9%E7%9A%84%E6%96%87%E6%A1%A3/</id>
+    <link href="https://palmcivet.github.io/2020/03/huo-qu-gitbook-zhan-dian-de-wen-dang/"/>
+    <id>https://palmcivet.github.io/2020/03/huo-qu-gitbook-zhan-dian-de-wen-dang/</id>
     <published>2020-03-13T11:08:11.000Z</published>
     <updated>2020-03-13T17:06:47.266Z</updated>
     
@@ -105,10 +105,10 @@
   
   <entry>
     <title>浅谈 VSCode 和开发工具</title>
-    <link href="https://palmcivet.github.io/2020/03/%E6%B5%85%E8%B0%88-VSCode-%E5%92%8C%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    <id>https://palmcivet.github.io/2020/03/%E6%B5%85%E8%B0%88-VSCode-%E5%92%8C%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://palmcivet.github.io/2020/03/qian-tan-vscode-he-kai-fa-gong-ju/"/>
+    <id>https://palmcivet.github.io/2020/03/qian-tan-vscode-he-kai-fa-gong-ju/</id>
     <published>2020-03-06T12:07:46.000Z</published>
-    <updated>2020-07-13T03:33:18.448Z</updated>
+    <updated>2021-04-03T10:42:41.341Z</updated>
     
     <summary type="html">
     
@@ -133,8 +133,8 @@
   
   <entry>
     <title>GitHub 与 SPA 部署</title>
-    <link href="https://palmcivet.github.io/2020/02/Github-%E4%B8%8E-SPA-%E9%83%A8%E7%BD%B2/"/>
-    <id>https://palmcivet.github.io/2020/02/Github-%E4%B8%8E-SPA-%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://palmcivet.github.io/2020/02/github-yu-spa-bu-shu/"/>
+    <id>https://palmcivet.github.io/2020/02/github-yu-spa-bu-shu/</id>
     <published>2020-02-03T11:34:16.000Z</published>
     <updated>2020-04-28T04:08:17.105Z</updated>
     
@@ -163,8 +163,8 @@
   
   <entry>
     <title>关于 C 语言指针二三事</title>
-    <link href="https://palmcivet.github.io/2020/01/%E5%85%B3%E4%BA%8E-C-%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E4%BA%8C%E4%B8%89%E4%BA%8B/"/>
-    <id>https://palmcivet.github.io/2020/01/%E5%85%B3%E4%BA%8E-C-%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E4%BA%8C%E4%B8%89%E4%BA%8B/</id>
+    <link href="https://palmcivet.github.io/2020/01/guan-yu-c-yu-yan-zhi-zhen-er-san-shi/"/>
+    <id>https://palmcivet.github.io/2020/01/guan-yu-c-yu-yan-zhi-zhen-er-san-shi/</id>
     <published>2020-01-17T12:41:12.000Z</published>
     <updated>2020-02-03T17:25:14.736Z</updated>
     
@@ -191,8 +191,8 @@
   
   <entry>
     <title>gmpy2 编译安装的坑</title>
-    <link href="https://palmcivet.github.io/2019/11/gmpy2-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E7%9A%84%E5%9D%91/"/>
-    <id>https://palmcivet.github.io/2019/11/gmpy2-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E7%9A%84%E5%9D%91/</id>
+    <link href="https://palmcivet.github.io/2019/11/gmpy2-bian-yi-an-zhuang-de-keng/"/>
+    <id>https://palmcivet.github.io/2019/11/gmpy2-bian-yi-an-zhuang-de-keng/</id>
     <published>2019-11-02T07:10:01.000Z</published>
     <updated>2020-02-04T15:04:40.292Z</updated>
     
@@ -222,8 +222,8 @@
   
   <entry>
     <title>薛定谔的 Console.log()</title>
-    <link href="https://palmcivet.github.io/2019/09/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%9A%84-Console-log/"/>
-    <id>https://palmcivet.github.io/2019/09/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%9A%84-Console-log/</id>
+    <link href="https://palmcivet.github.io/2019/09/xie-ding-e-de-console-log/"/>
+    <id>https://palmcivet.github.io/2019/09/xie-ding-e-de-console-log/</id>
     <published>2019-09-01T08:13:08.000Z</published>
     <updated>2020-04-22T16:44:18.054Z</updated>
     
@@ -254,8 +254,8 @@
   
   <entry>
     <title>Webpack 踩坑记录</title>
-    <link href="https://palmcivet.github.io/2019/08/Webpack-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
-    <id>https://palmcivet.github.io/2019/08/Webpack-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</id>
+    <link href="https://palmcivet.github.io/2019/08/webpack-cai-keng-ji-lu/"/>
+    <id>https://palmcivet.github.io/2019/08/webpack-cai-keng-ji-lu/</id>
     <published>2019-08-19T11:28:35.000Z</published>
     <updated>2020-04-22T16:44:32.064Z</updated>
     
@@ -265,7 +265,7 @@
       
         
         
-          &lt;p&gt;前段时间，学习了 &lt;a href=&quot;https://webpack.js.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Webpack&lt;/a&gt;、&lt;a href=&quot;https://ejs.co/&quot; target=&quot;_blank&quot;
+          &lt;p&gt;前段时间，学习了 &lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt;、&lt;a href=&quot;https://ejs.co/&quot;&gt;EJS&lt;/a&gt;、&lt;a href=&quot;https://babeljs.io/&quot;&gt;Babel&lt;/a&gt; 等工具，在学习
         
       
     
@@ -283,8 +283,8 @@
   
   <entry>
     <title>IRC 浅尝</title>
-    <link href="https://palmcivet.github.io/2019/05/IRC-%E6%B5%85%E5%B0%9D/"/>
-    <id>https://palmcivet.github.io/2019/05/IRC-%E6%B5%85%E5%B0%9D/</id>
+    <link href="https://palmcivet.github.io/2019/05/irc-qian-chang/"/>
+    <id>https://palmcivet.github.io/2019/05/irc-qian-chang/</id>
     <published>2019-05-22T12:50:17.000Z</published>
     <updated>2020-04-28T03:12:57.923Z</updated>
     
@@ -294,7 +294,8 @@
       
         
         
-          &lt;p&gt;不久前接触到 IRC，感觉很有意思，遂了解了一下，记录下来。最近 &lt;a href=&quot;https://d3ctf.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;D^3CTF&lt;/a&gt; 官方提供了一个 IRC 频道，想进去水一水，结果发现 IRC
+          &lt;p&gt;不久前接触到 IRC，感觉很有意思，遂了解了一下，记录下来。最近 &lt;a href=&quot;https://d3ctf.io/&quot;&gt;D^3CTF&lt;/a&gt; 官方提供了一个 IRC 频道，想进去水一水，结果发现 IRC 不怎么会用了，在此检讨一下，重新学习。&lt;/p&gt;
+&lt;p&gt;&lt;img
         
       
     
@@ -312,8 +313,8 @@
   
   <entry>
     <title>DPDK 工具</title>
-    <link href="https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/"/>
-    <id>https://palmcivet.github.io/2019/04/DPDK-%E5%B7%A5%E5%85%B7/</id>
+    <link href="https://palmcivet.github.io/2019/04/dpdk-gong-ju/"/>
+    <id>https://palmcivet.github.io/2019/04/dpdk-gong-ju/</id>
     <published>2019-04-30T02:15:20.000Z</published>
     <updated>2020-01-24T17:40:59.060Z</updated>
     
@@ -342,8 +343,8 @@
   
   <entry>
     <title>Markdown 语法</title>
-    <link href="https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/"/>
-    <id>https://palmcivet.github.io/2019/04/Markdown-%E8%AF%AD%E6%B3%95/</id>
+    <link href="https://palmcivet.github.io/2019/04/markdown-yu-fa/"/>
+    <id>https://palmcivet.github.io/2019/04/markdown-yu-fa/</id>
     <published>2019-04-28T04:48:00.000Z</published>
     <updated>2019-08-25T14:55:24.000Z</updated>
     
@@ -372,8 +373,8 @@
   
   <entry>
     <title>DPDK 部署</title>
-    <link href="https://palmcivet.github.io/2019/04/DPDK-%E9%83%A8%E7%BD%B2/"/>
-    <id>https://palmcivet.github.io/2019/04/DPDK-%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://palmcivet.github.io/2019/04/dpdk-bu-shu/"/>
+    <id>https://palmcivet.github.io/2019/04/dpdk-bu-shu/</id>
     <published>2019-04-26T12:05:57.000Z</published>
     <updated>2020-02-04T13:30:03.301Z</updated>
     
@@ -385,7 +386,7 @@
         
           &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.dpdk.org/&quot; target=&quot;_blank&quot;
+&lt;p&gt;&lt;a href=&quot;https://www.dpdk.org/&quot;&gt;DPDK&lt;/a&gt; is the Data Plane
         
       
     
@@ -403,8 +404,8 @@
   
   <entry>
     <title>PE 文件格式</title>
-    <link href="https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/"/>
-    <id>https://palmcivet.github.io/2018/12/PE-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</id>
+    <link href="https://palmcivet.github.io/2018/12/pe-wen-jian-ge-shi/"/>
+    <id>https://palmcivet.github.io/2018/12/pe-wen-jian-ge-shi/</id>
     <published>2018-12-22T05:34:53.000Z</published>
     <updated>2020-01-24T17:40:59.062Z</updated>
     
@@ -435,8 +436,8 @@
   
   <entry>
     <title>SSH 部署</title>
-    <link href="https://palmcivet.github.io/2018/11/SSH-%E9%83%A8%E7%BD%B2/"/>
-    <id>https://palmcivet.github.io/2018/11/SSH-%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://palmcivet.github.io/2018/11/ssh-bu-shu/"/>
+    <id>https://palmcivet.github.io/2018/11/ssh-bu-shu/</id>
     <published>2018-11-12T02:44:00.000Z</published>
     <updated>2020-04-28T04:09:58.475Z</updated>
     

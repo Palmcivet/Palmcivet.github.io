@@ -1,0 +1,1423 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="GitHub 与 SPA 部署, Palm Civet,Blog">
+    <meta name="description" content="一个全沾开发者">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>GitHub 与 SPA 部署 | Palm Civet</title>
+    <link rel="icon" type="image/png" href="/meta/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Palm Civet" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/meta/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Palm Civet</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>时间轴</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/meta/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Palm Civet</div>
+        <div class="logo-desc">
+            
+            一个全沾开发者
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			时间轴
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s2.ax1x.com/2020/02/04/1DDiEF.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">GitHub 与 SPA 部署</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/GitHub/">
+                                <span class="chip bg-color">GitHub</span>
+                            </a>
+                        
+                            <a href="/tags/React/">
+                                <span class="chip bg-color">React</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                运维
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
+                    2020-02-03
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
+                    2020-04-28
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    15 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>最近在写一个 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Single-page_application" title="Wiki">单页面应用</a>，用来练习 <a target="_blank" rel="noopener" href="https://redux.js.org/" title="主页">Redux</a>，其中用到了 <a target="_blank" rel="noopener" href="https://reacttraining.com/react-router/" title="主页">React Router</a> 库，<s>实际开发过程中，Redux 用的挺顺手，Router 反而不会用了。</s> 采用前后端分离的方式。本地调试一直都是起一个 devServer，写完了登录页，扔给后端同学测一下，却反馈说双击打开一片空白。</p>
+<p>确实，我之前使用 Router 库，预览的时候也是不能直接打开，因为路径问题，我默认 <code>/</code> 为主页，因此 <code>file:///xxx/index.html</code> 这个 URL 显然不匹配，而 <code>index.html</code> 文件是有效的，只是 JS 处理路由的代码没执行而已，因此使用服务器，默认访问 <code>/</code> 就是 <code>index.html</code>，就忽略了 URL 差异。</p>
+<h2 id="file"><a class="markdownIt-Anchor" href="#file"></a> <code>file:///</code></h2>
+<p>先来看一下 file，在电脑上双击 HTML 文件，可以在浏览器打开，访问其页面，有很多应用如 <a target="_blank" rel="noopener" href="https://merricx.github.io/qrazybox/" title="主页">QRazyBox</a> 就是这样做到离线使用。</p>
+<p>其实这是一个协议，就如同 HTTP 协议：</p>
+<pre class="line-numbers language-none"><code class="language-none">protocol :&#x2F;&#x2F; hostname[:port] &#x2F; path &#x2F; [;parameters][?query]#fragment<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而需注意，<em>file</em> 是三条 <code>/</code>，Google Chrome 默认不显示协议名称，将地址栏的内容复制出来则会自动加上。为什么是三条 <code>/</code> 呢，这要看 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier" title="Wiki">URI</a> 的定义：</p>
+<pre class="line-numbers language-none"><code class="language-none">scheme : [&#x2F;&#x2F;[user:password@] host [:port]] [&#x2F;] path [?query] [#fragment]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>以 <code>https://www.zhihu.com/question/37063799</code> 为例，<code>www.zhihu.com</code> 是 <em>host</em>（主机名）， 后面的属于 <code>path</code>，而如果是本地文件，<em>host</em> 部分就不需要了，所以合起来就变成了 <code>///</code>，但根据 <code>[]</code>，其实两个 <code>//</code> 都应该省略的。</p>
+<p>再看 <em>file</em> 协议，它是用于访问本地计算机中的文件，就如同在 Windows 资源管理器中打开文件一样，注意它是针对本地（本机）的，简单说，file 协议是访问本机的文件资源。</p>
+<pre class="line-numbers language-none"><code class="language-none">file:&#x2F;&#x2F;&#x2F;C:&#x2F;Users&#x2F;Admin&#x2F;file.avi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>就相当于</p>
+<pre class="line-numbers language-none"><code class="language-none">C:&#x2F;Users&#x2F;Admin&#x2F;file.avi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>访问本地 HTML，其实是在本地起了一台 HTTP 服务器，然后访问电脑上的本地服务器，HTTP 服务器再去访问本机的文件资源。<br />
+曾经虚拟机玩的不熟，增强工具总是安装失败，就考虑通过网络来共享文件，在 Ubuntu 里成功部署过 SMB 服务器，然后通过 Windows 下的资源管理器访问，在地址栏输入 <code>\\192.168.1.1</code> 访问，就可以像在本机一样操作 <s>远程</s> 主机，如同局域网共享（实际上本来就是，Windows 支持很多共享协议）。</p>
+<p>在浏览器的地址栏输入 <code>file:///</code> 就可以看到本机的文件（目录）了，有点类似 FTP 站点。</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQHTf.png" alt="#b# 访问本地文件" /></p>
+<p>再回到 <em>file</em> 协议打开 HTML 的问题，访问 <code>index.html</code>，会引入该文件需要的静态文件，而如果脚本文件又引入（<code>import</code>）了其他文件，在这里则是无效的，我们可以做个实验：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=></span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>写上述脚本命名为 <code>test.js</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> test <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./test"</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>再在以上代码内引用，保存并命名为 <code>main.js</code>，通过 <code>&lt;script&gt;</code> 插入到一份 HTML 文件，访问就可以得到一个 Error：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQ4ld.png" alt="#b# 加载失败" /></p>
+<p><s>Chrome 显然已经支持了很多 ES6 语法。</s> 加载 <code>test.js</code> 需要服务器解析并返回，所以开发者工具的 Source 以及 Network 会有一堆文件（当然，ES6 以及 JS 模块的原理还是很深奥，这里不深入了），<em>file</em> 协议这里仅是静态的访问，就跟资源管理器（或 Finder）里打开一样，无法参与解析。当然，不引用外部文件，或者直接在 HTML 文件里，JS 脚本是可以执行的。</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQ56A.png" alt="#b# 直接执行" /></p>
+<p>那么既然了解了直接打开文件的原理，又该如何处理前言这个问题呢？理论上，直接浏览器打开文件是可行的，毕竟 React 只有一个 HTML 和一个 JS（当然也可以有多个），我没用 Router 库之前也是直接打开的，<s>对，用了之后就不行了。</s> 在我没有意识到我可以修改路由之前，我进行了一些 <s>搜索</s> 尝试。</p>
+<h2 id="spa"><a class="markdownIt-Anchor" href="#spa"></a> SPA</h2>
+<p>众所周知，SPA 这个概念是比较新的，在大前端时代，新概念、新技术层出不穷，SPA、MPA、PWA、SSR、Hybrid、Native，<s>这几个名词并不具有一定的关系</s> 可以引出宽广的技术栈。</p>
+<p>SPA 就是单页面应用，只有一个 HTML 页面，原理类似点击一个按钮通过 JS 的 DOM 操作创建一个节点然后显示出来，但可以更改地址栏的 URL，然后 JS 通过 URL（History）的变化渲染对应组件，不同于动态网站，浏览器 URL 怎么变都跟服务器无关（实际上这就是静态网页）。</p>
+<p>是吗？似乎不全是，React Router 切换路径不会发送请求，还是当前的 HTML（以及 JS）处理这个 URL（即 <em>前端路由</em>），但是一刷新，或者不是访问 <code>/</code>（或者 <code>index.html</code>），而是访问 <code>/home</code>（假如网页有该路径），实际上这两者是一个效果，都是向服务器请求 <code>/home</code>，但前面提到，URL 变化跟服务器无关，服务器哪认得这个 URL，<s>我静态网页只托管 <code>index.html</code>，其他的没有</s>，一个 404 打发回去，这与通常的动态网页不同，后端是不匹配（实际上是没有）路由的。</p>
+<h2 id="spa-部署"><a class="markdownIt-Anchor" href="#spa-部署"></a> SPA 部署</h2>
+<p>所以，问题很明显了，SPA 需要专门的部署方式。后端采用 Tomcat，带入关键词一搜，果然圈内普遍存在这种部署问题。前端路由的问题，React Router 和 Vue Router 都会遇到，解决方案很简单，使用 Node.js 服务器即可（逃</p>
+<p>这并不能解决问题，我调试用的就是基于 Express 的 devServer，刷新或者热更新就找不到了（<s><code>historyApiFallback</code> 无效，因为有一个基地址</s>），需要手动更改 URL。搜索结果更多的是使用 <strong>重定向</strong> 来解决，将后端未知的 URL 请求重定向回去（即还是交给 <code>index.html</code> 处理），就可以了。</p>
+<h3 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h3>
+<p>Nginx 作为高性能服务器，静态资源托管的大哥，转发流量是不在话下，<code>server</code> 块只需要加一句处理 fallback。</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token keyword">server</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">listen</span> <span class="token number">80</span><span class="token punctuation">;</span>
+    <span class="token keyword">server_name</span>  www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+    <span class="token keyword">root</span> <span class="token operator">/</span>mnt<span class="token operator">/</span>html<span class="token operator">/</span>spa<span class="token punctuation">;</span>
+    <span class="token keyword">index</span> <span class="token keyword">index</span><span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+    <span class="token keyword">location</span> <span class="token operator">~</span> <span class="token operator">^</span><span class="token operator">/</span>favicon\<span class="token punctuation">.</span>ico$ <span class="token punctuation">&#123;</span>
+        <span class="token keyword">root</span> <span class="token operator">/</span>mnt<span class="token operator">/</span>html<span class="token operator">/</span>spa<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try_files</span> <span class="token variable">$uri</span> <span class="token variable">$uri</span><span class="token operator">/</span> @fallback<span class="token punctuation">;</span>
+        <span class="token keyword">index</span> <span class="token keyword">index</span><span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+        <span class="token keyword">proxy_set_header</span>   Host             <span class="token variable">$host</span><span class="token punctuation">;</span>
+        <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Real<span class="token operator">-</span>IP        <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For  <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+        <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>Proto  <span class="token variable">$scheme</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">location</span> @fallback <span class="token punctuation">&#123;</span>
+        <span class="token keyword">rewrite</span> <span class="token operator">^</span><span class="token punctuation">.</span><span class="token operator">*</span>$ <span class="token operator">/</span><span class="token keyword">index</span><span class="token punctuation">.</span>html <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">access_log</span>  <span class="token operator">/</span>mnt<span class="token operator">/</span>logs<span class="token operator">/</span>nginx<span class="token operator">/</span>access<span class="token punctuation">.</span>log  main<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h3>
+<p>后端主 Java 技术栈，使用 Tomcat 部署。对于汤姆猫，需要在 <code>web.xml</code> 文件设置 404 页面。</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>error-page</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>error-code</span><span class="token punctuation">></span></span>404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>error-code</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>location</span><span class="token punctuation">></span></span>/spa/index.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>location</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>error-page</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="apache"><a class="markdownIt-Anchor" href="#apache"></a> Apache</h3>
+<p>Apache httpd 是修改 <code>httpd.conf</code>。</p>
+<ol>
+<li>打开 <code>mod_rewrite.so</code> 模块，取消注释 <pre class="line-numbers language-ini" data-language="ini"><code class="language-ini">LoadModule rewrite_module modules/mod_rewrite.so<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>修改 <code>AllowOverride</code> 选项，将 <code>None</code> 改为 <code>All</code> <pre class="line-numbers language-ini" data-language="ini"><code class="language-ini">AllowOverride All<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>建立 <code>.htacess</code> 文件放入网站文件夹（也可以在 <code>httpd-vhosts.conf</code> 文件中设置） <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IfModule</span> <span class="token attr-name">mod_rewrite.c</span><span class="token punctuation">></span></span>
+	RewriteEngine On
+	RewriteBase /
+	RewriteRule ^index\.html$ - [L]
+	RewriteCond %&#123;REQUEST_FILENAME&#125; !-f
+	RewriteCond %&#123;REQUEST_FILENAME&#125; !-d
+	RewriteRule . /index.html [L]
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>IfModule</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h2 id="github-pages"><a class="markdownIt-Anchor" href="#github-pages"></a> GitHub Pages</h2>
+<h3 id="静态网页"><a class="markdownIt-Anchor" href="#静态网页"></a> 静态网页</h3>
+<p>倒腾了很久，后来意识到我可以修改路由，不必让首页匹配 <code>/</code>，就是说，<s>是我编码问题，跟 SPA 关系不大。</s> 使其跟普通页面一样，一进入就有内容，这样首先能解决点击空白的问题，再搭配服务器重定向的策略，就能解决刷新返回 404 的问题，如此，即可实现正常访问了。</p>
+<p>很好，但是我每一个逻辑页面都有在判断路由，这样一改，首页就没法判断了，这时候，就用到了 <s>（学到了）</s> React Router 一个组件，<a target="_blank" rel="noopener" href="https://reacttraining.com/react-router/web/api/withRouter" title="文档"><code>&lt;withRouter /&gt;</code></a> 高阶组件，把 <code>location</code>、<code>history</code>、<code>match</code> 等路由组件才有的信息注入普通组件，这样，首页就也能判断路由了。完美解决问题。</p>
+<p>于是，我的 SPA 跟普通静态网页彻底一致了，既然是静态页面，就可以托管在 <strong>GitHub Pages</strong> 上，如此一来，可以实现真正的前后端分离，不必配置汤姆猫了。<s>（但会带来跨域问题。）</s></p>
+<h3 id="静态网站生成器"><a class="markdownIt-Anchor" href="#静态网站生成器"></a> 静态网站生成器</h3>
+<p>我们都知道，Github 提供了 <a target="_blank" rel="noopener" href="https://help.github.com/en/github/working-with-github-pages" title="文档">GitHub Pages</a> 服务，用于项目展示，Geek 们利用这个特性可以制作个人主页、搭建博客，于是涌现了很多网站生成器，如 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" title="主页">Hexo</a>、<a target="_blank" rel="noopener" href="https://gohugo.io" title="主页">Hugo</a>，还有官方推荐的基于 Ruby 的 Jekyll 等等。</p>
+<p>这些工具都有一个特点，生成的网页都是静态的，因为 GitHub Pages 只能托管静态网页。对于动态网页，言必及 WordPress，使用 WordPress 是需要自己准备服务器的。而不同于服务端组织页面来返回，静态页面是直接托管在服务器上已存在的内容，访问就能得到。静态网站生成器的作用，就是帮助用户 <strong>生成好所有页面</strong>，这样上传到服务器（Github）就能直接访问。</p>
+<p>使用 GitHub Pages 搭建个人博客，我们都知道是建立一个 <strong>以用户名命名</strong> 的仓库，形如 <code>&lt;user&gt;.github.io</code>，开启了 GitHub Pages，然后即可通过 <code>http(s)://&lt;user&gt;.github.io/</code> 访问。</p>
+<p><img src="https://help.github.com/assets/images/help/pages/create-repository-name-pages.png" alt="#b# 图片来自官方文档" /></p>
+<p>每个项目都可以启用 GitHub Pages。经常可以看到一些网站的 URL 类似 <code>http(s)://&lt;user&gt;.github.io/&lt;repo&gt;</code>，比如 Element for React：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQ70P.png" alt="#b# Element-React" /></p>
+<p>通常一个仓库 Setting 页的 GitHub Pages 设置如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DlC7V.png" alt="#b# 普通仓库的 GitHub Pages" /></p>
+<p>能够看到，可以选用当前 Repo 的 <code>master</code> 分支托管网站，也可以使用 <code>master</code> 分支的 <code>docs</code> 文件夹。实际上不一定需要托管在主分支。当 Repo 设立了 <code>gh-pages</code> 分支，Github Pages 的 Option 会多出来该分支：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQjpQ.png" alt="#b# 设立了 gh-pages" /></p>
+<p>再看 Element-React 项目的 Github：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQqk8.png" alt="#b# Element-React 的 gh-pages 分支" /></p>
+<p>根据 <a target="_blank" rel="noopener" href="https://help.github.com/en/github/working-with-github-pages/about-github-pages" title="官方文档">官方文档</a>，个人站点和组织站点是类似的，默认使用 <code>master</code> 分支，项目站点默认使用 <code>gh-pages</code>，也可以使用 <code>master</code> 分支或 <code>master</code> 分支上的 <code>/docs</code> 文件夹。</p>
+<h3 id="404-not-found"><a class="markdownIt-Anchor" href="#404-not-found"></a> 404 Not Found</h3>
+<p>这样就好了吗？正如标题所云，还没解决 SPA 刷新造成 404 的问题，如果是被请求的服务器可以将请求重定向回 <code>index.html</code>，但静态网站访问之后，资源找不到就是找不到。所以 GitHub 提供了 <a target="_blank" rel="noopener" href="https://help.github.com/en/github/working-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site" title="官方文档">自定义 404 页面</a> 的功能，找不到资源时，会搜索 <code>404.html</code> 或 <code>404.md</code>，Geek 们可以自定义样式和内容。</p>
+<p>同样，针对 SPA 的路由，知乎有这样一个 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/64173754" title="知乎">问题及回答</a>：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQzXn.png" alt="#b# 知乎问答" /></p>
+<p>题主及答主给出了几种修复 URL 的方案：</p>
+<ol>
+<li>通过 sessionStorage 存储之前的地址，然后跳转到新地址里并读取之前存储的内容，重新 route</li>
+<li>把当前地址作为参数跳转到 <code>index.html</code></li>
+<li>复制 <code>index.html</code> 到 <code>404.html</code> 最简单粗暴，不过没准效果是最好的</li>
+<li>让 <code>404.html</code> 直接获取 <code>index.html</code>，然后直接把它丢到文档流里</li>
+</ol>
+<p>最初我使用了 Hack 的方法，在 <code>404.html</code> 读取 <code>windwos.location</code>，修改 URL，将路径变为哈希字符串，然后使用  <code>history.replaceState()</code> 跳转到 <code>index.html</code>，主页检测 URL 再还原回来，但是效果不理想。<s>应该是我编码（不对，思路）问题。</s> 最后直接复制 <code>index.html</code> 为 <code>404.html</code>，试下来，真应了这句话：</p>
+<blockquote>
+<p>最简单粗暴，不过没准效果是最好的……</p>
+</blockquote>
+<p>故而，假使不好处理 404 的问题，不妨也复制一份 index 文件，立竿见影。</p>
+<h2 id="github-actions"><a class="markdownIt-Anchor" href="#github-actions"></a> GitHub Actions</h2>
+<p>使用 GitHub Pages 托管静态网站最简单的方法，就是在 <code>master</code> 分支上创一个 <code>/docs</code> 文件夹，然后 <code>build</code> 出文件，随源代码提交，即可热更新，非常酷炫。</p>
+<p>这还不够酷，<a target="_blank" rel="noopener" href="https://github.com/features/actions" title="主页">GitHub Actions</a> 了解一下。GitHub Actions 是 GitHub 的 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" title="阮一峰的博文">持续集成</a> 服务，于 2018 年 10 月推出。官方是这样描述的：</p>
+<blockquote>
+<p>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.</p>
+</blockquote>
+<p>对于一个项目来说，写完代码还没完事，还要经过测试、部署等等一系列工作，这是正常流程，但每次提交、修复 bug 或者添加新特性，都要走一遍这样的流程，自然会觉得烦。“重复 3 次以上的工作都要用程序来自动化”，因此有了 <a target="_blank" rel="noopener" href="https://travis-ci.org" title="主页">Travis</a>、<a target="_blank" rel="noopener" href="https://pre-commit.com/hooks" title="主页">Pre-commit Hooks</a> 等工具，帮助开发者实现部分自动化，很多 Repo 里都有类似 <code>.travis.yml</code> 的文件。自从 GitHub 推出了 Actions 功能，这一历史就将改写，因为从代码提交到部署上线这一过程更加原生，一条龙服务 <s>，如果不用 Github，那就当我没说</s>。（对，Github 不只是托管代码，当然，GitLab、Gitee 也都在积极提出 CI/CD 和 DevOps 产品，以适应现代开发理念，更好的迎合市场需求。）</p>
+<p>简而言之，Github Actions 就是提供一个环境，在某些条件下，可以执行一些操作。这个条件（配置文件的 <code>on</code> 字段）可以是 <code>push</code>、<code>issue</code>、PR 或是其他；执行的操作可以是编译、测试、fork、commit、发布等等，只要有配置文件，就能自动执行；所运行的环境可以是 Linux、Windows 以及 macOS（对，macOS 也支持，不过限制更多一点），硬件如下：</p>
+<ul>
+<li>2-core CPU</li>
+<li>7 GB of RAM memory</li>
+<li>14 GB of SSD disk space</li>
+</ul>
+<p>也可以自建环境（self-hosted），比如自己的树莓派（self-hosted runner）。借助 GitHub Actions，作为个人开发者我们可以实现每次提交源码，自动测试编译打包，然后发布到自己的平台（VPS 或者 GitHub Pages），当然 Geek 的想象力是无限的，Actions 能做的远远不止于此。</p>
+<p>该功能入口在此：</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQIOI.png" alt="#b# GitHub Actions" /></p>
+<p>据 <a target="_blank" rel="noopener" href="https://help.github.com/cn/actions/automating-your-workflow-with-github-actions">文档</a> 所述，Action 有以下几个概念：</p>
+<ol>
+<li><em>workflow</em>：持续集成运行一次的过程，就是一个 workflow</li>
+<li><em>job</em>：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。多个 job 是并发执行的</li>
+<li><em>step</em>：每个 job 由多个 step 构成，一步步完成，因此可以指定顺序（即依赖关系：<code>needs</code> 字段）</li>
+<li><em>action</em>：每个 step 可以依次执行一个或多个命令（action）</li>
+</ol>
+<p>workflow 想必各位有点耳熟，iOS 上的 App <a target="_blank" rel="noopener" href="https://apps.apple.com/cn/app/id915249334">捷径</a> 被收购前就叫 <em>Workflow</em>，产品如其名，可以自动化处理一些操作，Actions 也一样。</p>
+<h3 id="actions-加持"><a class="markdownIt-Anchor" href="#actions-加持"></a> Actions 加持</h3>
+<p>所以我盘算使用 GitHub Actions 来自动部署我的 SPA。Actions 的配置文件存放在 Repo 根目录的 <code>./github/workflow</code> 文件夹下，使用 YAML 语法配置。关于配置项，官方文档给的很详细，还提供了了编辑器，各位大牛的教程也很到位，这里不再赘述。以下是我这个项目的 workflow：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">name: SPA Deployer
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions&#x2F;checkout@v1
+      - name: Setup Node
+        uses: actions&#x2F;setup-node@v1
+        with:
+          node-version: &#39;10.x&#39;
+      - run: yarn install
+      - run: yarn release
+      - name: Deploy
+        uses: peaceiris&#x2F;actions-gh-pages@v2
+        env:
+          ACTIONS_DEPLOY_KEY: $&#123;&#123; secrets.ACTIONS_DEPLOY_KEY &#125;&#125;
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: .&#x2F;public&#x2F;release<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用自己指定的 <code>yarn release</code> 命令，将文件编译到 <code>./public/release</code> 文件夹。用到了如下 Actions：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/checkout" title="Marketplace">actions/checkout</a>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/actions/checkout" title="GitHub">GitHub</a></li>
+<li>切换分支，即拉取代码</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/setup-node-js-for-use-with-actions" title="Marketplace">actions/setup-node</a>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/actions/setup-node" title="GitHub">GitHub</a></li>
+<li>安装 Node.js，此后即可使用 Node 命令</li>
+<li>同样支持 Yarn，之前我以为不支持，还找了另外的 actions：<a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/github-action-for-yarn" title="Marketplace">GitHub Actions for Yarn</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/marketplace/actions/github-pages-action" title="Marketplace">actions-gh-pages</a>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages" title="GitHub">GitHub</a></li>
+<li>主角。部署项目到 <code>gh-pages</code> 分支（其他分支也可）</li>
+<li>注意 <code>env</code> 的 <code>ACTIONS_DEPLOY_KEY</code> 是 SSH 私钥</li>
+<li>具体操作见 <a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages/blob/master/README.md" title="GitHub README">README</a></li>
+</ul>
+</li>
+</ol>
+<p>至此，SPA 项目可以实现在 GitHub 上提交后自动构建并发布，与后端彻底分离。</p>
+<h2 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h2>
+<p>试错阶段失败了很多次，最后终于成功了。</p>
+<p><img src="https://s2.ax1x.com/2020/02/04/1DQTmt.png" alt="#b# 构建失败" /></p>
+<p>通过这一系列部署，学到了很多操作。运维不同于开发，求稳而不求变，遵循一定的流程，难怪需要大量自动化脚本，继而又涌现了大量 Docker、K8S 等自动化部署工具和 <a target="_blank" rel="noopener" href="https://jenkins.io/" title="主页">Jenkins</a> 等持续集成工具。<strong>技术改变世界</strong>，相信使用脚本刀耕火种的日子不复存在。</p>
+<h2 id="参考文章"><a class="markdownIt-Anchor" href="#参考文章"></a> 参考文章</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5dc4ae67f265da4cfa7bbb9a">前端部署发展史</a></li>
+<li><a target="_blank" rel="noopener" href="https://jsonz1993.github.io/2019/12/github-actions/">用github actions部署你的应用(hexo)</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.github.com/cn/actions/automating-your-workflow-with-github-actions">Github Action 文档</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Palm Civet</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://palmcivet.github.io/2020/02/github-yu-spa-bu-shu/">https://palmcivet.github.io/2020/02/github-yu-spa-bu-shu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Palm Civet</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/GitHub/">
+                                    <span class="chip bg-color">GitHub</span>
+                                </a>
+                            
+                                <a href="/tags/React/">
+                                    <span class="chip bg-color">React</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/meta/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/meta/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/qian-tan-vscode-he-kai-fa-gong-ju/">
+                    <div class="card-image">
+                        
+                        <img src="https://s1.ax1x.com/2020/07/13/UGtZQI.png" class="responsive-img" alt="浅谈 VSCode 和开发工具">
+                        
+                        <span class="card-title">浅谈 VSCode 和开发工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            微软家带 Visual 的东西实在太多了，傻傻分不清楚，本文用于厘清 VS 的关系，介绍了下 VSCode 的基本玩法，并且讨论一些开发工具。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8F%82%E8%80%83/">
+                        <span class="chip bg-color">参考</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/01/guan-yu-c-yu-yan-zhi-zhen-er-san-shi/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2020/01/19/1PF2kV.png" class="responsive-img" alt="关于 C 语言指针二三事">
+                        
+                        <span class="card-title">关于 C 语言指针二三事</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文以 C 指针为主要对象，但记录的不只是指针，而是围绕 C 语言一系列的坑与概念。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/" class="post-category">
+                                    系统开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Palm Civet<br />'
+            + '文章作者: Palm Civet<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('6'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">Palm Civet</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/palmcivet" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:palmcivet_email@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2143899558" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2143899558" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/P3lm_C1vet" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/P3lm_C1vet" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
