@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的生产力工具, Palm Civet,Blog">
+    <meta name="keywords" content="Git 时光穿梭, Palm Civet,Blog">
     <meta name="description" content="一个全沾开发者">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的生产力工具 | Palm Civet</title>
+    <title>Git 时光穿梭 | Palm Civet</title>
     <link rel="icon" type="image/png" href="/meta/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -226,12 +226,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s1.ax1x.com/2020/07/11/UM4IF1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/04/05/zHbIDvngw5TuXAG.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的生产力工具</h1>
+                    <h1 class="description center-align post-title">Git 时光穿梭</h1>
                 </div>
             </div>
         </div>
@@ -347,8 +347,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8F%82%E8%80%83/">
-                                <span class="chip bg-color">参考</span>
+                            <a href="/tags/GitHub/">
+                                <span class="chip bg-color">GitHub</span>
+                            </a>
+                        
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -372,28 +376,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
-                    2020-06-10
+                    2020-12-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
-                    2021-04-03
+                    2021-04-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -412,444 +416,143 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<p>逛博客的时候，能看到不少博主列出经常使用的软件工具，再者，有不少自媒体如少数派、异次元软件世界等网站时常分享好用的效率工具，知乎也有类似问题如下：</p>
+<p>曾经在 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> 看到一个仓库，是某版 Unix 的历史归档，提交日期是上个世纪。项目具体名称和时间记不清了，在写作本文时我找了很久，只找到一个疑似 <a target="_blank" rel="noopener" href="https://github.com/qrush/unix">项目</a>，如下图所示，其提交时间为 13 years ago，即 2008 年，正好是 GitHub 刚上线的时候，或许前段时间 GitHub 有过调整，早于这个时间的项目都以 2008 年计。</p>
+<p><img src="https://i.loli.net/2021/04/05/dmfZCLjre8t7zyR.png" alt="#b# UNIX 项目主页" /></p>
+<p>不过怎样，在 2021 年看到几十年前的项目着实令人震撼，这是怎么做到的？</p>
+<p>首先能想到，文件的时间是属性信息的一种，由文件系统赋予。</p>
+<h2 id="文件属性"><a class="markdownIt-Anchor" href="#文件属性"></a> 文件属性</h2>
+<p>在 UNIX 环境下，文件具有以下时间属性：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/37524914">你知道哪些冷门但逆天的 App？</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36546814">有哪些堪称「神器」，却鲜为人知的软件/网站/互联网服务？</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/271740133">在当下（2018）使用 iPad 有哪些值得推荐的应用？</a></li>
+<li><code>atime</code>：access time，最后一次读取文件的时间</li>
+<li><code>mtime</code>：modify time，最后一次文件内容更改的时间</li>
+<li><code>ctime</code>：change time，最后一次文件属性更改的时间</li>
 </ul>
-<p>知道这些软件并且能够灵活使用，形成自己的工作流，必将提高工作效率和生活质量。</p>
-<p>此前我也记录使用到的工具，使用 TXT 文本或者 Microsoft Todo <s>效率工具用歪了</s>，但清单式的记录方式无法体现每个工具的作用，遂直接列举成文，分享出来，不定期更新。</p>
-<h2 id="工具"><a class="markdownIt-Anchor" href="#工具"></a> 工具</h2>
-<h3 id="日常向"><a class="markdownIt-Anchor" href="#日常向"></a> 日常向</h3>
+<p>文件操作会产生如下影响：</p>
 <ul>
-<li>办公
-<ul>
-<li>Microsoft Office</li>
-<li>Keynotes</li>
-<li>Pages</li>
+<li>读取文件时，<code>atime</code> 改变</li>
+<li>修改文件属性时，<code>ctime</code> 改变</li>
+<li>修改文件内容时，<code>atime</code>、<code>mtime</code>、<code>ctime</code> 都会改变</li>
+<li>more、less、cat、nl、tail、tac 等命令会更新 <code>atime</code></li>
+<li>ls、stat 不会更新文件的 <code>atime</code></li>
+<li>cmod、chown 修改文件属性，会更新 <code>ctime</code></li>
+<li>touch 都会更改</li>
 </ul>
-</li>
-<li>浏览器
-<ul>
-<li>Microsoft Edge：日常使用</li>
-<li>Mozilla Firefox：开发的时候调试页面</li>
-<li>Google Chrome：开发的时候集成测试</li>
-<li>Safari：截图、测试</li>
-</ul>
-</li>
-<li>影音
-<ul>
-<li>QQ 音乐</li>
-<li>网易云音乐</li>
-<li>IINA</li>
-<li>人人影视</li>
-<li>ZY Player</li>
-</ul>
-</li>
-<li>迅雷</li>
-<li>有道词典</li>
-<li>搜狗输入法</li>
-<li>XMind
-<ul>
-<li>头脑风暴</li>
-<li>以及学习总结时梳理知识点</li>
-<li>完整版需 <strong>付费</strong></li>
-</ul>
-</li>
-<li>Adobe XD
-<ul>
-<li>原型设计</li>
-<li>UI 设计</li>
-</ul>
-</li>
-<li>Microsoft ToDo</li>
-<li>Filqlo：屏保，数字时钟</li>
-<li><a target="_blank" rel="noopener" href="https://ezip.awehunt.com/">eZip</a>：压缩软件，同类还有：
-<ul>
-<li>The Unarchiver</li>
-<li><a target="_blank" rel="noopener" href="https://www.keka.io/">Keka</a>，免费，但 <em>Mac App Store</em> <strong>收费</strong></li>
-</ul>
-</li>
-<li>AppCleaner：卸载软件</li>
-<li>Tencent Lemon：清理系统，同类产品有：
-<ul>
-<li>CleanMyMac</li>
-<li><a target="_blank" rel="noopener" href="http://www.piriform.com/ccleaner">CCleaner</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="效率向"><a class="markdownIt-Anchor" href="#效率向"></a> 效率向</h3>
-<ul>
-<li><em>Alfred</em>：效率工具，同类有：
-<ul>
-<li><a target="_blank" rel="noopener" href="https://cerebroapp.com/">cerebroapp</a>：开源，跨平台，Electron 技术栈，有插件市场</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/qdore/Mutate">Mutate</a>：Linux 平台</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/albertlauncher/albert">Albert</a>：Linux 平台</li>
-</ul>
-</li>
-<li>Mounty：NTFS 挂载工具</li>
-<li><a target="_blank" rel="noopener" href="https://cloudmounter.net/">CloudMounter</a><br />
-<img src="https://cloudmounter.net/images/upload/products/clm/screens/wizardScreen3.jpg" alt="CloudMounter 截图来自官网" />
-<ul>
-<li>OneDrive、DropBox 等网盘挂载工具</li>
-<li>类似 iCloud 的体验</li>
-<li>完整版需 <strong>付费</strong></li>
-</ul>
-</li>
-<li>HyperSwitch
-<ul>
-<li>窗口切换工具，默认只能切换应用组，而搭配该软件可切换每个窗口，类似 Windows</li>
-</ul>
-</li>
-<li>Reeder 4：macOS/iOS，RSS 阅读器，支持多种 RSS 服务，开源免费同类产品有：
-<ul>
-<li>Fluent Reader
-<ul>
-<li>跨平台</li>
-<li>Fluent Design</li>
-<li>Electron + React</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://ranchero.com/netnewswire/">NetWireReader</a>
-<ul>
-<li>macOS/iOS</li>
-<li>Swift 开发</li>
-</ul>
-</li>
-<li>FeedMe
-<ul>
-<li>Android</li>
-<li>Material Design</li>
-<li>支持多种 RSS 服务</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>CheatSheet：快捷键小抄，显示当前窗口的快捷键</li>
-</ul>
-<h3 id="开发向"><a class="markdownIt-Anchor" href="#开发向"></a> 开发向</h3>
-<ul>
-<li>语言环境
-<ul>
-<li>系统默认
-<ul>
-<li>Perl 5</li>
-<li>PHP 7</li>
-<li>Python 2</li>
-<li>Ruby</li>
-<li>Lua</li>
-</ul>
-</li>
-<li>Node.js、Yarn</li>
-<li>Clang/Clang++</li>
-<li><a target="_blank" rel="noopener" href="https://www.python.org/">Python 3</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.rust-lang.org/">Rust</a></li>
-<li>Java</li>
-<li><a target="_blank" rel="noopener" href="https://golang.org/">Go</a></li>
-<li><a target="_blank" rel="noopener" href="https://dart.dev/">Dart</a></li>
-</ul>
-</li>
-<li>编辑器
-<ul>
-<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.sublimetext.com/">Sublime Text 3</a></li>
-<li>Vim 8</li>
-</ul>
-</li>
-<li>DBMS
-<ul>
-<li><a target="_blank" rel="noopener" href="https://robomongo.org/">Studio 3T</a><br />
-<img src="https://robomongo.org/static/screens-transparent-6e2a44fd.png" alt="Studio 3T 截图来自官网" /></li>
-<li><a target="_blank" rel="noopener" href="https://sequelpro.com/">Sequal Pro</a><br />
-<img src="https://sequelpro.com/images/query.png" alt="Sequal Pro 截图来自官网" /></li>
-<li><a target="_blank" rel="noopener" href="https://www.beekeeperstudio.io/">Beekeeper Studio</a><br />
-<img src="https://www.beekeeperstudio.io/assets/img/screenshots/view-dark-07e9bb4fcda1665114ffdfcb62a5e66108feebd18e0949006c219920bf12e25c.png" alt="Beekeeper Studio 截图来自项目主页" /></li>
-</ul>
-</li>
-<li>容器与虚拟化
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/">Virtual Box</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.vmware.com/cn/products/fusion.html"><em>VMWare Fusion</em></a></li>
-</ul>
-</li>
-<li>Sourcetree
-<ul>
-<li>Git 的 GUI 前端</li>
-</ul>
-</li>
-<li>GitHub Desktop
-<ul>
-<li>不为别的，就为写 commit 的时候可以使用 GitHub 的 emoji</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://kapeli.com/dash">Dash</a><br />
-<img src="https://kapeli.com/img/screen.png" alt="Dash 截图来自官网" />
-<ul>
-<li>文档管理工具</li>
-<li>插件支持各大编辑器、IDE</li>
-</ul>
-</li>
-<li>Sourcetrail
-<ul>
-<li>开源代码分析工具，类似 Source Insight</li>
-</ul>
-</li>
-<li>Postman</li>
-<li>iTerm2</li>
-<li><a target="_blank" rel="noopener" href="http://lldb.llvm.org/">LLDB</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.qemu.org/">QEMU</a></li>
-</ul>
-<h3 id="极客向"><a class="markdownIt-Anchor" href="#极客向"></a> 极客向</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.realvnc.com/">VNC Viewer</a>
-<ul>
-<li>主要用于树莓派</li>
-</ul>
-</li>
-<li>Microsoft Remote Desktop
-<ul>
-<li>RDP 远程桌面连接</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a>
-<ul>
-<li>新建一个加密的虚拟磁盘文件，挂载后可保存文件</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">BalenaEther</a>
-<ul>
-<li>跨平台</li>
-<li>macOS 风格 的UI，从一众刻盘软件里脱颖而出</li>
-<li>主要用于烧录树莓派</li>
-</ul>
-</li>
-<li>ClashX：流量控制</li>
-<li>Textual：IRC 客户端，Mac App Store，完整版需 <strong>付费</strong></li>
-</ul>
-<h3 id="终端向"><a class="markdownIt-Anchor" href="#终端向"></a> 终端向</h3>
-<ul>
-<li>HomeBrew</li>
-<li>Tmux</li>
-<li>Zsh：终极 Shell<br />
-<img src="https://ohmyz.sh/img/themes/nebirhos.jpg" alt="#b# Oh My Zsh 截图来自官网" />
-<ul>
-<li><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh My Zsh</a>：Zsh 配置的一套框架，SpaceVim 之于 Vim，也可使用 Fish 开箱即用</li>
-<li>z</li>
-<li>git</li>
-<li>zsh-syntax-highlighting</li>
-<li>zsh-autosuggestions</li>
-<li>cp</li>
-<li>extract</li>
-<li>docker</li>
-<li>docker-compose</li>
-</ul>
-</li>
-<li>wget</li>
-<li>thefuck</li>
-<li><a target="_blank" rel="noopener" href="https://ffmpeg.org/">ffmpeg</a></li>
-<li>foremost</li>
-<li>exiftool</li>
-<li>tldr：简略版 <code>man</code></li>
-<li>exa：高亮版 <code>ls</code>，可显示层级，类似 <code>tree</code></li>
-<li>cloc：统计代码量</li>
-<li>mycli：MySQL 客户端增强</li>
-</ul>
-<h3 id="安全向"><a class="markdownIt-Anchor" href="#安全向"></a> 安全向</h3>
-<ul>
-<li>AntSword</li>
-<li><a target="_blank" rel="noopener" href="https://binary.ninja/">Binary Ninja</a>：逆向分析工具</li>
-<li><em>IDA Pro</em></li>
-<li><a target="_blank" rel="noopener" href="https://portswigger.net/">Burp Suite</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a></li>
-<li>010 Editor：二进制编辑器</li>
-<li>Mediainfo：查看音频参数</li>
-<li><a target="_blank" rel="noopener" href="https://www.audacityteam.org/">Audacity</a>：音频处理</li>
-<li><a target="_blank" rel="noopener" href="https://x64dbg.com/">x64dbg</a><br />
-<img src="https://x64dbg.com/img/slide3.png" alt="#b# x64dbg 截图来自官网" /></li>
-<li>虚拟化环境
-<ul>
-<li>SQLmap</li>
-<li>GDB
-<ul>
-<li>peda</li>
-<li>pwndbg</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.metasploit.com/">Metasploit Framework</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="插件"><a class="markdownIt-Anchor" href="#插件"></a> 插件</h2>
-<h3 id="浏览器插件"><a class="markdownIt-Anchor" href="#浏览器插件"></a> 浏览器插件</h3>
-<ul>
-<li>Tampermonkey</li>
-<li>AdGuard
-<ul>
-<li>广告拦截</li>
-<li>可拦截部分视频广告</li>
-<li>同类有 ADBlock Plus 等</li>
-</ul>
-</li>
-<li>Copyfish Free OCR Software
-<ul>
-<li>OCR 插件</li>
-</ul>
-</li>
-<li>IP Address and Domain Information</li>
-<li>Wappalyzer
-<ul>
-<li>检测网站技术栈</li>
-</ul>
-</li>
-<li>Octotree</li>
-<li>Gitako - GitHub file tree
-<ul>
-<li>类似 Octotree</li>
-</ul>
-</li>
-<li>RSSHub Radar</li>
-<li>Dark Reader</li>
-<li>Smart TOC
-<ul>
-<li>墙裂推荐</li>
-<li>给没有 TOC 侧栏如知乎、简书等站点的页面加目录</li>
-<li>基于 HTML标签</li>
-</ul>
-</li>
-<li>User-Agent Switcher and Manager
-<ul>
-<li>UA 切换插件</li>
-<li>支持多种操作系统、浏览器、版本</li>
-</ul>
-</li>
-<li>Extension Manager
-<ul>
-<li>插件管理插件，减少浏览器内存消耗</li>
-<li>支持分组管理，一键切换</li>
-</ul>
-</li>
-<li>CoCoCut
-<ul>
-<li>视频下载插件</li>
-<li>类似插件很多</li>
-</ul>
-</li>
-<li>彩云小译</li>
-<li>HackBar</li>
-<li>Proxy SwitchyOmega</li>
-<li>Web Scraper</li>
-<li>IGG 谷歌访问助手</li>
-<li>开发
-<ul>
-<li>FeHelper</li>
-<li>React Developer Tools</li>
-<li>Vue.js devtools</li>
-<li>MobX Developer Tools</li>
-<li>Redux DevTools</li>
-<li>React Context DevTool</li>
-<li>React-Sight</li>
-</ul>
-</li>
-</ul>
-<h3 id="vscode-插件"><a class="markdownIt-Anchor" href="#vscode-插件"></a> VSCode 插件</h3>
-<ul>
-<li>C/C++</li>
-<li>Dart</li>
-<li>Python</li>
-<li>Rust</li>
-<li>CodeLLDB
-<ul>
-<li>Rust 调试工具</li>
-</ul>
-</li>
-<li>Code Runner</li>
-<li>Docker</li>
-<li>Debug Visualizer
-<ul>
-<li>可视化调试工具</li>
-<li>目前支持 Python、JS 等语言</li>
-</ul>
-</li>
-<li>Debugger for Firefox
-<ul>
-<li>同类有 Debugger for Chrome、Debugger for Edge</li>
-</ul>
-</li>
-<li>Bracket Pair Colorizer
-<ul>
-<li>彩虹花括号</li>
-</ul>
-</li>
-<li>Auto Comment Blocks
-<ul>
-<li>自动生成注释格式</li>
-</ul>
-</li>
-<li>Better TOML
-<ul>
-<li>高亮 TOML</li>
-<li>Rust 的配置文件</li>
-</ul>
-</li>
-<li>VimL
-<ul>
-<li><code>.vimrc</code> 文件高亮</li>
-</ul>
-</li>
-<li>Todo Tree
-<ul>
-<li>高亮 TODO 项</li>
-<li>在侧边栏列出</li>
-<li>可自定义标签</li>
-</ul>
-</li>
-<li>Bookmarks
-<ul>
-<li>添加删除书签</li>
-<li>缺点：基于行，删除一行代码不会随之移动</li>
-</ul>
-</li>
-<li>ES7 React/Redux/GraphQL/React-Native/JS-Snippets</li>
-<li>Vetur
-<ul>
-<li>Vue 官方插件</li>
-</ul>
-</li>
-<li>ESLint
-<ul>
-<li>代码风格检测工具</li>
-</ul>
-</li>
-<li>HexEditor
-<ul>
-<li>二进制编辑器</li>
-</ul>
-</li>
-<li>Regex Previewer
-<ul>
-<li>实时调试正则表达式</li>
-</ul>
-</li>
-<li>HTML CSS Support</li>
-<li>Markdown All in One</li>
-<li>Markdown Preview Enhanced</li>
-<li>Prettier - Code Formatter</li>
-<li>open in browser</li>
-<li>One Dark Pro</li>
-<li>Material Icon Theme</li>
-</ul>
-<h2 id="设备"><a class="markdownIt-Anchor" href="#设备"></a> 设备</h2>
-<ol>
-<li><s>Xiaomi Notebook Pro 15.4</s> 2020.10 更新为 Macbook Pro(13-inch 2020 4 Ports)</li>
-<li>iPad 2018 + Apple Pencil 1 <sup>gen</sup></li>
-<li>Raspberry Pi 3B，TF 卡若干，256MB ~ 8GB 不等</li>
-<li>Seagate Backup Plus+ 1TB</li>
-</ol>
-<h2 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h2>
-<p>观察细心的读着可能看到有些工具标为斜体</p>
-<p>本文将长期不定期更新，目前所列工具的说明较少，链接不全，后续将逐步完善。</p>
+<h3 id="查看信息"><a class="markdownIt-Anchor" href="#查看信息"></a> 查看信息</h3>
+<p>使用 stat 命令可查看以上时间信息。需注意，在 macOS 环境，stat 命令需要加 <code>-x</code> 选项。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">➜ history-repo git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗ <span class="token function">stat</span> -x README.md
+-F  -- append <span class="token function">file</span> <span class="token builtin class-name">type</span> indicators <span class="token punctuation">(</span>implies -l<span class="token punctuation">)</span>
+-L  -- dereference symbolic links
+-f  -- display per the specified <span class="token function">format</span> string
+-l  -- display <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">ls</span> -lT<span class="token variable">`</span></span> <span class="token function">format</span>
+-n  -- suppress terminating newlines
+-q  -- suppress error messages about lstat<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>/stat<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> failure
+-r  -- display <span class="token keyword">in</span> raw <span class="token punctuation">(</span>numerical<span class="token punctuation">)</span> <span class="token function">format</span>
+-s  -- display <span class="token keyword">in</span> shell variable-assignment <span class="token function">format</span>
+-t  -- specify strftime<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token function">format</span> string
+-x  -- display <span class="token keyword">in</span> verbose <span class="token punctuation">(</span>Linux-style<span class="token punctuation">)</span> <span class="token function">format</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="修改时间戳"><a class="markdownIt-Anchor" href="#修改时间戳"></a> 修改时间戳</h3>
+<p>很早以前就知道 touch 不仅可以创建文件，还能修改时间戳，一直都没试过，~~反正平常也用不着，~~用法如下：</p>
+<p><img src="https://i.loli.net/2021/04/05/3FfiCSuXW8tMKnp.png" alt="#b# touch 命令的提示" /></p>
+<p>使用 <code>-r</code> 选项可以将文件的时间更改为指定文件的时间，需注意 <code>-r &lt;ref_file&gt;</code> 是一组选项+参数，其后才是要更改的文件，过程如下图：</p>
+<p><img src="https://i.loli.net/2021/04/05/KxZqCBbi1Rr2epY.png" alt="#b# touch 更改时间戳" /></p>
+<p>除此之外，还能自行指定时间，格式为 <code>[[CC]YY]MMDDhhmm[.SS]</code>，因此，在本地文件系统上，文件时间可被自由更改。</p>
+<h2 id="git-提交"><a class="markdownIt-Anchor" href="#git-提交"></a> Git 提交</h2>
+<h3 id="-date-选项"><a class="markdownIt-Anchor" href="#-date-选项"></a> <code>--date</code> 选项</h3>
+<p>Git 在 <code>commit</code> 时，默认会将当前系统时间作为时间戳，可使用 <code>--date=</code> 选项覆盖，详细文档 <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---dateltdategt">在此</a>。</p>
+<p><img src="https://i.loli.net/2021/04/05/9VPvwZNgBDo6CXx.png" alt="#b# 伪造一个历史提交" /></p>
+<p>可以看到，date 为 1975 年。</p>
+<h3 id="环境变量"><a class="markdownIt-Anchor" href="#环境变量"></a> 环境变量</h3>
+<blockquote>
+<p>Git 总是在一个 bash shell 中运行，并借助一些 shell 环境变量来决定它的运行方式。</p>
+</blockquote>
+<p>除了指定选项和参数，还可使用环境变量来指定更改时间和提交时间，Git <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">文档</a> 描述如下：</p>
+<blockquote>
+<p>Git 提交对象的创建通常最后是由 <code>git-commit-tree</code> 来完成， <code>git-commit-tree</code> 用这些环境变量作主要的信息源。 仅当这些值不存在才回退到预置的值。</p>
+<p><code>GIT_AUTHOR_NAME</code> 是 “author” 字段的可读名字。<br />
+<code>GIT_AUTHOR_EMAIL</code> 是 “author” 字段的邮件。<br />
+<code>GIT_AUTHOR_DATE</code> 是 “author” 字段的时间戳。<br />
+<code>GIT_COMMITTER_NAME</code> 是 “committer” 字段的可读名字。<br />
+<code>GIT_COMMITTER_EMAIL</code> 是 “committer” 字段的邮件。<br />
+<code>GIT_COMMITTER_DATE</code> 是 “committer” 字段的时间戳。</p>
+<p>如果 <code>user.email</code> 没有配置， 就会用到 <code>EMAIL</code> 指定的邮件地址。 如果 <strong>这个</strong> 也没有设置， Git 继续回退使用系统用户和主机名。</p>
+</blockquote>
+<p>示例命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">GIT_AUTHOR_DATE</span><span class="token operator">=</span><span class="token string">"2031-01-01 12:33:08"</span> <span class="token punctuation">\</span>
+    <span class="token assign-left variable">GIT_COMMITTER_DATE</span><span class="token operator">=</span><span class="token string">"2031-02-01 12:33:08"</span> <span class="token punctuation">\</span>
+    <span class="token function">git</span> commit <span class="token builtin class-name">.</span> <span class="token punctuation">\</span>
+    -m <span class="token string">"some commit message"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在将仓库上传到 GitHub，时间依然显示为当前时间：</p>
+<p><img src="https://i.loli.net/2021/04/05/PdNThkvgbJAQIaM.png" alt="#b# 项目主页的时间" /></p>
+<p>但是打开个人 Profile 会发现 Activity 年份一直到 1975 年：</p>
+<p><img src="https://i.loli.net/2021/04/05/GBUmdC48ciejQx1.png" alt="#b# 历史" /></p>
+<p>GitHub 大抵确乎是改变了显示方式，按照上传时间来显示，但提交时间属于 Git 仓库的信息，依然被保留。</p>
+<p>既然能够控制提交时的时间，那能否修改已提交版本的时间呢？</p>
+<h2 id="修改上一次提交"><a class="markdownIt-Anchor" href="#修改上一次提交"></a> 修改上一次提交</h2>
+<p>修改已提交的内容使用 <code>--amand</code> 选项，使用 <code>-C --reuse-message</code> 重用某一次历史提交及其信息，当然也可以手动输入 <code>author</code>、<code>date</code> 等每一个字段。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> commit -C c95bed7 --amend --date<span class="token operator">=</span><span class="token string">"2019-01-01 23:12:01"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>对于 <code>-C</code> 参数，Git <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--cltcommitgt">文档</a> 描述如下：</p>
+<blockquote>
+<p>-C <commit><br />
+–reuse-message=<commit><br />
+Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.</p>
+</blockquote>
+<blockquote>
+<p>-c <commit><br />
+–reedit-message=<commit><br />
+Like -C, but with -c the editor is invoked, so that the user can further edit the commit message.</p>
+</blockquote>
+<p>注意，这种方式只能修改上一次提交了的信息，对于已被覆盖的历史版本，需要使用 <code>rebase</code> 子命令。</p>
+<h2 id="修改历史提交"><a class="markdownIt-Anchor" href="#修改历史提交"></a> 修改历史提交</h2>
+<blockquote>
+<p>Git 没有一个改变历史工具，但是可以使用变基工具来变基一系列提交，基于它们原来的 HEAD 而不是将其移动到另一个新的上面。</p>
+</blockquote>
+<p>变基首先要界定修改范围，假设有以下几次提交：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">commit 1ce2760811ffd5fdc37a841ce9b39198dec4c8b7 <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master<span class="token punctuation">)</span>
+Date:   Thu Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2099</span> +0800
+
+    third commit
+
+commit 65d1c641337c79137f73ca4d1a76fed83c467d32
+Date:   Tue Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2019</span> +0800
+
+    second commit
+
+commit c95bed78bd36a7e1f4bb4ca1270e8b0791d9f864
+Date:   Fri Dec <span class="token number">5</span> <span class="token number">12</span>:23:23 <span class="token number">1975</span> +0800
+
+    first commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要修改 <code>second commit</code> 的内容，就得回到 <code>65d1c641337</code> <strong>之前一次</strong> 提交，即：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> reabse -i 65d1c641337^<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令表示对 <code>7075919</code> 到 <code>HEAD</code> 之间的提交进行 rebase，<code>-i --interactive</code> 交互式变基。</p>
+<p><img src="https://i.loli.net/2021/04/05/HwRum6GSh7btCZc.png" alt="#b# 进入交互式变基引导界面" /></p>
+<p>可以看到，从上到下依次为历史提交，在 <code>c95bed7</code> 的基础上（onto）。此时，在需要修改的提交前，将 <code>pick</code> 改为 <code>edit</code>，保存退出，将会收到以下提示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Stopped at 65d1c64<span class="token punctuation">..</span>.  second commit
+You can amend the commit now, with
+
+  <span class="token function">git</span> commit --amend
+
+Once you are satisfied with your changes, run
+
+  <span class="token function">git</span> rebase --continue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在就类似 <a href="#%E4%BF%AE%E6%94%B9%E4%B8%8A%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4">修改上一次提交</a>，可以更改文件，使用 <code>git commit --amend</code> 更改提交，提交之后使用 <code>git rebase --continue</code> 进入下一个标记为 <code>edit</code> 的提交，假如没有冲突且全部更改完成，将成功退出。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">➜ history-repo git:<span class="token punctuation">(</span>ae2a4c8<span class="token punctuation">)</span> ✗ <span class="token function">git</span> commit --amend -m <span class="token string">"commit from rebase"</span>
+<span class="token punctuation">[</span>detached HEAD 5e8e09e<span class="token punctuation">]</span> commit from rebase
+ Date: Thu Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2099</span> +0800
+ <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">2</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+➜ history-repo git:<span class="token punctuation">(</span>5e8e09e<span class="token punctuation">)</span> ✗ <span class="token function">git</span> rebase --continue
+Successfully rebased and updated refs/heads/master.
+➜ history-repo git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此时查看 log，会发现 commit 信息已被修改，且 Hash 也 <strong>重新计算</strong>（Zsh 的命令提示符发生了变化）。改变历史，注定会影响现在，至少在 Git 系统中是如此处理的。</p>
+<p>不难预见，在团队协作时，单个仓库内版本历史变更后，其他同步版本库的历史状态都会受到影响，在使用变基时需要各自协调好。关于 <code>rebase</code> 的文档 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2">在此</a>，最后提醒：慎用 <code>rebase</code>。</p>
+<h2 id="面子工程"><a class="markdownIt-Anchor" href="#面子工程"></a> 面子工程</h2>
+<p>掌握了 Git 的时间密码，现在就可以实现 GitHub 打卡了，写个脚本自动刷小绿点<br />
+，要多少有多少（逃</p>
+<p><img src="https://i.loli.net/2021/04/05/2PCbxRENKgFWyhM.png" alt="#b# GitHub 打卡" /></p>
+<p>显然这是名副其实的面子工程，全年 365 天不休息并不是什么好习惯，强如 Linus 也有不工作的时间~~，如果不休假，就不会诞生 Git 了（逃~~</p>
+<p>最后敬告：</p>
+<blockquote>
+<p>打铁还需自身硬，评价永远都是基于客观因素，不能只惦记光鲜亮丽的外表。</p>
+</blockquote>
 
                 
             </div>
@@ -876,7 +579,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/">https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/</a>
+                    <a href="https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/">https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -914,8 +617,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8F%82%E8%80%83/">
-                                    <span class="chip bg-color">参考</span>
+                                <a href="/tags/GitHub/">
+                                    <span class="chip bg-color">GitHub</span>
+                                </a>
+                            
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -1085,9 +792,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/12/git-shi-guang-chuan-suo/">
                     <div class="card-image">
@@ -1104,9 +812,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1119,6 +827,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1141,30 +850,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/kai-fa-xiao-ji-web-audio-api/">
+                <a href="/2020/06/wo-de-sheng-chan-li-gong-ju/">
                     <div class="card-image">
                         
-                        <img src="https://s1.ax1x.com/2020/04/28/J42pPs.png" class="responsive-img" alt="开发小记——Web Audio API">
+                        <img src="https://s1.ax1x.com/2020/07/11/UM4IF1.jpg" class="responsive-img" alt="我的生产力工具">
                         
-                        <span class="card-title">开发小记——Web Audio API</span>
+                        <span class="card-title">我的生产力工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            总结了 Web Audio API 的使用流程，整理了 AlloyTeam 等团队的方案，记录了使用 Audio API 过程中会遇到的一些问题。
+                            发现好软件，并正确使用，能极大提高效率，提升生活质量。依据这一主旨，本文记录并分享一些常用的生产力工具。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
-                                    前端开发
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
                                 </a>
                             
                             
@@ -1174,12 +883,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B8%A9%E5%9D%91/">
-                        <span class="chip bg-color">踩坑</span>
-                    </a>
-                    
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/%E5%8F%82%E8%80%83/">
+                        <span class="chip bg-color">参考</span>
                     </a>
                     
                 </div>

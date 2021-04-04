@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://palmcivet.github.io/"/>
-  <updated>2021-04-03T11:30:30.857Z</updated>
+  <updated>2021-04-04T17:03:24.399Z</updated>
   <id>https://palmcivet.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 时光穿梭</title>
+    <link href="https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/"/>
+    <id>https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/</id>
+    <published>2020-12-26T09:49:21.000Z</published>
+    <updated>2021-04-04T17:03:24.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;曾经在 &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; 看到一个仓库，是某版 Unix
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Geek" scheme="https://palmcivet.github.io/categories/Geek/"/>
+    
+    
+      <category term="GitHub" scheme="https://palmcivet.github.io/tags/GitHub/"/>
+    
+      <category term="Git" scheme="https://palmcivet.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>我的生产力工具</title>
