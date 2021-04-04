@@ -75,12 +75,17 @@ $(function () {
         $('#articleContent img').each(function () {
             let imgPath = $(this).attr('src');
             $(this).wrap('<div class="img-item" data-src="' + imgPath + '" data-sub-html=".caption"></div>');
-            // 图片添加阴影
-            $(this).addClass("img-shadow img-margin");
+
             // 图片添加字幕
             let alt = $(this).attr('alt');
+            if (alt.substring(0, 3) == "#b#") {
+                // 图片添加阴影
+                $(this).addClass("img-shadow img-margin");
+                alt = alt.slice(3);
+            }
             let title = $(this).attr('title');
             let captionText = "";
+
             // 如果alt为空，title来替
             if (alt === undefined || alt === "") {
                 if (title !== undefined && title !== "") {
@@ -146,16 +151,16 @@ $(function () {
         }
     }
 
-    	
+
 	$(".nav-menu>li").hover(function(){
 		$(this).children('ul').stop(true,true).show();
 		 $(this).addClass('nav-show').siblings('li').removeClass('nav-show');
-		
+
 	},function(){
 		$(this).children('ul').stop(true,true).hide();
 		$('.nav-item.nav-show').removeClass('nav-show');
 	})
-	
+
     $('.m-nav-item>a').on('click',function(){
             if ($(this).next('ul').css('display') == "none") {
                 $('.m-nav-item').children('ul').slideUp(300);

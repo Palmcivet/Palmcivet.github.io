@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://palmcivet.github.io/"/>
-  <updated>2020-07-11T14:33:10.020Z</updated>
+  <updated>2021-04-03T11:30:30.857Z</updated>
   <id>https://palmcivet.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/"/>
     <id>https://palmcivet.github.io/2020/06/wo-de-sheng-chan-li-gong-ju/</id>
     <published>2020-06-10T10:22:54.000Z</published>
-    <updated>2020-07-11T14:33:10.020Z</updated>
+    <updated>2021-04-03T11:30:30.857Z</updated>
     
     <summary type="html">
     
@@ -166,7 +166,7 @@
     <link href="https://palmcivet.github.io/2020/01/guan-yu-c-yu-yan-zhi-zhen-er-san-shi/"/>
     <id>https://palmcivet.github.io/2020/01/guan-yu-c-yu-yan-zhi-zhen-er-san-shi/</id>
     <published>2020-01-17T12:41:12.000Z</published>
-    <updated>2020-02-03T17:25:14.736Z</updated>
+    <updated>2021-04-03T13:04:52.872Z</updated>
     
     <summary type="html">
     
@@ -217,6 +217,33 @@
       <category term="部署" scheme="https://palmcivet.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
     
       <category term="密码学" scheme="https://palmcivet.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 CTFd 搭建靶场</title>
+    <link href="https://palmcivet.github.io/2019/10/shi-yong-ctfd-da-jian-ba-chang/"/>
+    <id>https://palmcivet.github.io/2019/10/shi-yong-ctfd-da-jian-ba-chang/</id>
+    <published>2019-10-25T07:39:26.000Z</published>
+    <updated>2021-04-10T08:13:20.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;众所周知，渗透测试练习有许多平台可供使用，比如 &lt;a href=&quot;https://sourceforge.net/projects/metasploitable/&quot;&gt;Metasploitable&lt;/a&gt;、&lt;a href=&quot;http://dvwa.co.uk/&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="https://palmcivet.github.io/categories/CTF/"/>
+    
+    
+      <category term="Docker" scheme="https://palmcivet.github.io/tags/Docker/"/>
     
   </entry>
   
