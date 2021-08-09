@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git 时光穿梭, Palm Civet,Blog">
+    <meta name="keywords" content="踩坑小记——CSS Table 布局, Palm Civet,Blog">
     <meta name="description" content="一个全沾开发者">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git 时光穿梭 | Palm Civet</title>
+    <title>踩坑小记——CSS Table 布局 | Palm Civet</title>
     <link rel="icon" type="image/png" href="/meta/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -226,12 +226,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/04/05/zHbIDvngw5TuXAG.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/08/10/N32Qa7mCX8vGzFo.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git 时光穿梭</h1>
+                    <h1 class="description center-align post-title">踩坑小记——CSS Table 布局</h1>
                 </div>
             </div>
         </div>
@@ -347,12 +347,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
+                            <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                <span class="chip bg-color">踩坑</span>
                             </a>
                         
-                            <a href="/tags/GitHub/">
-                                <span class="chip bg-color">GitHub</span>
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
+                            </a>
+                        
+                            <a href="/tags/CSS/">
+                                <span class="chip bg-color">CSS</span>
                             </a>
                         
                     </div>
@@ -363,8 +367,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Geek/" class="post-category">
-                                Geek
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                前端开发
                             </a>
                         
                     </div>
@@ -376,28 +380,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
-                    2020-12-26
+                    2021-08-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
-                    2021-01-13
+                    2021-08-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -415,144 +419,238 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<p>曾经在 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> 看到一个仓库，是某版 Unix 的历史归档，提交日期是上个世纪。项目具体名称和时间记不清了，在写作本文时我找了很久，只找到一个疑似 <a target="_blank" rel="noopener" href="https://github.com/qrush/unix">项目</a>，如下图所示，其提交时间为 13 years ago，即 2008 年，正好是 GitHub 刚上线的时候，或许前段时间 GitHub 有过调整，早于这个时间的项目都以 2008 年计。</p>
-<p><img src="https://i.loli.net/2021/04/05/dmfZCLjre8t7zyR.png" alt="#b# UNIX 项目主页" /></p>
-<p>不过怎样，在 2021 年看到几十年前的项目着实令人震撼，这是怎么做到的？</p>
-<p>首先能想到，文件的时间是属性信息的一种，由文件系统赋予。</p>
-<h2 id="文件属性"><a class="markdownIt-Anchor" href="#文件属性"></a> 文件属性</h2>
-<p>在 UNIX 环境下，文件具有以下时间属性：</p>
+                <h2 id="tldr"><a class="markdownIt-Anchor" href="#tldr"></a> TL;DR</h2>
+<blockquote>
+<p><code>&lt;table&gt;</code> 标签指定了 <code>height</code> 样式之后，假如总高度不足表格高度，每一行将会等分这个值。</p>
+</blockquote>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>最近开发过程中使用了一个表格组件，该组件使用 <code>&lt;table&gt;</code> 标签实现，主要用于大量数据的展示，因此自然需要指定高度并且支持滚动。</p>
+<p>样式调整妥当后，试着给了两行数据，发现严重跑版，如下图：</p>
+<p><img src="https://i.loli.net/2021/08/10/1fRmBbTos2pH8MQ.png" alt="#b# 只出现两行数据时渲染出现问题" /></p>
+<p>预期第一列为复选框，支持选中当前行，第二列为展示的数据。检查细节如下（信息已脱敏）：</p>
+<p><img src="https://i.loli.net/2021/08/10/Lj4qXAJ71irNP9f.png" alt="#b# 第一列呈现居中" /></p>
+<p><img src="https://i.loli.net/2021/08/10/kQyb2VaqgUBOuos.png" alt="#b# 第二列却未居中" /></p>
+<h2 id="抛砖引玉"><a class="markdownIt-Anchor" href="#抛砖引玉"></a> 抛砖引玉</h2>
+<h3 id="云山雾罩"><a class="markdownIt-Anchor" href="#云山雾罩"></a> 云山雾罩</h3>
+<p>尝试了多行数据，发现情况类似，都是等分了高度。总结一下，主要存在以下两个问题：</p>
+<ol>
+<li>指定表格高度，固定为 266，行高 38，即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>266</mn><mo>=</mo><mn>38</mn><mo>×</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">266 = 38 \times 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span>，呈现 7 行，只有两行时却等分了表格高度；</li>
+<li>两列的 class 都相同，理应呈现相同的样式，为何第二列没有等分；</li>
+</ol>
+<p>首先猜测 <code>&lt;table&gt;</code> 有等分行高的 CSS 属性，使用某个属性可以关闭，搜了半天没有结果。打算从以下几个方面入手：</p>
 <ul>
-<li><code>atime</code>：access time，最后一次读取文件的时间</li>
-<li><code>mtime</code>：modify time，最后一次文件内容更改的时间</li>
-<li><code>ctime</code>：change time，最后一次文件属性更改的时间</li>
+<li><code>&lt;table&gt;</code> 有特定 HTML 属性可以控制该效果（表格布局有一系列元素，但平常使用不多），找到该属性</li>
+<li>某个层级的隐藏 CSS 属性触发了该效果，找到该属性</li>
+<li>尝试其他布局方式 <s>（<code>display</code> 一个一个试）</s></li>
+<li>重写表格渲染的逻辑，使用 <code>&lt;div&gt;</code> 一把梭</li>
 </ul>
-<p>文件操作会产生如下影响：</p>
+<h3 id="峰回路转"><a class="markdownIt-Anchor" href="#峰回路转"></a> 峰回路转</h3>
+<p>经过一系列挣扎，突然发现取消 <code>&lt;table&gt;</code> 的 <code>height</code> 属性即可恢复 😅。开发的问题是解决了，可是为什么会这样呢？</p>
+<ol>
+<li>什么原理导致加了 <code>height</code> 属性就会产生这种效果？</li>
+<li>为什么只等分了第一列？</li>
+</ol>
+<p>最初的猜测其实是较为合理的：</p>
+<ol>
+<li>等分表格的总高度在某些场景下可美化布局</li>
+<li>第一列的表格语义上一般作为编号，居中更合理，其余行的样式由用户定义</li>
+</ol>
+<p>但奇怪的是这种特性在搜索结果中，没有反映出来（可能是我关键词不对），<s>况且浪费了将近一天时间，不能就这样草草结束</s>，所以非得找个说法才行。</p>
+<h3 id="柳暗花明"><a class="markdownIt-Anchor" href="#柳暗花明"></a> 柳暗花明</h3>
+<p>首先能想到比较权威的文档就是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/">MDN</a> 了。找遍了 HTML <code>&lt;table&gt;</code> 和 CSS table 模块，没有相关描述。突然想到有个 《CSS 权威指南》（下称 《指南》），也许会有记录，果不出所料：</p>
+<p><img src="https://i.loli.net/2021/08/10/STHd1trDZepb7nA.png" alt="#b# 《CSS 权威指南（第三版）》对表格高度的描述" /></p>
+<p>如上图，用户代理（User-Agent）在这里起了不可替代的作用，于是写了一个 demo（见 <a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">示例代码</a>），尝试了 Firefox、Safari、Chrome 和 Edge 下的表现，效果相同。</p>
+<p>《指南》听名字就很权威，但我还是不够满足，在  <a target="_blank" rel="noopener" href="https://github.com/Xiaoleng123">xileng</a> 的指导下，想起来还有 <a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 的存在，这里应该能找到我要的标准和规范了。</p>
+<p>在海量的文献里，最终定位到了问题：</p>
+<p><img src="https://i.loli.net/2021/08/10/EORTDMLZWavSpKd.png" alt="#b# CSS 3 草案关于 table height 的描述" /></p>
+<p>如上图（原文 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/2019/WD-css-tables-3-20190727/#height-distribution">在此</a>），印证了《指南》中的描述。</p>
+<h2 id="表格元素"><a class="markdownIt-Anchor" href="#表格元素"></a> 表格元素</h2>
+<p>HTML 中关于表格有一系列元素，参见 <a target="_blank" rel="noopener" href="https://wangdoc.com/html/table.html">表格标签 - 网道</a>。</p>
 <ul>
-<li>读取文件时，<code>atime</code> 改变</li>
-<li>修改文件属性时，<code>ctime</code> 改变</li>
-<li>修改文件内容时，<code>atime</code>、<code>mtime</code>、<code>ctime</code> 都会改变</li>
-<li>more、less、cat、nl、tail、tac 等命令会更新 <code>atime</code></li>
-<li>ls、stat 不会更新文件的 <code>atime</code></li>
-<li>cmod、chown 修改文件属性，会更新 <code>ctime</code></li>
-<li>touch 都会更改</li>
+<li>
+<p>定义大纲</p>
+<ul>
+<li><code>&lt;table&gt;</code>：<strong>块级</strong> 容器元素，承载所有内容</li>
+<li><code>&lt;caption&gt;</code>：可选。是 <code>&lt;table&gt;</code> 标签第一个子元素，表示表格的标题</li>
 </ul>
-<h3 id="查看信息"><a class="markdownIt-Anchor" href="#查看信息"></a> 查看信息</h3>
-<p>使用 stat 命令可查看以上时间信息。需注意，在 macOS 环境，stat 命令需要加 <code>-x</code> 选项。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">➜ history-repo git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗ <span class="token function">stat</span> -x README.md
--F  -- append <span class="token function">file</span> <span class="token builtin class-name">type</span> indicators <span class="token punctuation">(</span>implies -l<span class="token punctuation">)</span>
--L  -- dereference symbolic links
--f  -- display per the specified <span class="token function">format</span> string
--l  -- display <span class="token keyword">in</span> <span class="token variable"><span class="token variable">`</span><span class="token function">ls</span> -lT<span class="token variable">`</span></span> <span class="token function">format</span>
--n  -- suppress terminating newlines
--q  -- suppress error messages about lstat<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>/stat<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> failure
--r  -- display <span class="token keyword">in</span> raw <span class="token punctuation">(</span>numerical<span class="token punctuation">)</span> <span class="token function">format</span>
--s  -- display <span class="token keyword">in</span> shell variable-assignment <span class="token function">format</span>
--t  -- specify strftime<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token function">format</span> string
--x  -- display <span class="token keyword">in</span> verbose <span class="token punctuation">(</span>Linux-style<span class="token punctuation">)</span> <span class="token function">format</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="修改时间戳"><a class="markdownIt-Anchor" href="#修改时间戳"></a> 修改时间戳</h3>
-<p>很早以前就知道 touch 不仅可以创建文件，还能修改时间戳，一直都没试过，~~反正平常也用不着，~~用法如下：</p>
-<p><img src="https://i.loli.net/2021/04/05/3FfiCSuXW8tMKnp.png" alt="#b# touch 命令的提示" /></p>
-<p>使用 <code>-r</code> 选项可以将文件的时间更改为指定文件的时间，需注意 <code>-r &lt;ref_file&gt;</code> 是一组选项+参数，其后才是要更改的文件，过程如下图：</p>
-<p><img src="https://i.loli.net/2021/04/05/KxZqCBbi1Rr2epY.png" alt="#b# touch 更改时间戳" /></p>
-<p>除此之外，还能自行指定时间，格式为 <code>[[CC]YY]MMDDhhmm[.SS]</code>，因此，在本地文件系统上，文件时间可被自由更改。</p>
-<h2 id="git-提交"><a class="markdownIt-Anchor" href="#git-提交"></a> Git 提交</h2>
-<h3 id="-date-选项"><a class="markdownIt-Anchor" href="#-date-选项"></a> <code>--date</code> 选项</h3>
-<p>Git 在 <code>commit</code> 时，默认会将当前系统时间作为时间戳，可使用 <code>--date=</code> 选项覆盖，详细文档 <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---dateltdategt">在此</a>。</p>
-<p><img src="https://i.loli.net/2021/04/05/9VPvwZNgBDo6CXx.png" alt="#b# 伪造一个历史提交" /></p>
-<p>可以看到，date 为 1975 年。</p>
-<h3 id="环境变量"><a class="markdownIt-Anchor" href="#环境变量"></a> 环境变量</h3>
+</li>
+<li>
+<p>定义结构：有以下元素，都是块级容器元素，且都是 <code>&lt;table&gt;</code> 的一级子元素</p>
+<ul>
+<li><code>&lt;thead&gt;</code>：表头</li>
+<li><code>&lt;tbody&gt;</code>：表体。可使用多个 <code>&lt;tbody&gt;</code>，表示连续的多个部分</li>
+<li><code>&lt;tfoot&gt;</code>：表尾</li>
+</ul>
+</li>
+<li>
+<p>定义行列</p>
+<ul>
+<li><code>&lt;colgroup&gt;</code>：<code>&lt;table&gt;</code> 的一级子元素，定义行</li>
+<li><code>&lt;col&gt;</code>：<code>&lt;colgroup&gt;</code> 的一级子元素，定义列。单独使用，没有结束标签，且 不含子元素</li>
+</ul>
+  <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>colgroup</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>col</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>c1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>col</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>c2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>col</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>c3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>colgroup</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为每一列指定 class</p>
+</li>
+<li>
+<p>表示行列</p>
+<ul>
+<li><code>&lt;tr&gt;</code>：表格的一行</li>
+<li><code>&lt;th&gt;</code>：标题单元格</li>
+<li><code>&lt;td&gt;</code>：数据单元格</li>
+</ul>
+  <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>学号<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>姓名<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>张三<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>002<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>李四<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="表格样式"><a class="markdownIt-Anchor" href="#表格样式"></a> 表格样式</h2>
+<p><img src="https://i.loli.net/2021/08/10/H9KhstuyMorWj1D.png" alt="#b# 表格的用户代理样式" /></p>
+<p>观察一下默认样式，有以下几个不熟悉：</p>
+<ul>
+<li><code>border-collapse</code>：决定表格的边框是分开还是合并
+<ul>
+<li><code>collapse</code>：共用边框</li>
+<li><code>separate</code>：每个单元格独立边框</li>
+</ul>
+</li>
+<li><code>border-spacing</code>：指定相邻单元格之间的距离，因此只适用于 <code>border-collapse: separate;</code>
+<ul>
+<li>相当于 HTML 的 <code>cellspacing</code> 属性</li>
+<li>可分别指定水平和垂直：<code>border-spacing: 1px 2px;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="display-布局"><a class="markdownIt-Anchor" href="#display-布局"></a> <code>display</code> 布局</h2>
+<p>至此，第一个 <a href="#%E4%BA%91%E5%B1%B1%E9%9B%BE%E7%BD%A9">问题</a> 解决了，但第二个问题还没见到原因。说来奇怪，调试的时候突然发现第二列写了 flex 布局，该属性来自组件库，取消后就居中了 😅。那么问题又来了：为什么 flex 可以不按上述规定？</p>
+<p>其实很好笼统地解释：布局使然，<code>table</code>、<code>flex</code>、<code>inline-table</code> 效果不尽相同，之前尝试 <code>inline</code> 以及 <code>inline-block</code> 可以绕道解决问题，所以才产生重写布局的想法，然而 CSS 基础太差了，这些布局一知半解。借此机会整理一下。</p>
+<h3 id="全局属性值"><a class="markdownIt-Anchor" href="#全局属性值"></a> 全局属性值</h3>
+<ul>
+<li><code>inherit</code>：从父元素继承属性的值</li>
+<li><code>initial</code>：恢复元素属性的默认值（默认值由 CSS 规范定义，而非用户代理）</li>
+<li><code>unset</code>：
+<ul>
+<li>如果父类有值，则从父类继承，类似 <code>inherit</code></li>
+<li>否则，设为初始值，类似 <code>initial</code></li>
+</ul>
+</li>
+<li><code>revert</code>：类似 <code>unset</code> <em>CSS Cascading 3</em>
+<ul>
+<li>恢复到用户代理或用户创建的自定义样式表设置的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="上下文"><a class="markdownIt-Anchor" href="#上下文"></a> 上下文</h3>
+<ul>
+<li><code>none</code>：元素将从文档流中移除，不会显示</li>
+<li><code>block</code>：块级元素
+<ul>
+<li>独占一行，后面的元素新起一行，默认填满父元素宽度</li>
+<li>高度一般以子元素撑开的高度为准</li>
+<li>可设置 <code>width</code>/<code>height</code>，<code>margin</code> 和 <code>padding</code></li>
+</ul>
+</li>
+<li><code>inline</code>：内联元素
+<ul>
+<li>在同一行，直到排满换行</li>
+<li><code>width</code>/<code>height</code> 无效</li>
+<li><code>margin</code> 和 <code>padding</code> 有效，但 <code>-top</code>、<code>-bottom</code> 无效</li>
+</ul>
+</li>
+<li><code>inline-block</code>：结合 <code>block</code> 和 <code>inline</code>
+<ul>
+<li>在同一行内，但内容有块级元素的效果</li>
+<li><code>width</code>、<code>height</code>、<code>margin</code>、<code>padding</code> 都有效</li>
+</ul>
+</li>
+<li><code>list-item</code>：将元素作为列表显示，借助 <code>list-style-position</code>、<code>list-style-type</code> 可模拟 <code>&lt;li&gt;</code> 效果</li>
+<li><code>flex</code>：具体布局技术不说了，规范见 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1">CSS Flexbox 1</a>
 <blockquote>
-<p>Git 总是在一个 bash shell 中运行，并借助一些 shell 环境变量来决定它的运行方式。</p>
+<p>在本文中，第二列指定了高度，并且设置了 flex，遵循 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/#box-model">规定</a>，flexbox 取指定的值</p>
 </blockquote>
-<p>除了指定选项和参数，还可使用环境变量来指定更改时间和提交时间，Git <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">文档</a> 描述如下：</p>
-<blockquote>
-<p>Git 提交对象的创建通常最后是由 <code>git-commit-tree</code> 来完成， <code>git-commit-tree</code> 用这些环境变量作主要的信息源。 仅当这些值不存在才回退到预置的值。</p>
-<p><code>GIT_AUTHOR_NAME</code> 是 “author” 字段的可读名字。<br />
-<code>GIT_AUTHOR_EMAIL</code> 是 “author” 字段的邮件。<br />
-<code>GIT_AUTHOR_DATE</code> 是 “author” 字段的时间戳。<br />
-<code>GIT_COMMITTER_NAME</code> 是 “committer” 字段的可读名字。<br />
-<code>GIT_COMMITTER_EMAIL</code> 是 “committer” 字段的邮件。<br />
-<code>GIT_COMMITTER_DATE</code> 是 “committer” 字段的时间戳。</p>
-<p>如果 <code>user.email</code> 没有配置， 就会用到 <code>EMAIL</code> 指定的邮件地址。 如果 <strong>这个</strong> 也没有设置， Git 继续回退使用系统用户和主机名。</p>
-</blockquote>
-<p>示例命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token assign-left variable">GIT_AUTHOR_DATE</span><span class="token operator">=</span><span class="token string">"2031-01-01 12:33:08"</span> <span class="token punctuation">\</span>
-    <span class="token assign-left variable">GIT_COMMITTER_DATE</span><span class="token operator">=</span><span class="token string">"2031-02-01 12:33:08"</span> <span class="token punctuation">\</span>
-    <span class="token function">git</span> commit <span class="token builtin class-name">.</span> <span class="token punctuation">\</span>
-    -m <span class="token string">"some commit message"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在将仓库上传到 GitHub，时间依然显示为当前时间：</p>
-<p><img src="https://i.loli.net/2021/04/05/PdNThkvgbJAQIaM.png" alt="#b# 项目主页的时间" /></p>
-<p>但是打开个人 Profile 会发现 Activity 年份一直到 1975 年：</p>
-<p><img src="https://i.loli.net/2021/04/05/GBUmdC48ciejQx1.png" alt="#b# 历史" /></p>
-<p>GitHub 大抵确乎是改变了显示方式，按照上传时间来显示，但提交时间属于 Git 仓库的信息，依然被保留。</p>
-<p>既然能够控制提交时的时间，那能否修改已提交版本的时间呢？</p>
-<h2 id="修改上一次提交"><a class="markdownIt-Anchor" href="#修改上一次提交"></a> 修改上一次提交</h2>
-<p>修改已提交的内容使用 <code>--amand</code> 选项，使用 <code>-C --reuse-message</code> 重用某一次历史提交及其信息，当然也可以手动输入 <code>author</code>、<code>date</code> 等每一个字段。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> commit -C c95bed7 --amend --date<span class="token operator">=</span><span class="token string">"2019-01-01 23:12:01"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>对于 <code>-C</code> 参数，Git <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--cltcommitgt">文档</a> 描述如下：</p>
-<blockquote>
-<p>-C <commit><br />
-–reuse-message=<commit><br />
-Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.</p>
-</blockquote>
-<blockquote>
-<p>-c <commit><br />
-–reedit-message=<commit><br />
-Like -C, but with -c the editor is invoked, so that the user can further edit the commit message.</p>
-</blockquote>
-<p>注意，这种方式只能修改上一次提交了的信息，对于已被覆盖的历史版本，需要使用 <code>rebase</code> 子命令。</p>
-<h2 id="修改历史提交"><a class="markdownIt-Anchor" href="#修改历史提交"></a> 修改历史提交</h2>
-<blockquote>
-<p>Git 没有一个改变历史工具，但是可以使用变基工具来变基一系列提交，基于它们原来的 HEAD 而不是将其移动到另一个新的上面。</p>
-</blockquote>
-<p>变基首先要界定修改范围，假设有以下几次提交：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">commit 1ce2760811ffd5fdc37a841ce9b39198dec4c8b7 <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master<span class="token punctuation">)</span>
-Date:   Thu Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2099</span> +0800
+</li>
+<li><code>inline-flex</code>：没有指定宽度时，<code>flex</code> 会填充父容器，<code>inline-flex</code> 不会</li>
+</ul>
+<h3 id="表格相关"><a class="markdownIt-Anchor" href="#表格相关"></a> 表格相关</h3>
+<ul>
+<li><code>table</code>：作为块级表格来显示（类似 <code>&lt;table&gt;</code>）</li>
+<li><code>inline-table</code>：会作为内联表格来显示（类似 <code>&lt;table&gt;</code>）</li>
+<li><code>table-row</code>：会作为一个表格行显示（类似 <code>&lt;tr&gt;</code>）</li>
+<li><code>table-cell</code>：会作为一个表格单元格显示（类似 <code>&lt;td&gt;</code> 和 <code>&lt;th&gt;</code>）</li>
+</ul>
+<h2 id="推荐阅读"><a class="markdownIt-Anchor" href="#推荐阅读"></a> 推荐阅读</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/">W3C Standards and Drafts</a></li>
+<li><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/">HTML Standard</a>。本文细节出自 <a target="_blank" rel="noopener" href="https://www.w3.org/TR/2019/WD-css-tables-3-20190727/">CSS table 3</a></li>
+</ul>
+<h2 id="附录示例代码"><a class="markdownIt-Anchor" href="#附录示例代码"></a> 附录：示例代码</h2>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Table Height demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>colgroup</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>col</span> <span class="token punctuation">/></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>col</span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>colgroup</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>content-1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>content-3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+    <span class="token selector">table</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 226px<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    third commit
+    <span class="token selector">tr</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-commit 65d1c641337c79137f73ca4d1a76fed83c467d32
-Date:   Tue Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2019</span> +0800
+    <span class="token selector">tr:hover</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.04<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    second commit
-
-commit c95bed78bd36a7e1f4bb4ca1270e8b0791d9f864
-Date:   Fri Dec <span class="token number">5</span> <span class="token number">12</span>:23:23 <span class="token number">1975</span> +0800
-
-    first commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>要修改 <code>second commit</code> 的内容，就得回到 <code>65d1c641337</code> <strong>之前一次</strong> 提交，即：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> reabse -i 65d1c641337^<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令表示对 <code>7075919</code> 到 <code>HEAD</code> 之间的提交进行 rebase，<code>-i --interactive</code> 交互式变基。</p>
-<p><img src="https://i.loli.net/2021/04/05/HwRum6GSh7btCZc.png" alt="#b# 进入交互式变基引导界面" /></p>
-<p>可以看到，从上到下依次为历史提交，在 <code>c95bed7</code> 的基础上（onto）。此时，在需要修改的提交前，将 <code>pick</code> 改为 <code>edit</code>，保存退出，将会收到以下提示：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Stopped at 65d1c64<span class="token punctuation">..</span>.  second commit
-You can amend the commit now, with
-
-  <span class="token function">git</span> commit --amend
-
-Once you are satisfied with your changes, run
-
-  <span class="token function">git</span> rebase --continue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在就类似 <a href="#%E4%BF%AE%E6%94%B9%E4%B8%8A%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4">修改上一次提交</a>，可以更改文件，使用 <code>git commit --amend</code> 更改提交，提交之后使用 <code>git rebase --continue</code> 进入下一个标记为 <code>edit</code> 的提交，假如没有冲突且全部更改完成，将成功退出。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">➜ history-repo git:<span class="token punctuation">(</span>ae2a4c8<span class="token punctuation">)</span> ✗ <span class="token function">git</span> commit --amend -m <span class="token string">"commit from rebase"</span>
-<span class="token punctuation">[</span>detached HEAD 5e8e09e<span class="token punctuation">]</span> commit from rebase
- Date: Thu Jan <span class="token number">1</span> <span class="token number">23</span>:12:01 <span class="token number">2099</span> +0800
- <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">2</span> insertions<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
-➜ history-repo git:<span class="token punctuation">(</span>5e8e09e<span class="token punctuation">)</span> ✗ <span class="token function">git</span> rebase --continue
-Successfully rebased and updated refs/heads/master.
-➜ history-repo git:<span class="token punctuation">(</span>master<span class="token punctuation">)</span> ✗<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此时查看 log，会发现 commit 信息已被修改，且 Hash 也 <strong>重新计算</strong>（Zsh 的命令提示符发生了变化）。改变历史，注定会影响现在，至少在 Git 系统中是如此处理的。</p>
-<p>不难预见，在团队协作时，单个仓库内版本历史变更后，其他同步版本库的历史状态都会受到影响，在使用变基时需要各自协调好。关于 <code>rebase</code> 的文档 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2">在此</a>，最后提醒：慎用 <code>rebase</code>。</p>
-<h2 id="面子工程"><a class="markdownIt-Anchor" href="#面子工程"></a> 面子工程</h2>
-<p>掌握了 Git 的时间密码，现在就可以实现 GitHub 打卡了，写个脚本自动刷小绿点<br />
-，要多少有多少（逃</p>
-<p><img src="https://i.loli.net/2021/04/05/2PCbxRENKgFWyhM.png" alt="#b# GitHub 打卡" /></p>
-<p>显然这是名副其实的面子工程，全年 365 天不休息并不是什么好习惯，强如 Linus 也有不工作的时间~~，如果不休假，就不会诞生 Git 了（逃~~</p>
-<p>最后敬告：</p>
-<blockquote>
-<p>打铁还需自身硬，评价永远都是基于客观因素，不能只惦记光鲜亮丽的外表。</p>
-</blockquote>
+    <span class="token selector">td</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> 38px<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -579,7 +677,7 @@ Successfully rebased and updated refs/heads/master.
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/">https://palmcivet.github.io/2020/12/git-shi-guang-chuan-suo/</a>
+                    <a href="https://palmcivet.github.io/2021/08/cai-keng-xiao-ji-css-table/">https://palmcivet.github.io/2021/08/cai-keng-xiao-ji-css-table/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,12 +715,16 @@ Successfully rebased and updated refs/heads/master.
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
+                                <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                    <span class="chip bg-color">踩坑</span>
                                 </a>
                             
-                                <a href="/tags/GitHub/">
-                                    <span class="chip bg-color">GitHub</span>
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
+                                </a>
+                            
+                                <a href="/tags/CSS/">
+                                    <span class="chip bg-color">CSS</span>
                                 </a>
                             
                         </div>
@@ -792,9 +894,10 @@ Successfully rebased and updated refs/heads/master.
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/08/cai-keng-xiao-ji-css-table/">
                     <div class="card-image">
@@ -811,9 +914,9 @@ Successfully rebased and updated refs/heads/master.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -826,6 +929,7 @@ Successfully rebased and updated refs/heads/master.
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -852,23 +956,23 @@ Successfully rebased and updated refs/heads/master.
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/wo-de-sheng-chan-li-gong-ju/">
+                <a href="/2020/12/git-shi-guang-chuan-suo/">
                     <div class="card-image">
                         
-                        <img src="https://s1.ax1x.com/2020/07/11/UM4IF1.jpg" class="responsive-img" alt="我的生产力工具">
+                        <img src="https://i.loli.net/2021/04/05/zHbIDvngw5TuXAG.png" class="responsive-img" alt="Git 时光穿梭">
                         
-                        <span class="card-title">我的生产力工具</span>
+                        <span class="card-title">Git 时光穿梭</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            发现好软件，并正确使用，能极大提高效率，提升生活质量。依据这一主旨，本文记录并分享一些常用的生产力工具。
+                            本文主要学习记录关于 Git 提交日期的一些操作，实现穿越时间的效果（然而并没有什么用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-26
                             </span>
                         <span class="publish-author">
                             
@@ -885,8 +989,12 @@ Successfully rebased and updated refs/heads/master.
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8F%82%E8%80%83/">
-                        <span class="chip bg-color">参考</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                    <a href="/tags/GitHub/">
+                        <span class="chip bg-color">GitHub</span>
                     </a>
                     
                 </div>

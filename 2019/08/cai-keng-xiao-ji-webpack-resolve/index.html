@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="薛定谔的 Console.log(), Palm Civet,Blog">
+    <meta name="keywords" content="踩坑小记——Webpack resolve, Palm Civet,Blog">
     <meta name="description" content="一个全沾开发者">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>薛定谔的 Console.log() | Palm Civet</title>
+    <title>踩坑小记——Webpack resolve | Palm Civet</title>
     <link rel="icon" type="image/png" href="/meta/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -226,12 +226,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s2.ax1x.com/2020/02/04/1rSs7q.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s2.ax1x.com/2019/08/23/mDFQjP.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">薛定谔的 Console.log()</h1>
+                    <h1 class="description center-align post-title">踩坑小记——Webpack resolve</h1>
                 </div>
             </div>
         </div>
@@ -347,12 +347,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%B8%A9%E5%9D%91/">
-                                <span class="chip bg-color">踩坑</span>
+                            <a href="/tags/Webpack/">
+                                <span class="chip bg-color">Webpack</span>
                             </a>
                         
-                            <a href="/tags/JavaScript/">
-                                <span class="chip bg-color">JavaScript</span>
+                            <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                <span class="chip bg-color">踩坑</span>
                             </a>
                         
                     </div>
@@ -376,28 +376,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布于:&nbsp;&nbsp;
-                    2019-09-01
+                    2019-08-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新于:&nbsp;&nbsp;
-                    2020-04-23
+                    2019-08-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    473
+                    720
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -415,25 +415,89 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>在写作本文时我已经理清了思路，但在当时走投无路、无计可施的情况下难免会忽略一些细节。复现问题时使用的是简单的例子，表现意思即可，故在此无需探讨例子的意义</p>
-</blockquote>
-<p>今天写代码时，调试一个数组对象，想把内容都打印出来，就直接 <code>console.log()</code>，把三角形展开，如下：</p>
-<p><img src="https://s2.ax1x.com/2019/09/01/nptMD0.jpg" alt="" /></p>
-<p>可以看到，<code>0:</code> 和 <code>1:</code> 对应的值都不是数组 <code>[]</code> 中的值，<code>0</code> 和 <code>1</code> 是数组的索引值，从 <code>0</code> 开始，没问题，但是为何对应的值不匹配呢？</p>
-<p>在调试时，类似 <code>(2) [22, 2]</code> 行输出的是二维数组，因此输出不能一目了然，我认为没有预期输出是代码问题，因此审视了一遍代码，严格理了一遍逻辑发现并没有错误 <s>，除了一些小 Bug</s></p>
-<p>走投无路时，发现有如下 <code>!</code> 的标记：</p>
-<p><img src="https://s2.ax1x.com/2019/09/01/npJLWj.jpg" alt="" /></p>
-<p>鼠标悬停，弹出如下提示：</p>
-<p><img src="https://s2.ax1x.com/2019/09/01/npJqYQ.png" alt="" /></p>
-<p>意识到可能这里存在“未解之谜”，<a target="_blank" rel="noopener" href="https://www.bing.com">Bing</a> 之后，发现果然存在玄机：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018831992">记一次&quot;Value below was evaluated just now&quot;</a></p>
-<p>我还是太年轻，<code>0</code>、<code>1</code>、<code>2</code>……输出的不是数组的值，而是最终改变的值，因此，在运行时展开，此时的值是展开那个时间点的值，就像封面图一样：</p>
-<p><img src="https://s2.ax1x.com/2019/09/01/npJXSs.png" alt="" /></p>
+                <p>前段时间，学习了 <a target="_blank" rel="noopener" href="https://webpack.js.org/">Webpack</a>、<a target="_blank" rel="noopener" href="https://ejs.co/">EJS</a>、<a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a> 等工具，在学习 <a target="_blank" rel="noopener" href="https://reactjs.org/">React</a> 及其全家桶时，开始着手开发一些项目，以此巩固和提高。遂在之前一个已有项目的基础上，建立项目文件夹，项目结构如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">repo
+├── todo-list
+│  ├── webpack.config.js
+│  ├── screenshots
+│  ├── server
+│  ├── dist
+│  └── src
+│     ├── components
+│     ├── index.html
+│     ├── index.jsx
+│     ├── layout
+│     └── style
+├── package.json
+├── node_modules
+└── README.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中，<code>repo</code> 为 Git 文件夹，除了 <code>todo-list</code> 这个文件夹以外还有其他项目文件夹，各个项目共用一个 <code>node_modules</code><s>，以节省空间</s></p>
+<p>Webpack 入口（Entry）在 <code>index.jsx</code>，一般情况下，引用 <code>components</code> 文件夹下的 <code>container</code> 组件，代码应为：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Container <span class="token keyword">from</span> <span class="token string">'./layout/container'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>webpack.config.js</code> 配置如下：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token constant">ENTRY</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token constant">OUTPUT</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    entry<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token constant">ENTRY</span><span class="token punctuation">,</span> <span class="token string">'index.jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    output<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token constant">OUTPUT</span><span class="token punctuation">,</span>
+        filename<span class="token operator">:</span> <span class="token string">'index.bundle.js'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>构建运行，结果却是：</p>
+<p><img src="https://s2.ax1x.com/2019/08/19/m3hly6.png" alt="" /></p>
+<p>提示无法解析 <code>./layout/container</code>，猜测可能是相对于 Webpack 配置文件的路径，考虑到项目可能会扩大，因此添加 alias，并且修改 import 语句，</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token constant">ENTRY</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token constant">OUTPUT</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    entry<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token constant">ENTRY</span><span class="token punctuation">,</span> <span class="token string">'index.jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    output<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token constant">OUTPUT</span><span class="token punctuation">,</span>
+        filename<span class="token operator">:</span> <span class="token string">'index.bundle.js'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    resolve<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		alias<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+			<span class="token string">"src"</span><span class="token operator">:</span> <span class="token constant">ENTRY</span>
+		<span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><s>此处的 <code>&quot;src&quot;: ENTRY</code> 似乎多此一举，但当时配置文件在 <code>repo</code> 文件夹，因此还有一个 <code>todo-list</code> 文件夹，路径更长</s></p>
+<p>依旧报错……去掉 alias，还是报错，<em>How old are you？</em> 最后把组件和入口文件全部放在一起，还是报错……</p>
+<p>意识到这应该不是路径的问题，可能是 Webpack 配置不对，再去翻文档，<a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/resolve/#resolve-alias"><code>resolve.alias</code></a>，按照文档的意思，alias 配置没有问题，再去 <a target="_blank" rel="noopener" href="https://www.zhihu.com/">知乎</a>、<a target="_blank" rel="noopener" href="https://www.bing.com/">Bing</a> 搜索 alias 的用法，虽然大家写法不一，但总体和我是差不多的，但是 Webpack 似乎没有用上 alias 这一功能~~，虽然也看不出来，都是无法解析~~</p>
+<p>最后搜索 <code>Module not found</code>，终于找到了些眉目：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f5d1d73fe414">Module not found: Error: Can’t resolve ‘react’ in · 简书</a>，在这里，居然发现有 <code>resolve.modules</code> 这一项，山穷水复的情况下，拿来直接用，居然成功打包！！！</p>
+<hr />
+<p>文档如下：</p>
 <blockquote>
-<p>当你在控制台展开打印出来的数组（或者对象）的时候，如果此时数组（或者对象）的数据已经发生了改变，那么将显示改变之后的数据。如果此时数组（或者对象）的数据没有发生改变，那么就一直显示此时的数据</p>
+<p>resolve.modules<br />
+<code>[string]: ['node_modules']</code><br />
+告诉 webpack 解析模块时应该搜索的目录。<br />
+……<br />
+如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索</p>
 </blockquote>
-<p>这个值不是固定的，而是视展开时的情况而定，就像电子双缝干涉实验所表现出来的，有无观察者会对结果产生影响</p>
-<p><img src="http://tomcat.apache.org/res/images/tomcat.png" alt="Tomcat" /></p>
+<p>该选项给出解析时的路径，默认是 <code>node_modules</code>，查找是会先从最近的 <code>node_modules</code> 目录里找，找不到则往上层找~~，因此，我之前共用一个包文件夹的设想是成功的~~</p>
+<p><strong>可添加自定义的模块</strong>，路径应写在 <code>'node_modules'</code> 之前</p>
+<hr />
+<p>因此，在这里，应配置为：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token constant">ENTRY</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token constant">OUTPUT</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    entry<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token constant">ENTRY</span><span class="token punctuation">,</span> <span class="token string">'index.jsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    output<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        path<span class="token operator">:</span> <span class="token constant">OUTPUT</span><span class="token punctuation">,</span>
+        filename<span class="token operator">:</span> <span class="token string">'index.bundle.js'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    resolve<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        extensions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.js'</span><span class="token punctuation">,</span> <span class="token string">'.jsx'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        modules<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token constant">ENTRY</span><span class="token punctuation">,</span> <span class="token string">'node_modules'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+	<span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>至于 alias 和 <code>index.js</code> 中的 import 语句，爱咋样咋样，保持原样即可</p>
 
                 
             </div>
@@ -460,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://palmcivet.github.io/2019/09/xie-ding-e-de-console-log/">https://palmcivet.github.io/2019/09/xie-ding-e-de-console-log/</a>
+                    <a href="https://palmcivet.github.io/2019/08/cai-keng-xiao-ji-webpack-resolve/">https://palmcivet.github.io/2019/08/cai-keng-xiao-ji-webpack-resolve/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -498,12 +562,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%B8%A9%E5%9D%91/">
-                                    <span class="chip bg-color">踩坑</span>
+                                <a href="/tags/Webpack/">
+                                    <span class="chip bg-color">Webpack</span>
                                 </a>
                             
-                                <a href="/tags/JavaScript/">
-                                    <span class="chip bg-color">JavaScript</span>
+                                <a href="/tags/%E8%B8%A9%E5%9D%91/">
+                                    <span class="chip bg-color">踩坑</span>
                                 </a>
                             
                         </div>
@@ -677,72 +741,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/shi-yong-ctfd-da-jian-ba-chang/">
+                <a href="/2019/09/cai-keng-xiao-ji-xie-ding-e-de-console-log/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2021/04/04/x87I5QlOh6SmkLP.png" class="responsive-img" alt="使用 CTFd 搭建靶场">
+                        <img src="https://s2.ax1x.com/2020/02/04/1rSs7q.png" class="responsive-img" alt="踩坑小记——薛定谔的 Console.log()">
                         
-                        <span class="card-title">使用 CTFd 搭建靶场</span>
+                        <span class="card-title">踩坑小记——薛定谔的 Console.log()</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用 CTFd 搭建一个 CTF 平台，以供练习
+                            当你在控制台展开打印出来的数组（或者对象）的时候，如果此时该数组（或对象）的数据已经发生了改变，那么将显示改变之后的数据。
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-09-01
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Docker/">
-                        <span class="chip bg-color">Docker</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/08/webpack-cai-keng-ji-lu/">
-                    <div class="card-image">
-                        
-                        <img src="https://s2.ax1x.com/2019/08/23/mDFQjP.png" class="responsive-img" alt="Webpack 踩坑记录">
-                        
-                        <span class="card-title">Webpack 踩坑记录</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Webpack 提示 Module not found 时，尝试在 resolve.modules 里添加 import xxx from './xxx' 中 ./xxx 的路径。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-19
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -758,12 +774,64 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Webpack/">
-                        <span class="chip bg-color">Webpack</span>
-                    </a>
-                    
                     <a href="/tags/%E8%B8%A9%E5%9D%91/">
                         <span class="chip bg-color">踩坑</span>
+                    </a>
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/05/irc-qian-chang/">
+                    <div class="card-image">
+                        
+                        <img src="https://s2.ax1x.com/2019/08/23/mBHgsI.png" class="responsive-img" alt="IRC 浅尝">
+                        
+                        <span class="card-title">IRC 浅尝</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            IRC 是一种互联网聊天方式，采用分布式的客户端/服务器架构，每个 IRC 网络由多个服务器连接而成，几乎只要有互联网就可以聊天。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Geek/" class="post-category">
+                                    Geek
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/IRC/">
+                        <span class="chip bg-color">IRC</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%80%9A%E4%BF%A1/">
+                        <span class="chip bg-color">通信</span>
                     </a>
                     
                 </div>
