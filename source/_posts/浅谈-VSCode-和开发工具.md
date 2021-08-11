@@ -19,7 +19,7 @@ summary: 微软家带 Visual 的东西实在太多了，傻傻分不清楚，本
 
 地毯式搜索之后，发现解决方案还是不少的，[*Code Server*](https://github.com/cdr/code-server "GitHub") 就是其中一个，其本质就是魔改 VSCode。你也可以更极客（硬核）一点，VSCode 官方提供了 [编译步骤](https://github.com/microsoft/vscode/wiki/How-to-Contribute "GitHub Wiki")，可以编译为 Web 应用，部署在自己的服务器上，成为比 *Code Server* 更原生的云编辑器。
 
-![Code Server - 图片来自官方 GitHub](https://github.com/cdr/code-server/raw/master/doc/assets/screenshot.png)
+![Code Server - 图片来自官方 GitHub](https://github.com/cdr/code-server/raw/main/docs/assets/screenshot.png)
 
 除此之外，如 [StackBlitz](https://stackblitz.com/ "主页") 等其他解决方案以及具体玩法见后文 ~~，后文的意思是今后的文章（逃~~
 

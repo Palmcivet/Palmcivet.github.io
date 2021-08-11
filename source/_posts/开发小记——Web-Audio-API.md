@@ -8,11 +8,11 @@ reprintPolicy: cc_by
 date: 2020-04-28 00:27:19
 img: https://s1.ax1x.com/2020/04/28/J42pPs.png
 password:
-tags:
-  - 踩坑
-  - JavaScript
 categories:
   - 前端开发
+tags:
+  - JavaScript
+  - 音视频开发
 summary: 总结了 Web Audio API 的使用流程，整理了 AlloyTeam 等团队的方案，记录了使用 Audio API 过程中会遇到的一些问题。
 ---
 

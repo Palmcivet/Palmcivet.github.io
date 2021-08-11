@@ -15,7 +15,7 @@
   <% Object.keys(theme.menu).forEach(function(key) { %>
   <li class="hide-on-med-and-down nav-item">
     <% if(!theme.menu[key].children) { %>
-    <a href="<%- theme.menu[key].url %>" class="waves-effect waves-light">
+    <a href="<%- url_for(theme.menu[key].url) %>" class="waves-effect waves-light">
       <% if (theme.menu[key].icon && theme.menu[key].icon.length > 0) { %>
       <i class="<%- theme.menu[key].icon %>" style="zoom: 0.6;"></i>
       <% } %>

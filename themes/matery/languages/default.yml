@@ -9,8 +9,8 @@ contact: Contact
 friends: Friends
 startRead: Start
 recommendedPosts: Recommended Posts
-publishDate: Published at
-updateDate: Updated at
+publishDate: Publish Date
+updateDate: Update Date
 readCount: Read Count
 wordCount: Word Count
 readTimes: Read Times
@@ -36,9 +36,8 @@ maximum: Maximum
 minimum: Minimum
 average: Average
 myProjects: My Projects
-mySkills: Tech Stack
+mySkills: My Skills
 otherSkills: Other Skills
-wheel: Wheels Used
 gallery: Gallery
 notag: No tag
 from: From

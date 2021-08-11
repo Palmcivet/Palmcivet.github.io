@@ -12,7 +12,6 @@ categories:
   - Geek
 tags:
   - Python
-  - Wget
 summary: wget 加 -m 选项下载站点资源，然后使用 Python 提供的 SimpleHTTPServer 搭建简易服务器，可以实现在本地访问文档。
 ---
 

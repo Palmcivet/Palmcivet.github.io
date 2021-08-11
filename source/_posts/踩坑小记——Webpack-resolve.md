@@ -1,5 +1,5 @@
 ---
-title: Webpack 踩坑记录
+title: 踩坑小记——Webpack resolve
 toc: true
 top: false
 cover: false
@@ -88,10 +88,6 @@ module.exports = {
 意识到这应该不是路径的问题，可能是 Webpack 配置不对，再去翻文档，[`resolve.alias`](https://webpack.docschina.org/configuration/resolve/#resolve-alias)，按照文档的意思，alias 配置没有问题，再去 [知乎](https://www.zhihu.com/)、[Bing](https://www.bing.com/) 搜索 alias 的用法，虽然大家写法不一，但总体和我是差不多的，但是 Webpack 似乎没有用上 alias 这一功能~~，虽然也看不出来，都是无法解析~~
 
 最后搜索 `Module not found`，终于找到了些眉目：[Module not found: Error: Can't resolve 'react' in · 简书](https://www.jianshu.com/p/f5d1d73fe414)，在这里，居然发现有 `resolve.modules` 这一项，山穷水复的情况下，拿来直接用，居然成功打包！！！
-
-
-以下为正文
----
 
 ---
 

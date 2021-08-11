@@ -1,5 +1,5 @@
 ---
-title: 薛定谔的 Console.log()
+title: 踩坑小记——薛定谔的 Console.log()
 toc: true
 top: false
 cover: false

@@ -149,18 +149,18 @@ double * p = 3.14;
 #include <stdio.h>
 int func()
 {
-        char * p = "hahaha";
-        printf("%s\n", p);
-        return 0;
+    char * p = "hahaha";
+    printf("%s\n", p);
+    return 0;
 }
 
 int main()
 {
-        char * q = "that's ok";
-        printf("%s\n", q);
-        printf("%c\n", *(q+2));
-        func();
-        return 0;
+    char * q = "that's ok";
+    printf("%s\n", q);
+    printf("%c\n", *(q+2));
+    func();
+    return 0;
 }
 ```
 
@@ -422,21 +422,21 @@ void (*func)();
 
 void a(int (*callee)())
 {
-        printf("a: hhh\n");
-        callee();
+    printf("a: hhh\n");
+    callee();
 }
 
 int b()
 {
-        printf("b: hhhh\n");
-        return 0;
+    printf("b: hhhh\n");
+    return 0;
 }
 
 int main()
 {
-        func = a;
-        func(b);    // (*func)(b); 与之相同
-        return 0;
+    func = a;
+    func(b);    // (*func)(b); 与之相同
+    return 0;
 }
 ```
 
