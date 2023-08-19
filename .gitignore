@@ -1,11 +1,35 @@
 .DS_Store
-.git/
+node_modules
+.yarnclean
 Thumbs.db
-db.json
-*.log
-node_modules/
-public/
-.deploy*/
-_drafts
-themes/*/_config.yml
-*pre*
+
+# local env files
+*.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# build output
+build
+dist
+lib
+*.tsbuildinfo
+
+# vuepress
+.cache
+.temp
+.deploy
+
+drafts

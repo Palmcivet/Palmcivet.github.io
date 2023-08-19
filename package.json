@@ -1,30 +1,33 @@
 {
-  "name": "hexo-site",
+  "name": "palmcivet.github.io",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "build": "hexo g",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo g && hexo s"
+  "type": "module",
+  "description": "Palm Civet's blog",
+  "author": {
+    "name": "Palm Cviet",
+    "email": "palmcivet_email@qq.com",
+    "url": "https://palmcivet.github.io"
   },
-  "hexo": {
-    "version": "5.4.0"
+  "scripts": {
+    "dev": "vuepress dev ./docs --clean-cache --clean-temp",
+    "build": "vuepress build ./docs -d ./dist --clean-cache",
+    "clean": ""
   },
   "dependencies": {
-    "gitment": "0.0.3",
-    "hexo": "^5",
-    "hexo-deployer-git": "^2.1.0",
-    "hexo-generator-archive": "^1.0.0",
-    "hexo-generator-category": "^1.0.0",
-    "hexo-generator-feed": "^2.2.0",
-    "hexo-generator-index": "^1.0.0",
-    "hexo-generator-search": "^2.4.0",
-    "hexo-generator-tag": "^1.0.0",
-    "hexo-permalink-pinyin": "^1.1.0",
-    "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-markdown-it-plus": "^1.0.4",
-    "hexo-server": "^1.0.0",
-    "hexo-wordcount": "^6.0.1"
+    "@vuepress/plugin-active-header-links": "2.0.0-beta.61",
+    "@vuepress/plugin-container": "2.0.0-beta.61",
+    "@vuepress/plugin-external-link-icon": "2.0.0-beta.61",
+    "@vuepress/plugin-medium-zoom": "2.0.0-beta.61",
+    "@vuepress/plugin-theme-data": "2.0.0-beta.61",
+    "@vuepress/plugin-toc": "2.0.0-beta.61",
+    "@vuepress/client": "2.0.0-beta.61",
+    "@vuepress/markdown": "2.0.0-beta.61",
+    "vue": "^3.2.45",
+    "vuepress": "2.0.0-beta.61"
+  },
+  "devDependencies": {
+    "less": "^4.2.0",
+    "prismjs": "^1.29.0"
   }
 }
